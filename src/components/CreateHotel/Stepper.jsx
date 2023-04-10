@@ -1,128 +1,161 @@
+import Stepper from "./Stepper";
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import "./Stepper.scss";
-
-export default class Stepper extends Component {
+import HotelInfo2 from "./HotelInfo2";
+import HotelInfo3 from "./HotelInfo3";
+import HotelInfo from "./HotelInfo";
+import "../../css/Profile.css";
+import "../CreateHotel/create.css";
+export default class steps extends Component {
   constructor() {
     super();
+
     this.state = {
-      // Completed - to add a check mark
-      // Selected - to fill step with color
-      // Highlighted - to make text of selected step bold
-      steps: [],
+      btn: null,
+      btn2: null,
+
+      currentStep: 1,
+      page: null,
     };
   }
 
-  componentDidMount() {
-    const { steps, currentStepNumber } = this.props;
+  handleClick(clickType) {
+    const { currentStep } = this.state;
+    let newStep = currentStep;
+    clickType === "next" ? newStep++ : newStep--;
 
-    const stepsState = steps.map((step, index) => {
-      const stepObj = {};
-      stepObj.description = step;
-      stepObj.highlighted = index === 0 ? true : false;
-      stepObj.selected = index === 0 ? true : false;
-      stepObj.completed = false;
-      return stepObj;
-    });
-
-    const currentSteps = this.updateStep(currentStepNumber, stepsState);
-
-    this.setState({
-      steps: currentSteps,
-    });
-  }
-
-  componentDidUpdate(prevProps) {
-    const { steps } = this.state;
-    const currentSteps = this.updateStep(this.props.currentStepNumber, steps);
-
-    if (prevProps.currentStepNumber !== this.props.currentStepNumber)
+    if (newStep > 0 && newStep <= 3) {
       this.setState({
-        steps: currentSteps,
+        currentStep: newStep,
       });
-  }
-
-  updateStep(stepNumber, steps) {
-    const newSteps = [...steps];
-    let stepCounter = 0;
-
-    // Completed - to add a check mark
-    // Selected - to fill step with color
-    // Highlighted - to make text of selected step bold
-
-    while (stepCounter < newSteps.length) {
-      // Current step
-      if (stepCounter === stepNumber) {
-        newSteps[stepCounter] = {
-          ...newSteps[stepCounter],
-          highlighted: true,
-          selected: true,
-          completed: false,
-        };
-        stepCounter++;
-      } else if (stepCounter < stepNumber) {
-        // Past step
-        newSteps[stepCounter] = {
-          ...newSteps[stepCounter],
-          highlighted: false,
-          selected: true,
-          completed: true,
-        };
-        stepCounter++;
-      } else {
-        // Future step
-        newSteps[stepCounter] = {
-          ...newSteps[stepCounter],
-          highlighted: false,
-          selected: false,
-          completed: false,
-        };
-        stepCounter++;
-      }
     }
-
-    return newSteps;
   }
 
   render() {
-    const { direction, stepColor } = this.props;
-    const { steps } = this.state;
-    const stepsJSX = steps.map((step, index) => {
-      return (
-        <div className="step-wrapper  mt-5" key={index}>
-          <div className="row"></div>
-
-          <div
-            className={`step-number ${
-              step.selected ? "step-number-selected" : "step-number-disabled"
-            }`}
-            style={{ background: `${step.selected ? stepColor : "none"}` }}
+    const { currentStep } = this.state;
+    if (this.state.currentStep === 1) {
+      this.state.page = <HotelInfo />;
+      this.state.btn = (
+        <span className="ms-4">
+          <button
+            className="btn edit-hotel1"
+            onClick={() => this.handleClick("next")}
           >
-            {step.completed ? <span>&#10003;</span> : index + 1}
-          </div>
-
-          <div
-            className={`step-description ${
-              step.highlighted && "step-description-active"
-            }`}
-          >
-            {step.description}
-          </div>
-
-          {index !== steps.length - 1 && (
-            <div className={`divider-line divider-line-${steps.length}`} />
-          )}
-        </div>
+            Next
+          </button>
+        </span>
       );
-    });
+    } else if (this.state.currentStep === 2) {
+      this.state.page = <HotelInfo2 />;
+      this.state.btn = (
+        <span className="ms-4">
+          <button
+            className="btn edit-hotel1"
+            onClick={() => this.handleClick("next")}
+          >
+            Next
+          </button>
+        </span>
+      );
 
-    return <div className={`stepper-wrapper-${direction}`}>{stepsJSX}</div>;
+      this.state.btn2 = (
+        <span className="me-4">
+          <button
+            className="btn edit-hotel1"
+            onClick={() => this.handleClick()}
+          >
+            Previous
+          </button>
+        </span>
+      );
+    } else if (this.state.currentStep === 3) {
+      this.state.page = <HotelInfo3 />;
+      this.state.btn = (
+        <span className="ms-4">
+          <button
+            className="btn edit-hotel1"
+            onClick={() => this.handleClick("next")}
+          >
+            Next
+          </button>
+        </span>
+      );
+    }
+    return (
+      <div className="containter m-5">
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-8">
+            <div className="card-body">
+              <div className="shadow p-3 mb-5 bg-body rounded">
+                <div className="stepper-container-horizontal  ">
+                  <div className="col">
+                    <div className="row">
+                      <div className="d-none d-lg-block">
+                        <Stepper
+                          direction="horizontal"
+                          currentStepNumber={currentStep - 1}
+                          steps={stepsArray}
+                          stepColor="#cd9a2d"
+                        />
+                      </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div className="row">
+                      <br />
+                      <br />
+                      <div className="row">
+                        {/* d-sm-none
+										 d-none d-sm-block
+                      */}
+                        <div className="col-1 col-lg-1 d-none d-md-block" />
+
+                        <div className="col-4 col-lg-8 d-md-none" />
+                        <div className="col-5 col-lg-8 d-none d-md-block" />
+
+                        <div
+                          className="col-2 col-lg-1 float-right  d-md-none"
+                          style={{ marginRight: "30px" }}
+                        >
+                          {this.state.btn2}
+                        </div>
+                        <div
+                          className="col-2 col-lg-1 float-right d-none d-md-block"
+                          style={{ marginRight: "20px" }}
+                        >
+                          {this.state.btn2}
+                        </div>
+
+                        <div
+                          className="col-2 col-lg-1  zero d-md-none"
+                          style={{ marginRight: "1px" }}
+                        >
+                          {this.state.btn}
+                        </div>
+                        <div
+                          className="col-2 col-lg-1  zero d-none d-md-block"
+                          style={{ marginRight: "10px" }}
+                        >
+                          {this.state.btn}
+                        </div>
+
+                        <div className="col-1 col-lg-1 d-md-none" />
+                      </div>
+                    </div>
+                    <div className="row">{this.state.page}</div>
+                  </div>
+
+                  <br />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
-
-Stepper.propTypes = {
-  direction: PropTypes.string.isRequired,
-  currentStepNumber: PropTypes.number.isRequired,
-  steps: PropTypes.array.isRequired,
-  stepColor: PropTypes.string.isRequired,
-};
+const stepsArray = [
+  "Initial Hotel info",
+  "Upload Header Image",
+  "Upload Hotel Images",
+];
