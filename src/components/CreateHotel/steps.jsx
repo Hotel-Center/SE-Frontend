@@ -2,7 +2,6 @@ import Stepper from "./Stepper";
 import React, { Component } from "react";
 import HotelInfo2 from "./HotelInfo2";
 import HotelInfo3 from "./HotelInfo3";
-import HotelInfo4 from "./HotelInfo4";
 import HotelInfo from "./HotelInfo";
 import "../../css/Profile.css";
 import "../CreateHotel/create.css";
@@ -24,7 +23,7 @@ export default class steps extends Component {
     let newStep = currentStep;
     clickType === "next" ? newStep++ : newStep--;
 
-    if (newStep > 0 && newStep <= 5) {
+    if (newStep > 0 && newStep <= 3) {
       this.setState({
         currentStep: newStep,
       });
@@ -33,6 +32,7 @@ export default class steps extends Component {
 
   render() {
     const { currentStep } = this.state;
+
     if (this.state.currentStep === 1) {
       this.state.page = <HotelInfo />;
       this.state.btn = (
@@ -42,17 +42,6 @@ export default class steps extends Component {
             onClick={() => this.handleClick("next")}
           >
             Next
-          </button>
-        </span>
-      );
-
-      this.state.btn2 = (
-        <span className="me-4">
-          <button
-            className="btn edit-hotel1"
-            onClick={() => this.handleClick()}
-          >
-            Previous
           </button>
         </span>
       );
@@ -91,25 +80,6 @@ export default class steps extends Component {
           </button>
         </span>
       );
-      this.state.btn2 = (
-        <span className="me-4">
-          <button
-            className="btn edit-hotel1"
-            onClick={() => this.handleClick()}
-          >
-            Previous
-          </button>
-        </span>
-      );
-    } else if (this.state.currentStep === 4) {
-      this.state.btn = (
-        <button className="btn edit-hotel1" onClick={() => this.handleClick()}>
-          Previous
-        </button>
-      );
-      this.state.btn2 = <div />;
-
-      this.state.page = <HotelInfo4 />;
     }
     return (
       <div className="containter m-5">
@@ -187,7 +157,6 @@ export default class steps extends Component {
 }
 const stepsArray = [
   "Initial Hotel info",
-  "Add details",
-  "Upload images",
-  "Hotel facilities",
+  "Upload Header Image",
+  "Upload Hotel Images",
 ];

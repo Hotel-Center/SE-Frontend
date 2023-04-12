@@ -21,13 +21,25 @@ export const AccountActivation = async (uid1, token1) => {
   return message;
 };
 
-export const Sign_up_connection = async (email, password) => {
+export const Sign_up_connection = async (
+  email,
+  phone_number,
+  role,
+  password
+) => {
+  let role_enum = "U";
+  if (role === "customer") {
+    role_enum = "C";
+  } else if (role === "manager") {
+    role_enum = "M";
+  }
   let message = "";
   await axios
     .post(makeURL(references.url_Sign_up), {
       email: email,
+      phone_number: phone_number,
+      role: role_enum,
       password: password,
-      re_password: password,
     })
     .then(() => {
       // console.log(response);

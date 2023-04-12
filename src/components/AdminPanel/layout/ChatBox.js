@@ -46,7 +46,7 @@ export default function ChatBox(props) {
       //   chatSocket = webSockets.find((e) => e.roomName === roomName).webSocket;
       // }
 
-      chatSocket.onopen = function (e) {
+      chatSocket.onopen = function () {
         fetchMessages();
       };
 
@@ -61,7 +61,7 @@ export default function ChatBox(props) {
         }
       };
 
-      chatSocket.onclose = function (e) {
+      chatSocket.onclose = function () {
         console.error("Chat socket closed unexpectedly");
       };
 
@@ -72,7 +72,7 @@ export default function ChatBox(props) {
         }
       };
 
-      document.querySelector("#chat-message-submit").onclick = function (e) {
+      document.querySelector("#chat-message-submit").onclick = function () {
         var messageInputDom = document.getElementById("chat-message-input");
         var message = messageInputDom.value;
         chatSocket.send(
