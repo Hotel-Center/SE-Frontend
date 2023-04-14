@@ -1,6 +1,8 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-undef */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "./Stepper.scss";
+import st from "./Stepper.scss";
 
 export default class Stepper extends Component {
   constructor() {
@@ -86,15 +88,16 @@ export default class Stepper extends Component {
 
   render() {
     const { direction, stepColor } = this.props;
+    const swd = st[`stepper-wrapper-${direction}`]
     const { steps } = this.state;
     const stepsJSX = steps.map((step, index) => {
       return (
-        <div className="step-wrapper  mt-5" key={index}>
+        <div className={`${st[step-wrapper]}  mt-5`} key={index}>
           <div className="row"></div>
 
           <div
-            className={`step-number ${
-              step.selected ? "step-number-selected" : "step-number-disabled"
+            className={`${st[step-number]} ${
+              step.selected ? st[step-number-selected] : st[step-number-disabled]
             }`}
             style={{ background: `${step.selected ? stepColor : "none"}` }}
           >
@@ -102,22 +105,22 @@ export default class Stepper extends Component {
           </div>
 
           <div
-            className={`step-description ${
-              step.highlighted && "step-description-active"
+            className={`${st[step-description]} ${
+              step.highlighted && st[step-description-active]
             }`}
           >
             {step.description}
           </div>
-
           {index !== steps.length - 1 && (
-            <div className={`divider-line divider-line-${steps.length}`} />
+            <div className={`${st[divider-line]} ${steps.length === 2 ? st[divider-line-2] : steps.length === 3 ? st[divider-line-3] : steps.length === 4 ? st[divider-line-4] : st[divider-line-5]}`} />
           )}
         </div>
       );
     });
 
-    return <div className={`stepper-wrapper-${direction}`}>{stepsJSX}</div>;
+    return <div className={swd}>{stepsJSX}</div>;
   }
+
 }
 
 Stepper.propTypes = {
