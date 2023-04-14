@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import st from "./Stepper.scss";
+import st from "./Stepper.module.scss";
 
 export default class Stepper extends Component {
   constructor() {
