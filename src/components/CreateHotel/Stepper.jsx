@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import st from "./Stepper.module.scss";
+import styles from "./Stepper.module.scss";
 
 export default class Stepper extends Component {
   constructor() {
@@ -88,16 +88,16 @@ export default class Stepper extends Component {
 
   render() {
     const { direction, stepColor } = this.props;
-    const swd = st[`stepper-wrapper-${direction}`]
+    // const swd = st[`stepper-wrapper-${direction}`]
     const { steps } = this.state;
     const stepsJSX = steps.map((step, index) => {
       return (
-        <div className={`${st[step-wrapper]}  mt-5`} key={index}>
+        <div className={styles.step-wrapper + " mt-5"} key={index}>
           <div className="row"></div>
 
           <div
-            className={`${st[step-number]} ${
-              step.selected ? st[step-number-selected] : st[step-number-disabled]
+            className={`${styles.step-number} ${
+              step.selected ? styles.step-number-selected : styles.step-number-disabled
             }`}
             style={{ background: `${step.selected ? stepColor : "none"}` }}
           >
@@ -105,20 +105,21 @@ export default class Stepper extends Component {
           </div>
 
           <div
-            className={`${st[step-description]} ${
-              step.highlighted && st[step-description-active]
+            className={`${styles.step-description} ${
+              step.highlighted && styles.step-description-active
             }`}
           >
             {step.description}
           </div>
+
           {index !== steps.length - 1 && (
-            <div className={`${st[divider-line]} ${steps.length === 2 ? st[divider-line-2] : steps.length === 3 ? st[divider-line-3] : steps.length === 4 ? st[divider-line-4] : st[divider-line-5]}`} />
+            <div className={`${styles.divider-line} ${styles["divider-line-" + steps.length]}`} />
           )}
         </div>
       );
     });
 
-    return <div className={swd}>{stepsJSX}</div>;
+    return <div className={`${styles.stepper-wrapper}-${direction}`}>{stepsJSX}</div>;
   }
 
 }
