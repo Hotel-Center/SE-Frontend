@@ -429,6 +429,40 @@ function Createroom() {
                       <label
                         for="exampleFormControlInput2"
                         className="ms-2 mt-1 form-label"
+                        title="element4"
+                      >
+                        Room Size
+                      </label>
+                    </div>
+                    <div className="col-lg-8">
+                      <ThemeProvider theme={textfieldTheme}>
+                        <TextField
+                          required
+                          fullWidth
+                          placeholder="32"
+                          id="size"
+                          size="small"
+                          label="Room size"
+                          InputLabelProps={{ shrink: true }}
+                          value={formik.values.size}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          error={
+                            formik.touched.size && Boolean(formik.errors.size)
+                          }
+                          helperText={formik.touched.size && formik.errors.size}
+                        />
+                      </ThemeProvider>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mb-3 col-6">
+                  <div className="row mt-3">
+                    <div className="col-lg-3">
+                      <label
+                        for="exampleFormControlInput2"
+                        className="ms-2 mt-1 form-label"
                         title="element5"
                       >
                         Room Price
