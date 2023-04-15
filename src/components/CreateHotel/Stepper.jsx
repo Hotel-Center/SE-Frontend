@@ -1,8 +1,6 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-undef */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import styles from "./Stepper.module.scss";
+import "./Stepper.scss";
 
 export default class Stepper extends Component {
   constructor() {
@@ -14,10 +12,8 @@ export default class Stepper extends Component {
       steps: [],
     };
   }
-
   componentDidMount() {
     const { steps, currentStepNumber } = this.props;
-
     const stepsState = steps.map((step, index) => {
       const stepObj = {};
       stepObj.description = step;
@@ -26,32 +22,25 @@ export default class Stepper extends Component {
       stepObj.completed = false;
       return stepObj;
     });
-
     const currentSteps = this.updateStep(currentStepNumber, stepsState);
-
     this.setState({
       steps: currentSteps,
     });
   }
-
   componentDidUpdate(prevProps) {
     const { steps } = this.state;
     const currentSteps = this.updateStep(this.props.currentStepNumber, steps);
-
     if (prevProps.currentStepNumber !== this.props.currentStepNumber)
       this.setState({
         steps: currentSteps,
       });
   }
-
   updateStep(stepNumber, steps) {
     const newSteps = [...steps];
     let stepCounter = 0;
-
     // Completed - to add a check mark
     // Selected - to fill step with color
     // Highlighted - to make text of selected step bold
-
     while (stepCounter < newSteps.length) {
       // Current step
       if (stepCounter === stepNumber) {
@@ -82,22 +71,20 @@ export default class Stepper extends Component {
         stepCounter++;
       }
     }
-
     return newSteps;
   }
 
   render() {
     const { direction, stepColor } = this.props;
-    // const swd = st[`stepper-wrapper-${direction}`]
     const { steps } = this.state;
     const stepsJSX = steps.map((step, index) => {
       return (
-        <div className={styles.step-wrapper + " mt-5"} key={index}>
+        <div className="step-wrapper  mt-5" key={index}>
           <div className="row"></div>
 
           <div
-            className={`${styles.step-number} ${
-              step.selected ? styles.step-number-selected : styles.step-number-disabled
+            className={`step-number ${
+              step.selected ? "step-number-selected" : "step-number-disabled"
             }`}
             style={{ background: `${step.selected ? stepColor : "none"}` }}
           >
@@ -105,23 +92,22 @@ export default class Stepper extends Component {
           </div>
 
           <div
-            className={`${styles.step-description} ${
-              step.highlighted && styles.step-description-active
+            className={`step-description ${
+              step.highlighted && "step-description-active"
             }`}
           >
             {step.description}
           </div>
 
           {index !== steps.length - 1 && (
-            <div className={`${styles.divider-line} ${styles["divider-line-" + steps.length]}`} />
+            <div className={`divider-line divider-line-${steps.length}`} />
           )}
         </div>
       );
     });
 
-    return <div className={`${styles.stepper-wrapper}-${direction}`}>{stepsJSX}</div>;
+    return <div className={`stepper-wrapper-${direction}`}>{stepsJSX}</div>;
   }
-
 }
 
 Stepper.propTypes = {
