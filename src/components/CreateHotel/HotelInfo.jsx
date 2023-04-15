@@ -153,13 +153,7 @@ function CreateHotel() {
       formattedcheckinDate,
       "\n",
       formattedcheckoutDate,
-      "\n",
-      !formik.errors.name &&
-        !formik.errors.address &&
-        !formik.errors.description &&
-        // facilities.length != 0 &&
-        formattedcheckinDate != " Invalid date" &&
-        formattedcheckoutDate != " Invalid date"
+      "\n"
     );
     console.log("checkin time: ", formattedcheckinDate);
     console.log("checkout time: ", formattedcheckoutDate);
@@ -182,7 +176,7 @@ function CreateHotel() {
             name: formik.values.name,
             address: formik.values.address,
             description: formik.values.description,
-            facilities: facilitiesListForBack,
+            // facilities: facilitiesListForBack,
             phone_number: formik.values.phone,
             country: region,
             city: city,
@@ -197,6 +191,7 @@ function CreateHotel() {
         )
         .then((res) => {
           console.log("responseeeeeeeee", res.data.id);
+          console.log(res.data);
           setOpen(true);
           setLoading(false);
           setMessage("Your hotel was submitted successfully!");
@@ -207,47 +202,6 @@ function CreateHotel() {
           setLoading(false);
           setOpen(true);
           setMessage("Please fill in the blanks.");
-        });
-    }
-  };
-
-  const handleUploadClick = () => {
-    setLoading(true);
-    if (!selectedImage) {
-      setOpen1(true);
-      setLoading(false);
-      setMessage1("Please upload a picture.");
-    }
-
-    if (selectedImage) {
-      let form_data = new FormData();
-      form_data.append("image", selectedImage, selectedImage.name);
-      axios
-        .post(
-          makeURL(
-            references.url_onehotelImage +
-              "/" +
-              hotelId +
-              "/images/?is_header=true"
-          ),
-          form_data,
-          {
-            headers: {
-              Authorization: cookies.get("Authorization"),
-            },
-          }
-        )
-        .then((res) => {
-          console.log("uploading hotel header: ", res.data);
-          setLoading(false);
-          setOpen1(true);
-          setMessage1("Your image uploaded successfully!");
-        })
-        .catch((err) => {
-          console.log("unable to upload.error: ", err);
-          setLoading(false);
-          setOpen1(true);
-          setMessage1("Something went wrong. Please try again.");
         });
     }
   };
