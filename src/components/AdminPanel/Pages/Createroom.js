@@ -1,3 +1,6 @@
+/* eslint-disable unused-imports/no-unused-imports */
+/* eslint-disable no-unused-vars */
+/* eslint-disable unused-imports/no-unused-vars */
 import * as React from "react";
 import { TextField, Typography } from "@mui/material";
 import Logo from "../../../statics/logo/logo2.png";
@@ -157,12 +160,6 @@ function Createroom() {
     setToggled(value);
   };
 
-  // useEffect(() => {
-  //   if (selectedImage) {
-  //     setImageUrl(URL.createObjectURL(selectedImage));
-  //   }
-  // }, [selectedImage]);
-
   const handleClick = () => {
     let hotelid = window.location.pathname.split("/")[2];
     let option = "";
@@ -174,40 +171,14 @@ function Createroom() {
       !formik.errors.price &&
       type != "" &&
       includebreakfast != null;
-    // && facilities.length != 0;
 
-    // console.log(
-    //   formik.values.price,
-    //   "\t",
-    //   !Boolean(formik.errors.price),
-    //   "\n",
-    //   formik.values.size,
-    //   "\t",
-    //   !Boolean(formik.errors.size),
-    //   "\n",
-    //   formik.values.sleeps,
-    //   "\t",
-    //   !Boolean(formik.errors.sleeps),
-    //   "\n",
-    //   type,
-    //   "\n",
-    //   formik.values.view,
-    //   "\t",
-    //   !Boolean(formik.errors.view),
-    //   "\n",
-    //   option,
-    //   "\n",
-    //   facilities
-    // );
     var allfacilities = [];
     allfacilities = facilities.concat(formik.values.morefacilities.split(","));
-    // console.log("all facilities final: ",allfacilities);
     var listForBack = [];
     for (var i = 0; i < allfacilities.length; i++) {
       let temp = { name: allfacilities[i] };
       listForBack.push(temp);
     }
-    // console.log("result: ", listForBack);
     console.log(filled);
 
     if (!filled) {
@@ -248,6 +219,7 @@ function Createroom() {
           setMsg1("Something went wrong.Please try again.");
         });
     }
+    handleRoomSpaceClick();
   };
 
   const handleRoomSpaceClick = () => {
@@ -286,11 +258,11 @@ function Createroom() {
 
   return (
     <div className={`admin-panel ${toggled ? "toggled" : ""} d-flex`}>
-      <MySidebar
+      {/* <MySidebar
         toggled={toggled}
         handleToggleSidebar={handleToggleSidebar}
         id={hotelId}
-      />
+      /> */}
       <div className="w-100 admin-content">
         <div className="adminpanel-header-mobile">
           <div
@@ -341,7 +313,13 @@ function Createroom() {
                         <MenuItem value={t1}>Single Room</MenuItem>
                         <MenuItem value={t2}>Double Room</MenuItem>
                         <MenuItem value={t3}>Triple Room</MenuItem>
-                        <MenuItem value={t4}>Suite Room</MenuItem>
+                        <MenuItem value={t4}>Suite Room - 4 people</MenuItem>
+                        <MenuItem value={t4}>Suite Room - 5 people</MenuItem>
+                        <MenuItem value={t4}>Suite Room - 6 people</MenuItem>
+                        <MenuItem value={t4}>Suite Room - 7 people</MenuItem>
+                        <MenuItem value={t4}>Suite Room - 8 people</MenuItem>
+                        <MenuItem value={t4}>Suite Room - 9 people</MenuItem>
+                        <MenuItem value={t4}>Suite Room - 10 people</MenuItem>
                       </Select>
                     </FormControl>
                   </ThemeProvider>
@@ -451,52 +429,12 @@ function Createroom() {
                       <label
                         for="exampleFormControlInput2"
                         className="ms-2 mt-1 form-label"
-                        title="element4"
-                      >
-                        Room Size
-                      </label>
-                    </div>
-                    <div className="col-lg-8">
-                      <ThemeProvider theme={textfieldTheme}>
-                        <TextField
-                          required
-                          fullWidth
-                          placeholder="32"
-                          id="size"
-                          size="small"
-                          label="Room size"
-                          InputLabelProps={{ shrink: true }}
-                          value={formik.values.size}
-                          onChange={formik.handleChange}
-                          onBlur={formik.handleBlur}
-                          error={
-                            formik.touched.size && Boolean(formik.errors.size)
-                          }
-                          helperText={formik.touched.size && formik.errors.size}
-                        />
-                      </ThemeProvider>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <hr class="dashed"></hr>
-
-            <div className="mb-3 col-12">
-              <div className="row">
-                <div className="mb-3 col-6">
-                  <div className="row mt-3">
-                    <div className="col-lg-3">
-                      <label
-                        for="exampleFormControlInput2"
-                        className="ms-2 mt-1 form-label"
                         title="element5"
                       >
                         Room Price
                       </label>
                     </div>
-                    <div className="col-lg-8">
+                    <div className="col-lg-9">
                       <ThemeProvider theme={textfieldTheme}>
                         <TextField
                           required
@@ -514,43 +452,6 @@ function Createroom() {
                           }
                           helperText={
                             formik.touched.price && formik.errors.price
-                          }
-                        />
-                      </ThemeProvider>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mb-3 col-6">
-                  <div className="row mt-3">
-                    <div className="col-lg-3">
-                      <label
-                        for="exampleFormControlInput2"
-                        className="ms-2 mt-1 form-label"
-                        title="element6"
-                      >
-                        Room Sleeps
-                      </label>
-                    </div>
-                    <div className="col-lg-8">
-                      <ThemeProvider theme={textfieldTheme}>
-                        <TextField
-                          required
-                          fullWidth
-                          placeholder="3"
-                          id="sleeps"
-                          size="small"
-                          label="Room sleeps"
-                          InputLabelProps={{ shrink: true }}
-                          value={formik.values.sleeps}
-                          onChange={formik.handleChange}
-                          onBlur={formik.handleBlur}
-                          error={
-                            formik.touched.sleeps &&
-                            Boolean(formik.errors.sleeps)
-                          }
-                          helperText={
-                            formik.touched.sleeps && formik.errors.sleeps
                           }
                         />
                       </ThemeProvider>
@@ -597,48 +498,10 @@ function Createroom() {
                 </div>
               </div>
             </div>
-
-            <div className="row mt-2 d-fit-content">
-              <div className="col-lg-4 col-md-2"></div>
-              <div className="col-lg-4 col-md-2"></div>
-              <div className="col-lg-4 col-md-8 edit-hotel mb-3">
-                <button className="btn edit-hotel" onClick={handleClick}>
-                  {loading ? (
-                    <CircularProgress style={{ color: "#fff" }} size="1.5rem" />
-                  ) : (
-                    "Create Room"
-                  )}
-                </button>
-              </div>
-            </div>
-
-            <Snackbar
-              open={open1}
-              autoHideDuration={4000}
-              onClose={handleClose}
-              anchorOrigin={{ vertical: "top", horizontal: "center" }}
-            >
-              <Alert
-                onClose={handleClose}
-                severity={
-                  msg1 === "Something went wrong.Please try again."
-                    ? "error"
-                    : "success"
-                }
-                sx={{ width: "100%" }}
-              >
-                {msg1}
-              </Alert>
-            </Snackbar>
-
             <hr class="dashed"></hr>
 
             <div className="mb-3 col-md-12">
               <div className="row mt-3">
-                <Typography sx={{ mb: 3 }}>
-                  Please first create your room and then add the numbers of
-                  rooms you have below.
-                </Typography>
                 <div className="col-lg-2">
                   <label
                     for="exampleFormControlInput2"
@@ -676,18 +539,38 @@ function Createroom() {
               <div className="col-lg-4 col-md-2"></div>
               <div className="col-lg-4 col-md-2"></div>
               <div className="col-lg-4 col-md-8 edit-hotel mb-3">
-                <button
-                  className="btn edit-hotel"
-                  onClick={handleRoomSpaceClick}
-                >
+                <button className="btn edit-hotel" onClick={handleClick}>
                   {loading ? (
                     <CircularProgress style={{ color: "#fff" }} size="1.5rem" />
                   ) : (
-                    "Add Room Spaces"
+                    "Create Room"
                   )}
                 </button>
               </div>
             </div>
+          </div>
+
+          <div className="row">
+            <Snackbar
+              open={open1}
+              autoHideDuration={4000}
+              onClose={handleClose}
+              anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            >
+              <Alert
+                onClose={handleClose}
+                severity={
+                  msg1 === "Something went wrong.Please try again."
+                    ? "error"
+                    : "success"
+                }
+                sx={{ width: "100%" }}
+              >
+                {msg1}
+              </Alert>
+            </Snackbar>
+
+            <hr class="dashed"></hr>
 
             <Snackbar
               open={open2}
