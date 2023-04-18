@@ -35,7 +35,7 @@ function PreviewMultipleImages() {
 
   function upload(e) {
     // console.log(url);
-    let hotelid = window.location.pathname.split("/")[2];
+    let hotelid = window.location.pathname.split("/")[3];
     e.preventDefault();
     console.log(images);
     let filled = images.length != 0;

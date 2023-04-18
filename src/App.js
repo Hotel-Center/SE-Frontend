@@ -15,7 +15,9 @@ import Createroom from "./components/AdminPanel/Pages/Createroom";
 import Statistics from "./components/AdminPanel/Pages/Statistics";
 import RoomsStatus from "./components/AdminPanel/Pages/RoomsStatus";
 import CreateHotel from "./components/CreateHotel/CreateHotel";
-import Steps from "./components/CreateHotel/HotelInfo4";
+import Steps2 from "./components/CreateHotel/createHotelHeader";
+import Steps1 from "./components/CreateHotel/createHotelImages";
+import Steps3 from "./components/CreateHotel/createHotelInfo";
 import ReservedRooms from "./components/Profile/ReservedRooms";
 import Feedback from "./components/Comment/Feedback";
 import Messages from "./components/AdminPanel/Pages/Messages";
@@ -64,7 +66,9 @@ function App() {
           <Route exact path="/" element={<Homepage />} />
           <Route exact path="/sign-up" element={<Sign_up />} />
           <Route exact path="/login" element={<Login />} />
-          <Route exact path="/createHotel/steps" element={<Steps />} />
+          <Route exact path="/createHotel/steps/1" element={<Steps3 />} />
+          <Route exact path="/createHotel/steps/:id/2" element={<Steps2 />} />
+          <Route exact path="/createHotel/steps/:id/3" element={<Steps1 />} />
           <Route exact path="/createHotel" element={<CreateHotel />} />
           <Route exact path="/feedback" element={<Feedback />} />
 

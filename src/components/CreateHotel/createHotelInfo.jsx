@@ -1,10 +1,13 @@
+/* eslint-disable unused-imports/no-unused-imports */
+/* eslint-disable no-unused-vars */
+/* eslint-disable unused-imports/no-unused-vars */
 import * as React from "react";
 import { TextField, Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { cookies, makeURL } from "../../Utils/common";
 import references from "../../assets/References.json";
-import { Box, CircularProgress, Autocomplete } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
@@ -28,19 +31,6 @@ const textfieldTheme = createTheme({
     },
   },
 });
-
-const facilitieslist = [
-  "Taxi service",
-  "Sofa",
-  "Bathroom",
-  "Telephone",
-  "WiFi",
-  "Room service",
-  "Television",
-  "Gym",
-  "Restaurant",
-  "Bar",
-];
 
 const validationSchema = yup.object({
   name: yup
@@ -79,7 +69,6 @@ function CreateHotel() {
   const [hotelId, setHotelId] = useState(null);
   const CHARACTER_LIMIT = 1000;
   // const [type, setType] = useState(null);
-  const [facilities, setFacilities] = useState([]);
   const [checkin, setCheckin] = useState(null);
   const [checkout, setCheckout] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -125,12 +114,6 @@ function CreateHotel() {
   //   setType(newValue);
   // };
 
-  useEffect(() => {
-    if (selectedImage) {
-      setImageUrl(URL.createObjectURL(selectedImage));
-    }
-  }, [selectedImage]);
-
   const handleClick = () => {
     let filled =
       !formik.errors.name &&
@@ -147,8 +130,6 @@ function CreateHotel() {
       !formik.errors.address,
       "\n",
       !formik.errors.description,
-      "\n",
-      facilities.length,
       "\n",
       formattedcheckinDate,
       "\n",
@@ -167,12 +148,6 @@ function CreateHotel() {
       setOpen(true);
       setMessage("Please fill in the blanks.");
     }
-    var facilitiesListForBack = [];
-    for (var i = 0; i < facilities.length; i++) {
-      let temp = { name: facilities[i] };
-      facilitiesListForBack.push(temp);
-    }
-    console.log("facilities list: ", facilitiesListForBack);
 
     if (filled) {
       axios
@@ -182,7 +157,6 @@ function CreateHotel() {
             name: formik.values.name,
             address: formik.values.address,
             description: formik.values.description,
-            facilities: facilitiesListForBack,
             phone_number: formik.values.phone,
             country: region,
             city: city,
@@ -201,53 +175,14 @@ function CreateHotel() {
           setLoading(false);
           setMessage("Your hotel was submitted successfully!");
           setHotelId(res.data.id);
+          console.log("hotelId:", res.data.hotelId);
+          window.location.replace("/CreateHotel/steps//2");
         })
         .catch((err) => {
           console.log(err);
           setLoading(false);
           setOpen(true);
           setMessage("Please fill in the blanks.");
-        });
-    }
-  };
-
-  const handleUploadClick = () => {
-    setLoading(true);
-    if (!selectedImage) {
-      setOpen1(true);
-      setLoading(false);
-      setMessage1("Please upload a picture.");
-    }
-
-    if (selectedImage) {
-      let form_data = new FormData();
-      form_data.append("image", selectedImage, selectedImage.name);
-      axios
-        .post(
-          makeURL(
-            references.url_onehotelImage +
-              "/" +
-              hotelId +
-              "/images/?is_header=true"
-          ),
-          form_data,
-          {
-            headers: {
-              Authorization: cookies.get("Authorization"),
-            },
-          }
-        )
-        .then((res) => {
-          console.log("uploading hotel header: ", res.data);
-          setLoading(false);
-          setOpen1(true);
-          setMessage1("Your image uploaded successfully!");
-        })
-        .catch((err) => {
-          console.log("unable to upload.error: ", err);
-          setLoading(false);
-          setOpen1(true);
-          setMessage1("Something went wrong. Please try again.");
         });
     }
   };
@@ -540,43 +475,6 @@ function CreateHotel() {
                         </div>
                         <hr class="dashed" />
                         <div className="mb-3 col-12">
-                          <div className="row">
-                            <div className="col-lg-3">
-                              <label
-                                for="exampleFormControlInput4"
-                                className="ms-2 mt-1 form-label"
-                                title="f8"
-                              >
-                                Email
-                              </label>
-                            </div>
-                            <div className="col-lg-9">
-                              <ThemeProvider theme={textfieldTheme}>
-                                <TextField
-                                  required
-                                  fullWidth
-                                  placeholder="yf7901@gamil.com"
-                                  id="email"
-                                  size="small"
-                                  label="Email"
-                                  InputLabelProps={{ shrink: true }}
-                                  value={formik.values.email}
-                                  onChange={formik.handleChange}
-                                  onBlur={formik.handleBlur}
-                                  error={
-                                    formik.touched.email &&
-                                    Boolean(formik.errors.email)
-                                  }
-                                  helperText={
-                                    formik.touched.email && formik.errors.email
-                                  }
-                                />
-                              </ThemeProvider>
-                            </div>
-                          </div>
-                        </div>
-                        <hr class="dashed" />
-                        <div className="mb-3 col-12">
                           <div className="row" title="f5">
                             <div className="col-lg-3">
                               <label
@@ -611,64 +509,8 @@ function CreateHotel() {
                             </div>
                           </div>
                         </div>
-                        <hr class="dashed" />
-                        <div className="mb-3 col-12">
-                          <div className="row">
-                            <div className="col-lg-3">
-                              <label
-                                for="exampleFormControlTextarea1"
-                                className="ms-2 form-label"
-                                title="f10"
-                              >
-                                Facilities
-                              </label>
-                            </div>
-                            <div className="col-lg-9">
-                              <Autocomplete
-                                multiple
-                                id="facilities"
-                                value={facilities}
-                                options={facilitieslist}
-                                onChange={(event, value) => {
-                                  setFacilities(value);
-                                }}
-                                getOptionLabel={(option) => option}
-                                filterSelectedOptions
-                                renderInput={(params) => (
-                                  <ThemeProvider theme={textfieldTheme}>
-                                    <TextField
-                                      fullWidth
-                                      required
-                                      {...params}
-                                      label="Facilities"
-                                    />
-                                  </ThemeProvider>
-                                )}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="row mt-2 d-fit-content">
-                          <div className="col-4" />
-                          <div className="col-4" />
-                          <div className="col-4 edit-hotel mb-3">
-                            <button
-                              className="btn edit-hotel"
-                              onClick={handleClick}
-                            >
-                              {loading ? (
-                                <CircularProgress
-                                  style={{ color: "#fff" }}
-                                  size="1.5rem"
-                                />
-                              ) : (
-                                "Create Hotel"
-                              )}{" "}
-                            </button>
-                          </div>
-                        </div>
-                        <hr class="dashed" />
-                        <div className="mb-3 col-12" title="a12">
+                        {/* <hr class="dashed" /> */}
+                        {/* <div className="mb-3 col-12" title="a12">
                           <div className="row mt-3" title="a13">
                             <div className="col-lg-3" title="a14">
                               <label
@@ -739,14 +581,14 @@ function CreateHotel() {
                               )}
                             </div>
                           </div>
-                        </div>
-                        <hr class="dashed" />
-                        <div className="mb-3 col-12">
+                        </div> */}
+                        {/* <hr class="dashed" /> */}
+                        {/* <div className="mb-3 col-12">
                           <Typography sx={{ mb: 3 }}>
                             Please upload other photos of hotel here.
                           </Typography>
                           <PreviewMultipleImages />
-                        </div>
+                        </div> */}
                         <Snackbar
                           open={open}
                           autoHideDuration={4000}
@@ -768,6 +610,25 @@ function CreateHotel() {
                             {message}
                           </Alert>
                         </Snackbar>{" "}
+                        <div className="row mt-2 d-fit-content">
+                          <div className="col-4" />
+                          <div className="col-4" />
+                          <div className="col-4 edit-hotel mb-3">
+                            <button
+                              className="btn edit-hotel"
+                              onClick={handleClick}
+                            >
+                              {loading ? (
+                                <CircularProgress
+                                  style={{ color: "#fff" }}
+                                  size="1.5rem"
+                                />
+                              ) : (
+                                "Create Hotel"
+                              )}{" "}
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

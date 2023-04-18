@@ -93,7 +93,7 @@ class CreateHotel extends Component {
           <div className="row align-items-center">
             <div className="col" />
             <div className="col-12 col-sm-10 col-lg-5">
-              <a href="/CreateHotel/steps">
+              <a href="/CreateHotel/steps/1">
                 <button type="button" class="w-100 btn btn-lg btn-dark">
                   Create your hotel now!{" "}
                 </button>
