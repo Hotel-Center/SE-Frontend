@@ -253,475 +253,527 @@ function CreateHotel() {
   };
 
   return (
-    <div
-      className={`admin-panel ${toggled ? "toggled" : ""} d-flex`}
-      title="a1"
-    >
-      <div className="w-100" title="a2">
-        <div className="container py-5 px-lg-5" title="a3">
-          <h2 className="mb-4 fw-bold d-flex" title="a4">
-            <DomainAddIcon className="me-2" fontSize="large" title="a5" />
-            Create Hotel
-          </h2>
-          <div className="container mt-4 p-4 edit-hotel-form border" title="a6">
-            <div className="mb-3 col-12" title="a7">
-              <div className="row mt-3" title="a8">
-                <div className="col-lg-3" title="a9">
-                  <label
-                    for="exampleFormControlInput2"
-                    className="ms-2 mt-1 form-label"
-                    title="f1"
-                  >
-                    Name
-                  </label>
-                </div>
-                <div className="col-lg-9" title="a10">
-                  <ThemeProvider theme={textfieldTheme}>
-                    <TextField
-                      required
-                      fullWidth
-                      placeholder="Something hotel"
-                      id="name"
-                      size="small"
-                      label="Name"
-                      InputLabelProps={{ shrink: true }}
-                      value={formik.values.name}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      error={formik.touched.name && Boolean(formik.errors.name)}
-                      helperText={formik.touched.name && formik.errors.name}
-                    />
-                  </ThemeProvider>
-                </div>
-              </div>
-            </div>
-            <hr class="dashed" title="a11" />
-            <div className="mb-3 col-12">
-              <div className="row">
-                <div className="col-lg-3">
-                  <label
-                    for="exampleFormControlInput2"
-                    className="ms-2 mt-1 form-label"
-                    title="f3"
-                  >
-                    Address
-                  </label>
-                </div>
-                <div className="col-lg-9" title="a18">
-                  <ThemeProvider theme={textfieldTheme}>
-                    <TextField
-                      required
-                      fullWidth
-                      placeholder="London, 22B Baker street"
-                      id="address"
-                      size="small"
-                      label="Address"
-                      InputLabelProps={{ shrink: true }}
-                      value={formik.values.address}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      error={
-                        formik.touched.address && Boolean(formik.errors.address)
-                      }
-                      helperText={
-                        formik.touched.address && formik.errors.address
-                      }
-                    />
-                  </ThemeProvider>
-                </div>
-              </div>
-            </div>
-            <hr class="dashed" />
-            <div className="mb-3 col-12">
-              <div className="row">
-                <div className="col-lg-3">
-                  <label
-                    for="exampleFormControlInput2"
-                    className="ms-2 mt-1 form-label"
-                    title="f4"
-                  >
-                    Country & City
-                  </label>
-                </div>
-
-                <div className="col-lg-9">
-                  <div className="row">
-                    <div className="col-lg-6" title="a19">
-                      <ThemeProvider theme={textfieldTheme}>
-                        <div className="div">
-                          <div className="col-lg-12">
-                            <CountryDropdown
-                              fullwidth
-                              style={{
-                                color: "#555",
-                                border: "1px solid #555;",
-                              }}
-                              className={" form-control    "}
-                              required
-                              fullWidth
-                              placeholder="USA"
-                              id="country"
-                              size="small"
-                              label="County"
-                              InputLabelProps={{ shrink: true }}
-                              value={region}
-                              onChange={(val) => {
-                                setRegion(val);
-                                console.log(val, "region");
-                              }}
-                            />
-                          </div>
-                          <br />
-                          <div className="col-lg-12">
-                            {" "}
-                            <RegionDropdown
-                              title="a20"
-                              style={{
-                                color: "#555",
-                                border: "1px solid #555;",
-                              }}
-                              className={" form-control "}
-                              country={region}
-                              required
-                              fullWidth
-                              placeholder="New York"
-                              id="city"
-                              size="small"
-                              label="City"
-                              InputLabelProps={{ shrink: true }}
-                              value={city}
-                              onChange={(val) => {
-                                setCity(val);
-                                console.log("city", val);
-                              }}
-                            />
+    <div className="containter m-5">
+      <div className="row justify-content-center">
+        <div className="col-12 col-md-8">
+          <div className="card-body">
+            <div className="shadow p-3 mb-5 bg-body rounded">
+              <div className="stepper-container-horizontal  ">
+                <div className="col"></div>
+                <div
+                  className={`admin-panel ${toggled ? "toggled" : ""} d-flex`}
+                  title="a1"
+                >
+                  <div className="w-100" title="a2">
+                    <div className="container py-5 px-lg-5" title="a3">
+                      <h2 className="mb-4 fw-bold d-flex" title="a4">
+                        <DomainAddIcon
+                          className="me-2"
+                          fontSize="large"
+                          title="a5"
+                        />
+                        Create Hotel
+                      </h2>
+                      <div
+                        className="container mt-4 p-4 edit-hotel-form border"
+                        title="a6"
+                      >
+                        <div className="mb-3 col-12" title="a7">
+                          <div className="row mt-3" title="a8">
+                            <div className="col-lg-3" title="a9">
+                              <label
+                                for="exampleFormControlInput2"
+                                className="ms-2 mt-1 form-label"
+                                title="f1"
+                              >
+                                Name
+                              </label>
+                            </div>
+                            <div className="col-lg-9" title="a10">
+                              <ThemeProvider theme={textfieldTheme}>
+                                <TextField
+                                  required
+                                  fullWidth
+                                  placeholder="Something hotel"
+                                  id="name"
+                                  size="small"
+                                  label="Name"
+                                  InputLabelProps={{ shrink: true }}
+                                  value={formik.values.name}
+                                  onChange={formik.handleChange}
+                                  onBlur={formik.handleBlur}
+                                  error={
+                                    formik.touched.name &&
+                                    Boolean(formik.errors.name)
+                                  }
+                                  helperText={
+                                    formik.touched.name && formik.errors.name
+                                  }
+                                />
+                              </ThemeProvider>
+                            </div>
                           </div>
                         </div>
-                      </ThemeProvider>
+                        <hr class="dashed" title="a11" />
+                        <div className="mb-3 col-12">
+                          <div className="row">
+                            <div className="col-lg-3">
+                              <label
+                                for="exampleFormControlInput2"
+                                className="ms-2 mt-1 form-label"
+                                title="f3"
+                              >
+                                Address
+                              </label>
+                            </div>
+                            <div className="col-lg-9" title="a18">
+                              <ThemeProvider theme={textfieldTheme}>
+                                <TextField
+                                  required
+                                  fullWidth
+                                  placeholder="London, 22B Baker street"
+                                  id="address"
+                                  size="small"
+                                  label="Address"
+                                  InputLabelProps={{ shrink: true }}
+                                  value={formik.values.address}
+                                  onChange={formik.handleChange}
+                                  onBlur={formik.handleBlur}
+                                  error={
+                                    formik.touched.address &&
+                                    Boolean(formik.errors.address)
+                                  }
+                                  helperText={
+                                    formik.touched.address &&
+                                    formik.errors.address
+                                  }
+                                />
+                              </ThemeProvider>
+                            </div>
+                          </div>
+                        </div>
+                        <hr class="dashed" />
+                        <div className="mb-3 col-12">
+                          <div className="row">
+                            <div className="col-lg-3">
+                              <label
+                                for="exampleFormControlInput2"
+                                className="ms-2 mt-1 form-label"
+                                title="f4"
+                              >
+                                Country & City
+                              </label>
+                            </div>
+
+                            <div className="col-lg-9">
+                              <div className="row">
+                                <div className="col-lg-6" title="a19">
+                                  <ThemeProvider theme={textfieldTheme}>
+                                    <div className="div">
+                                      <div className="col-lg-12">
+                                        <CountryDropdown
+                                          fullwidth
+                                          style={{
+                                            color: "#555",
+                                            border: "1px solid #555;",
+                                          }}
+                                          className={" form-control    "}
+                                          required
+                                          fullWidth
+                                          placeholder="USA"
+                                          id="country"
+                                          size="small"
+                                          label="County"
+                                          InputLabelProps={{ shrink: true }}
+                                          value={region}
+                                          onChange={(val) => {
+                                            setRegion(val);
+                                            console.log(val, "region");
+                                          }}
+                                        />
+                                      </div>
+                                      <br />
+                                      <div className="col-lg-12">
+                                        {" "}
+                                        <RegionDropdown
+                                          title="a20"
+                                          style={{
+                                            color: "#555",
+                                            border: "1px solid #555;",
+                                          }}
+                                          className={" form-control "}
+                                          country={region}
+                                          required
+                                          fullWidth
+                                          placeholder="New York"
+                                          id="city"
+                                          size="small"
+                                          label="City"
+                                          InputLabelProps={{ shrink: true }}
+                                          value={city}
+                                          onChange={(val) => {
+                                            setCity(val);
+                                            console.log("city", val);
+                                          }}
+                                        />
+                                      </div>
+                                    </div>
+                                  </ThemeProvider>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr class="dashed" />
+                        <div className="mb-3 col-12">
+                          <div className="row">
+                            <div className="col-lg-3" title="a17">
+                              <label
+                                for="exampleFormControlInput2"
+                                className="ms-2 mt-1 form-label"
+                                title="f6"
+                              >
+                                Time range
+                              </label>
+                            </div>
+                            <div className="col-lg-9">
+                              <div className="row">
+                                <div className="col-lg-6">
+                                  <div className="col-lg-12 checkin-inp">
+                                    <ThemeProvider theme={textfieldTheme}>
+                                      <LocalizationProvider
+                                        dateAdapter={AdapterDateFns}
+                                      >
+                                        <TimePicker
+                                          label="Checkin time"
+                                          value={checkin}
+                                          ampm={false}
+                                          onChange={(newValue) => {
+                                            setCheckin(newValue);
+                                          }}
+                                          renderInput={(params) => (
+                                            <TextField
+                                              {...params}
+                                              required
+                                              fullWidth
+                                              size="small"
+                                              variant="outlined"
+                                            />
+                                          )}
+                                        />
+                                      </LocalizationProvider>
+                                    </ThemeProvider>
+                                  </div>
+                                </div>
+                                <div className="col-lg-6">
+                                  <div className="col-lg-12 mt-2 mt-lg-0 checkout-inp">
+                                    <ThemeProvider theme={textfieldTheme}>
+                                      <LocalizationProvider
+                                        dateAdapter={AdapterDateFns}
+                                      >
+                                        <TimePicker
+                                          label="Checkout time"
+                                          ampm={false}
+                                          value={checkout}
+                                          onChange={(newValue) => {
+                                            setCheckout(newValue);
+                                          }}
+                                          renderInput={(params) => (
+                                            <TextField
+                                              {...params}
+                                              required
+                                              fullWidth
+                                              size="small"
+                                              variant="outlined"
+                                            />
+                                          )}
+                                        />
+                                      </LocalizationProvider>
+                                    </ThemeProvider>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr class="dashed" />
+                        <div className="mb-3 col-12">
+                          <div className="row">
+                            <div className="col-lg-3">
+                              <label
+                                for="exampleFormControlInput3"
+                                className="ms-2 mt-1 form-label"
+                                title="f7"
+                              >
+                                Phone number
+                              </label>
+                            </div>
+                            <div className="col-lg-9" style={{ width: "100" }}>
+                              <ThemeProvider
+                                theme={textfieldTheme}
+                                style={{ width: "100" }}
+                              >
+                                <PhoneInput
+                                  country={"us"}
+                                  required
+                                  fullWidth
+                                  style={{ width: "100" }}
+                                  placeholder="09912141869"
+                                  id="phone"
+                                  size="small"
+                                  label="Phone number"
+                                  InputLabelProps={{ shrink: true }}
+                                  value={formik.values.phone}
+                                  onChange={formik.handleChange}
+                                  onBlur={formik.handleBlur}
+                                  error={
+                                    formik.touched.phone &&
+                                    Boolean(formik.errors.phone)
+                                  }
+                                  helperText={
+                                    formik.touched.phone && formik.errors.phone
+                                  }
+                                />
+                              </ThemeProvider>
+                            </div>
+                          </div>
+                        </div>
+                        <hr class="dashed" />
+                        <div className="mb-3 col-12">
+                          <div className="row">
+                            <div className="col-lg-3">
+                              <label
+                                for="exampleFormControlInput4"
+                                className="ms-2 mt-1 form-label"
+                                title="f8"
+                              >
+                                Email
+                              </label>
+                            </div>
+                            <div className="col-lg-9">
+                              <ThemeProvider theme={textfieldTheme}>
+                                <TextField
+                                  required
+                                  fullWidth
+                                  placeholder="yf7901@gamil.com"
+                                  id="email"
+                                  size="small"
+                                  label="Email"
+                                  InputLabelProps={{ shrink: true }}
+                                  value={formik.values.email}
+                                  onChange={formik.handleChange}
+                                  onBlur={formik.handleBlur}
+                                  error={
+                                    formik.touched.email &&
+                                    Boolean(formik.errors.email)
+                                  }
+                                  helperText={
+                                    formik.touched.email && formik.errors.email
+                                  }
+                                />
+                              </ThemeProvider>
+                            </div>
+                          </div>
+                        </div>
+                        <hr class="dashed" />
+                        <div className="mb-3 col-12">
+                          <div className="row" title="f5">
+                            <div className="col-lg-3">
+                              <label
+                                for="exampleFormControlTextarea1"
+                                className="ms-2 form-label"
+                                title="f9"
+                              >
+                                Description
+                              </label>
+                            </div>
+                            <div className="col-lg-9">
+                              <ThemeProvider theme={textfieldTheme}>
+                                <TextField
+                                  fullWidth
+                                  id="description"
+                                  placeholder=""
+                                  multiline
+                                  autoComplete="description"
+                                  label="Description"
+                                  InputLabelProps={{ shrink: true }}
+                                  inputProps={{ maxLength: CHARACTER_LIMIT }}
+                                  value={formik.values.description}
+                                  onChange={formik.handleChange}
+                                  onBlur={formik.handleBlur}
+                                  error={
+                                    formik.touched.description &&
+                                    Boolean(formik.errors.description)
+                                  }
+                                  helperText={`${formik.values.description.length}/${CHARACTER_LIMIT}`}
+                                />
+                              </ThemeProvider>
+                            </div>
+                          </div>
+                        </div>
+                        <hr class="dashed" />
+                        <div className="mb-3 col-12">
+                          <div className="row">
+                            <div className="col-lg-3">
+                              <label
+                                for="exampleFormControlTextarea1"
+                                className="ms-2 form-label"
+                                title="f10"
+                              >
+                                Facilities
+                              </label>
+                            </div>
+                            <div className="col-lg-9">
+                              <Autocomplete
+                                multiple
+                                id="facilities"
+                                value={facilities}
+                                options={facilitieslist}
+                                onChange={(event, value) => {
+                                  setFacilities(value);
+                                }}
+                                getOptionLabel={(option) => option}
+                                filterSelectedOptions
+                                renderInput={(params) => (
+                                  <ThemeProvider theme={textfieldTheme}>
+                                    <TextField
+                                      fullWidth
+                                      required
+                                      {...params}
+                                      label="Facilities"
+                                    />
+                                  </ThemeProvider>
+                                )}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="row mt-2 d-fit-content">
+                          <div className="col-4" />
+                          <div className="col-4" />
+                          <div className="col-4 edit-hotel mb-3">
+                            <button
+                              className="btn edit-hotel"
+                              onClick={handleClick}
+                            >
+                              {loading ? (
+                                <CircularProgress
+                                  style={{ color: "#fff" }}
+                                  size="1.5rem"
+                                />
+                              ) : (
+                                "Create Hotel"
+                              )}{" "}
+                            </button>
+                          </div>
+                        </div>
+                        <hr class="dashed" />
+                        <div className="mb-3 col-12" title="a12">
+                          <div className="row mt-3" title="a13">
+                            <div className="col-lg-3" title="a14">
+                              <label
+                                for="exampleFormControlInput2"
+                                className="ms-2 mt-1 form-label"
+                                title="f2"
+                              >
+                                Header Picture
+                              </label>
+                            </div>
+                            <div className="col-lg-9" title="a16">
+                              <input
+                                title="a15"
+                                type="file"
+                                name="myImage"
+                                accept="image/*"
+                                onChange={(event) => {
+                                  console.log(event.target.files[0]);
+                                  setSelectedImage(event.target.files[0]);
+                                }}
+                              />
+                              <button
+                                className="btn m-2 edit-hotel"
+                                onClick={handleUploadClick}
+                              >
+                                {loading ? (
+                                  <CircularProgress
+                                    style={{ color: "#fff" }}
+                                    size="1.5rem"
+                                  />
+                                ) : (
+                                  "Upload"
+                                )}
+                              </button>
+                              <Snackbar
+                                open={open1}
+                                autoHideDuration={4000}
+                                onClose={handleClose}
+                                anchorOrigin={{
+                                  vertical: "top",
+                                  horizontal: "center",
+                                }}
+                              >
+                                <Alert
+                                  onClose={handleClose}
+                                  severity={
+                                    message1 ===
+                                    "Your image uploaded successfully!"
+                                      ? "success"
+                                      : "error"
+                                  }
+                                  sx={{ width: "100%" }}
+                                >
+                                  {message1}
+                                </Alert>
+                              </Snackbar>
+                              {imageUrl && selectedImage && (
+                                <Box mt={2} textAlign="left">
+                                  <div>Image Preview:</div>
+                                  <img
+                                    className="company-logo"
+                                    src={imageUrl}
+                                    alt={selectedImage.name}
+                                    height="82px !important"
+                                    width="150px !important"
+                                  />
+                                </Box>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                        <hr class="dashed" />
+                        <div className="mb-3 col-12">
+                          <Typography sx={{ mb: 3 }}>
+                            Please upload other photos of hotel here.
+                          </Typography>
+                          <PreviewMultipleImages />
+                        </div>
+                        <Snackbar
+                          open={open}
+                          autoHideDuration={4000}
+                          onClose={handleClose}
+                          anchorOrigin={{
+                            vertical: "top",
+                            horizontal: "center",
+                          }}
+                        >
+                          <Alert
+                            onClose={handleClose}
+                            severity={
+                              message === "Please fill in the blanks."
+                                ? "error"
+                                : "success"
+                            }
+                            sx={{ width: "100%" }}
+                          >
+                            {message}
+                          </Alert>
+                        </Snackbar>{" "}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <hr class="dashed" />
-            <div className="mb-3 col-12">
-              <div className="row">
-                <div className="col-lg-3" title="a17">
-                  <label
-                    for="exampleFormControlInput2"
-                    className="ms-2 mt-1 form-label"
-                    title="f6"
-                  >
-                    Time range
-                  </label>
-                </div>
-                <div className="col-lg-9">
-                  <div className="row">
-                    <div className="col-lg-6">
-                      <div className="col-lg-12 checkin-inp">
-                        <ThemeProvider theme={textfieldTheme}>
-                          <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <TimePicker
-                              label="Checkin time"
-                              value={checkin}
-                              ampm={false}
-                              onChange={(newValue) => {
-                                setCheckin(newValue);
-                              }}
-                              renderInput={(params) => (
-                                <TextField
-                                  {...params}
-                                  required
-                                  fullWidth
-                                  size="small"
-                                  variant="outlined"
-                                />
-                              )}
-                            />
-                          </LocalizationProvider>
-                        </ThemeProvider>
-                      </div>
-                    </div>
-                    <div className="col-lg-6">
-                      <div className="col-lg-12 mt-2 mt-lg-0 checkout-inp">
-                        <ThemeProvider theme={textfieldTheme}>
-                          <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <TimePicker
-                              label="Checkout time"
-                              ampm={false}
-                              value={checkout}
-                              onChange={(newValue) => {
-                                setCheckout(newValue);
-                              }}
-                              renderInput={(params) => (
-                                <TextField
-                                  {...params}
-                                  required
-                                  fullWidth
-                                  size="small"
-                                  variant="outlined"
-                                />
-                              )}
-                            />
-                          </LocalizationProvider>
-                        </ThemeProvider>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr class="dashed" />
-            <div className="mb-3 col-12">
-              <div className="row">
-                <div className="col-lg-3">
-                  <label
-                    for="exampleFormControlInput3"
-                    className="ms-2 mt-1 form-label"
-                    title="f7"
-                  >
-                    Phone number
-                  </label>
-                </div>
-                <div className="col-lg-9" style={{ width: "100" }}>
-                  <ThemeProvider
-                    theme={textfieldTheme}
-                    style={{ width: "100" }}
-                  >
-                    <PhoneInput
-                      country={"us"}
-                      required
-                      fullWidth
-                      style={{ width: "100" }}
-                      placeholder="09912141869"
-                      id="phone"
-                      size="small"
-                      label="Phone number"
-                      InputLabelProps={{ shrink: true }}
-                      value={formik.values.phone}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      error={
-                        formik.touched.phone && Boolean(formik.errors.phone)
-                      }
-                      helperText={formik.touched.phone && formik.errors.phone}
-                    />
-                  </ThemeProvider>
-                </div>
-              </div>
-            </div>
-            <hr class="dashed" />
-            <div className="mb-3 col-12">
-              <div className="row">
-                <div className="col-lg-3">
-                  <label
-                    for="exampleFormControlInput4"
-                    className="ms-2 mt-1 form-label"
-                    title="f8"
-                  >
-                    Email
-                  </label>
-                </div>
-                <div className="col-lg-9">
-                  <ThemeProvider theme={textfieldTheme}>
-                    <TextField
-                      required
-                      fullWidth
-                      placeholder="yf7901@gamil.com"
-                      id="email"
-                      size="small"
-                      label="Email"
-                      InputLabelProps={{ shrink: true }}
-                      value={formik.values.email}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      error={
-                        formik.touched.email && Boolean(formik.errors.email)
-                      }
-                      helperText={formik.touched.email && formik.errors.email}
-                    />
-                  </ThemeProvider>
-                </div>
-              </div>
-            </div>
-            <hr class="dashed" />
-            <div className="mb-3 col-12">
-              <div className="row" title="f5">
-                <div className="col-lg-3">
-                  <label
-                    for="exampleFormControlTextarea1"
-                    className="ms-2 form-label"
-                    title="f9"
-                  >
-                    Description
-                  </label>
-                </div>
-                <div className="col-lg-9">
-                  <ThemeProvider theme={textfieldTheme}>
-                    <TextField
-                      fullWidth
-                      id="description"
-                      placeholder=""
-                      multiline
-                      autoComplete="description"
-                      label="Description"
-                      InputLabelProps={{ shrink: true }}
-                      inputProps={{ maxLength: CHARACTER_LIMIT }}
-                      value={formik.values.description}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      error={
-                        formik.touched.description &&
-                        Boolean(formik.errors.description)
-                      }
-                      helperText={`${formik.values.description.length}/${CHARACTER_LIMIT}`}
-                    />
-                  </ThemeProvider>
-                </div>
-              </div>
-            </div>
-            <hr class="dashed" />
-            <div className="mb-3 col-12">
-              <div className="row">
-                <div className="col-lg-3">
-                  <label
-                    for="exampleFormControlTextarea1"
-                    className="ms-2 form-label"
-                    title="f10"
-                  >
-                    Facilities
-                  </label>
-                </div>
-                <div className="col-lg-9">
-                  <Autocomplete
-                    multiple
-                    id="facilities"
-                    value={facilities}
-                    options={facilitieslist}
-                    onChange={(event, value) => {
-                      setFacilities(value);
-                    }}
-                    getOptionLabel={(option) => option}
-                    filterSelectedOptions
-                    renderInput={(params) => (
-                      <ThemeProvider theme={textfieldTheme}>
-                        <TextField
-                          fullWidth
-                          required
-                          {...params}
-                          label="Facilities"
-                        />
-                      </ThemeProvider>
-                    )}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="row mt-2 d-fit-content">
-              <div className="col-4" />
-              <div className="col-4" />
-              <div className="col-4 edit-hotel mb-3">
-                <button className="btn edit-hotel" onClick={handleClick}>
-                  {loading ? (
-                    <CircularProgress style={{ color: "#fff" }} size="1.5rem" />
-                  ) : (
-                    "Create Hotel"
-                  )}{" "}
-                </button>
-              </div>
-            </div>
-            <hr class="dashed" />
-            <div className="mb-3 col-12" title="a12">
-              <div className="row mt-3" title="a13">
-                <div className="col-lg-3" title="a14">
-                  <label
-                    for="exampleFormControlInput2"
-                    className="ms-2 mt-1 form-label"
-                    title="f2"
-                  >
-                    Header Picture
-                  </label>
-                </div>
-                <div className="col-lg-9" title="a16">
-                  <input
-                    title="a15"
-                    type="file"
-                    name="myImage"
-                    accept="image/*"
-                    onChange={(event) => {
-                      console.log(event.target.files[0]);
-                      setSelectedImage(event.target.files[0]);
-                    }}
-                  />
-                  <button
-                    className="btn m-2 edit-hotel"
-                    onClick={handleUploadClick}
-                  >
-                    {loading ? (
-                      <CircularProgress
-                        style={{ color: "#fff" }}
-                        size="1.5rem"
-                      />
-                    ) : (
-                      "Upload"
-                    )}
-                  </button>
-                  <Snackbar
-                    open={open1}
-                    autoHideDuration={4000}
-                    onClose={handleClose}
-                    anchorOrigin={{ vertical: "top", horizontal: "center" }}
-                  >
-                    <Alert
-                      onClose={handleClose}
-                      severity={
-                        message1 === "Your image uploaded successfully!"
-                          ? "success"
-                          : "error"
-                      }
-                      sx={{ width: "100%" }}
-                    >
-                      {message1}
-                    </Alert>
-                  </Snackbar>
-                  {imageUrl && selectedImage && (
-                    <Box mt={2} textAlign="left">
-                      <div>Image Preview:</div>
-                      <img
-                        className="company-logo"
-                        src={imageUrl}
-                        alt={selectedImage.name}
-                        height="82px !important"
-                        width="150px !important"
-                      />
-                    </Box>
-                  )}
-                </div>
-              </div>
-            </div>
-            <hr class="dashed" />
-            <div className="mb-3 col-12">
-              <Typography sx={{ mb: 3 }}>
-                Please upload other photos of hotel here.
-              </Typography>
-              <PreviewMultipleImages />
-            </div>
-            <Snackbar
-              open={open}
-              autoHideDuration={4000}
-              onClose={handleClose}
-              anchorOrigin={{ vertical: "top", horizontal: "center" }}
-            >
-              <Alert
-                onClose={handleClose}
-                severity={
-                  message === "Please fill in the blanks." ? "error" : "success"
-                }
-                sx={{ width: "100%" }}
-              >
-                {message}
-              </Alert>
-            </Snackbar>{" "}
           </div>
         </div>
       </div>

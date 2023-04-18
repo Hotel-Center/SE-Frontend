@@ -15,7 +15,7 @@ import Createroom from "./components/AdminPanel/Pages/Createroom";
 import Statistics from "./components/AdminPanel/Pages/Statistics";
 import RoomsStatus from "./components/AdminPanel/Pages/RoomsStatus";
 import CreateHotel from "./components/CreateHotel/CreateHotel";
-import Steps from "./components/CreateHotel/steps";
+import Steps from "./components/CreateHotel/HotelInfo4";
 import ReservedRooms from "./components/Profile/ReservedRooms";
 import Feedback from "./components/Comment/Feedback";
 import Messages from "./components/AdminPanel/Pages/Messages";
