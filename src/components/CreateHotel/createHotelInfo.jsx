@@ -176,7 +176,7 @@ function CreateHotel() {
           setMessage("Your hotel was submitted successfully!");
           setHotelId(res.data.id);
           console.log("hotelId:", res.data.hotelId);
-          window.location.replace("/CreateHotel/steps//2");
+          window.location.replace("/CreateHotel/steps/" + res.data.id + "/2");
         })
         .catch((err) => {
           console.log(err);
