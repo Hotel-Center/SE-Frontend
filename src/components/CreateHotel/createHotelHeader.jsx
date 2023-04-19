@@ -69,7 +69,7 @@ function CreateHotel() {
           setLoading(false);
           setOpen1(true);
           setMessage1("Your image uploaded successfully!");
-          window.location.replace("/CreateHotel/steps" + hotelid + "/3");
+          window.location.replace("/CreateHotel/steps/" + hotelid + "/3");
         })
         .catch((err) => {
           console.log("unable to upload.error: ", err);

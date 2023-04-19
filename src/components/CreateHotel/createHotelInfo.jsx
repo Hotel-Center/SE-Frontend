@@ -173,6 +173,31 @@ function CreateHotel() {
           console.log("responseeeeeeeee", res.data.id);
           setOpen(true);
           setLoading(false);
+          console.log(
+            "name:",
+            formik.values.name,
+            "\n",
+            "address:",
+            formik.values.address,
+            "\n",
+            "description:",
+            formik.values.description,
+            "\n",
+            "phone_number:",
+            formik.values.phone,
+            "\n",
+            "country:",
+            region,
+            "\n",
+            "city:",
+            city,
+            "\n",
+            "check_in_range:",
+            formattedcheckinDate,
+            "\n",
+            "check_out_range:",
+            formattedcheckoutDate
+          );
           setMessage("Your hotel was submitted successfully!");
           setHotelId(res.data.id);
           console.log("hotelId:", res.data.hotelId);
@@ -180,6 +205,31 @@ function CreateHotel() {
         })
         .catch((err) => {
           console.log(err);
+          console.log(
+            "name:",
+            formik.values.name,
+            "\n",
+            "address:",
+            formik.values.address,
+            "\n",
+            "description:",
+            formik.values.description,
+            "\n",
+            "phone_number:",
+            formik.values.phone,
+            "\n",
+            "country:",
+            region,
+            "\n",
+            "city:",
+            city,
+            "\n",
+            "check_in_range:",
+            formattedcheckinDate,
+            "\n",
+            "check_out_range:",
+            formattedcheckoutDate
+          );
           setLoading(false);
           setOpen(true);
           setMessage("Please fill in the blanks.");

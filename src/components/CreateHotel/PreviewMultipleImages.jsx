@@ -65,6 +65,12 @@ function PreviewMultipleImages() {
             setLoading(false);
             setMessage("Your picture was uploaded successfully!");
             // document.location.reload(true);
+            if (
+              window.location.pathname ===
+              "/CreateHotel/steps/" + hotelid + "/3"
+            ) {
+              window.location.replace("/myhotels");
+            }
           })
           .catch((error) => {
             console.log("error: ", error);
