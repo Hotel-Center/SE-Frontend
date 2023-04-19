@@ -257,403 +257,456 @@ function Createroom() {
   };
 
   return (
-    <div className={`admin-panel ${toggled ? "toggled" : ""} d-flex`}>
-      {/* <MySidebar
+    <div className="containter m-5">
+      <div className="row justify-content-center">
+        <div className="col-12 col-md-8">
+          <div className="card-body">
+            <div className="shadow p-3 mb-5 bg-body rounded">
+              {/* <div className="stepper-container-horizontal  "> */}
+              <div className="col"></div>
+              <div className={`admin-panel ${toggled ? "toggled" : ""} d-flex`}>
+                {/* <MySidebar
         toggled={toggled}
         handleToggleSidebar={handleToggleSidebar}
         id={hotelId}
       /> */}
-      <div className="w-100 admin-content">
-        <div className="adminpanel-header-mobile">
-          <div
-            className="btn-toggle d-md-none"
-            onClick={() => handleToggleSidebar(true)}
-          >
-            <MenuIcon fontSize="large" />
-          </div>
-          <a href="/" className="navbar-brand logo d-md-none">
-            <span className="fw-bold logo-text-font">Hotel Center</span>
-            <img src={Logo} alt="Hotel Center" />
-          </a>
-        </div>
-        <div className="container py-5 px-lg-5">
-          <h2 className="mb-4 fw-bold d-flex">
-            <DomainAddIcon className="me-2" fontSize="large" />
-            Create Room
-          </h2>
-          <div className="container mt-4 p-4 edit-hotel-form border">
-            <div className="mb-3 col-md-12">
-              <div className="row">
-                <div className="col-lg-2 mt-lg-3">
-                  <label
-                    for="exampleFormControlInput2"
-                    className="ms-2 mt-1 form-label"
-                    title="element1"
-                  >
-                    Type Of Room
-                  </label>
-                </div>
-                <div className="col-lg-9 mt-lg-3">
-                  <ThemeProvider theme={textfieldTheme}>
-                    <FormControl fullWidth required>
-                      <InputLabel
-                        id="demo-simple-select-label"
-                        style={{ textAlign: "center" }}
-                      >
-                        Type
-                      </InputLabel>
-                      <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        placeholder=""
-                        value={type}
-                        label="Type"
-                        onChange={handletypeChange}
-                      >
-                        <MenuItem value={t1}>Single Room</MenuItem>
-                        <MenuItem value={t2}>Double Room</MenuItem>
-                        <MenuItem value={t3}>Triple Room</MenuItem>
-                        <MenuItem value={t4}>Suite Room - 4 people</MenuItem>
-                        <MenuItem value={t4}>Suite Room - 5 people</MenuItem>
-                        <MenuItem value={t4}>Suite Room - 6 people</MenuItem>
-                        <MenuItem value={t4}>Suite Room - 7 people</MenuItem>
-                        <MenuItem value={t4}>Suite Room - 8 people</MenuItem>
-                        <MenuItem value={t4}>Suite Room - 9 people</MenuItem>
-                        <MenuItem value={t4}>Suite Room - 10 people</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </ThemeProvider>
-                </div>
-              </div>
-            </div>
-
-            <hr class="dashed"></hr>
-
-            <div className="mb-3 col-12">
-              <div className="row">
-                <div className="col-lg-2">
-                  <label
-                    for="exampleFormControlInput2"
-                    className="ms-2 mt-1 form-label"
-                    title="element2"
-                  >
-                    Breakfast
-                  </label>
-                </div>
-                <div className="col-lg-9">
-                  <RadioGroup
-                    row
-                    aria-label="level"
-                    name="row-radio-buttons-group"
-                    value={includebreakfast}
-                    onChange={handleIncludebreakfast}
-                  >
-                    <FormControlLabel
-                      value="Yes"
-                      control={
-                        <Radio
-                          classes={{
-                            root: {
-                              "&$checked": {
-                                color: "#cd9a2d",
-                              },
-                            },
-                            checked: {},
-                          }}
-                        />
-                      }
-                      label="Yes"
-                    />
-                    <FormControlLabel
-                      value="No"
-                      control={
-                        <Radio
-                          classes={{
-                            root: {
-                              "&$checked": {
-                                color: "#cd9a2d",
-                              },
-                            },
-                            checked: {},
-                          }}
-                        />
-                      }
-                      label="No"
-                    />
-                  </RadioGroup>
-                </div>
-              </div>
-            </div>
-
-            <hr class="dashed"></hr>
-
-            <div className="mb-3 col-12">
-              <div className="row">
-                <div className="mb-3 col-6">
-                  <div className="row mt-3">
-                    <div className="col-lg-3">
-                      <label
-                        for="exampleFormControlInput2"
-                        className="ms-2 mt-1 form-label"
-                        title="element3"
-                      >
-                        Room View
-                      </label>
+                <div className="w-100">
+                  <div className="adminpanel-header-mobile">
+                    <div
+                      className="btn-toggle d-md-none"
+                      onClick={() => handleToggleSidebar(true)}
+                    >
+                      <MenuIcon fontSize="large" />
                     </div>
-                    <div className="col-lg-8">
-                      <ThemeProvider theme={textfieldTheme}>
-                        <TextField
-                          required
-                          fullWidth
-                          placeholder="Sea"
-                          id="view"
-                          size="small"
-                          label="Room view"
-                          InputLabelProps={{ shrink: true }}
-                          value={formik.values.view}
-                          onChange={formik.handleChange}
-                          onBlur={formik.handleBlur}
-                          error={
-                            formik.touched.view && Boolean(formik.errors.view)
+                    <a href="/" className="navbar-brand logo d-md-none">
+                      <span className="fw-bold logo-text-font">
+                        Hotel Center
+                      </span>
+                      <img src={Logo} alt="Hotel Center" />
+                    </a>
+                  </div>
+                  <div className="container py-5 px-lg-5">
+                    <h2 className="mb-4 fw-bold d-flex">
+                      <DomainAddIcon className="me-2" fontSize="large" />
+                      Create Room
+                    </h2>
+                    <div className="container mt-4 p-4 edit-hotel-form border">
+                      <div className="mb-3 col-md-12">
+                        <div className="row">
+                          <div className="col-lg-2 mt-lg-3">
+                            <label
+                              for="exampleFormControlInput2"
+                              className="ms-2 mt-1 form-label"
+                              title="element1"
+                            >
+                              Type Of Room
+                            </label>
+                          </div>
+                          <div className="col-lg-9 mt-lg-3">
+                            <ThemeProvider theme={textfieldTheme}>
+                              <FormControl fullWidth required>
+                                <InputLabel
+                                  id="demo-simple-select-label"
+                                  style={{ textAlign: "center" }}
+                                >
+                                  Type
+                                </InputLabel>
+                                <Select
+                                  labelId="demo-simple-select-label"
+                                  id="demo-simple-select"
+                                  placeholder=""
+                                  value={type}
+                                  label="Type"
+                                  onChange={handletypeChange}
+                                >
+                                  <MenuItem value={t1}>Single Room</MenuItem>
+                                  <MenuItem value={t2}>Double Room</MenuItem>
+                                  <MenuItem value={t3}>Triple Room</MenuItem>
+                                  <MenuItem value={t4}>
+                                    Suite Room - 4 people
+                                  </MenuItem>
+                                  <MenuItem value={t4}>
+                                    Suite Room - 5 people
+                                  </MenuItem>
+                                  <MenuItem value={t4}>
+                                    Suite Room - 6 people
+                                  </MenuItem>
+                                  <MenuItem value={t4}>
+                                    Suite Room - 7 people
+                                  </MenuItem>
+                                  <MenuItem value={t4}>
+                                    Suite Room - 8 people
+                                  </MenuItem>
+                                  <MenuItem value={t4}>
+                                    Suite Room - 9 people
+                                  </MenuItem>
+                                  <MenuItem value={t4}>
+                                    Suite Room - 10 people
+                                  </MenuItem>
+                                </Select>
+                              </FormControl>
+                            </ThemeProvider>
+                          </div>
+                        </div>
+                      </div>
+
+                      <hr class="dashed"></hr>
+
+                      <div className="mb-3 col-12">
+                        <div className="row">
+                          <div className="col-lg-2">
+                            <label
+                              for="exampleFormControlInput2"
+                              className="ms-2 mt-1 form-label"
+                              title="element2"
+                            >
+                              Breakfast
+                            </label>
+                          </div>
+                          <div className="col-lg-9">
+                            <RadioGroup
+                              row
+                              aria-label="level"
+                              name="row-radio-buttons-group"
+                              value={includebreakfast}
+                              onChange={handleIncludebreakfast}
+                            >
+                              <FormControlLabel
+                                value="Yes"
+                                control={
+                                  <Radio
+                                    classes={{
+                                      root: {
+                                        "&$checked": {
+                                          color: "#cd9a2d",
+                                        },
+                                      },
+                                      checked: {},
+                                    }}
+                                  />
+                                }
+                                label="Yes"
+                              />
+                              <FormControlLabel
+                                value="No"
+                                control={
+                                  <Radio
+                                    classes={{
+                                      root: {
+                                        "&$checked": {
+                                          color: "#cd9a2d",
+                                        },
+                                      },
+                                      checked: {},
+                                    }}
+                                  />
+                                }
+                                label="No"
+                              />
+                            </RadioGroup>
+                          </div>
+                        </div>
+                      </div>
+
+                      <hr class="dashed"></hr>
+
+                      <div className="mb-3 col-12">
+                        <div className="row">
+                          <div className="mb-3 col-6">
+                            <div className="row mt-3">
+                              <div className="col-lg-3">
+                                <label
+                                  for="exampleFormControlInput2"
+                                  className="ms-2 mt-1 form-label"
+                                  title="element3"
+                                >
+                                  Room View
+                                </label>
+                              </div>
+                              <div className="col-lg-8">
+                                <ThemeProvider theme={textfieldTheme}>
+                                  <TextField
+                                    required
+                                    fullWidth
+                                    placeholder="Sea"
+                                    id="view"
+                                    size="small"
+                                    label="Room view"
+                                    InputLabelProps={{ shrink: true }}
+                                    value={formik.values.view}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={
+                                      formik.touched.view &&
+                                      Boolean(formik.errors.view)
+                                    }
+                                    helperText={
+                                      formik.touched.view && formik.errors.view
+                                    }
+                                  />
+                                </ThemeProvider>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="mb-3 col-6">
+                            <div className="row mt-3">
+                              <div className="col-lg-3">
+                                <label
+                                  for="exampleFormControlInput2"
+                                  className="ms-2 mt-1 form-label"
+                                  title="element4"
+                                >
+                                  Room Size
+                                </label>
+                              </div>
+                              <div className="col-lg-8">
+                                <ThemeProvider theme={textfieldTheme}>
+                                  <TextField
+                                    required
+                                    fullWidth
+                                    placeholder="32"
+                                    id="size"
+                                    size="small"
+                                    label="Room size"
+                                    InputLabelProps={{ shrink: true }}
+                                    value={formik.values.size}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={
+                                      formik.touched.size &&
+                                      Boolean(formik.errors.size)
+                                    }
+                                    helperText={
+                                      formik.touched.size && formik.errors.size
+                                    }
+                                  />
+                                </ThemeProvider>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="mb-3 col-6">
+                            <div className="row mt-3">
+                              <div className="col-lg-3">
+                                <label
+                                  for="exampleFormControlInput2"
+                                  className="ms-2 mt-1 form-label"
+                                  title="element5"
+                                >
+                                  Room Price
+                                </label>
+                              </div>
+                              <div className="col-lg-9">
+                                <ThemeProvider theme={textfieldTheme}>
+                                  <TextField
+                                    required
+                                    fullWidth
+                                    placeholder="2000"
+                                    id="price"
+                                    size="small"
+                                    label="Room price"
+                                    InputLabelProps={{ shrink: true }}
+                                    value={formik.values.price}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={
+                                      formik.touched.price &&
+                                      Boolean(formik.errors.price)
+                                    }
+                                    helperText={
+                                      formik.touched.price &&
+                                      formik.errors.price
+                                    }
+                                  />
+                                </ThemeProvider>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <hr class="dashed"></hr>
+
+                      <div className="mb-3 col-12">
+                        <div className="row">
+                          <div className="col-lg-2 mt-3">
+                            <label
+                              for="exampleFormControlTextarea1"
+                              className="ms-2 form-label"
+                              title="element7"
+                            >
+                              Room Facilities
+                            </label>
+                          </div>
+                          <div className="col-lg-9">
+                            <Autocomplete
+                              multiple
+                              id="facilities"
+                              options={facilitieslist}
+                              onChange={(event, value) => {
+                                setFacilities(value);
+                              }}
+                              getOptionLabel={(option) => option}
+                              filterSelectedOptions
+                              renderInput={(params) => (
+                                <ThemeProvider theme={textfieldTheme}>
+                                  <TextField
+                                    fullWidth
+                                    required
+                                    {...params}
+                                    label="Facilities"
+                                  />
+                                </ThemeProvider>
+                              )}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <hr class="dashed"></hr>
+
+                      <div className="mb-3 col-md-12">
+                        <div className="row mt-3">
+                          <div className="col-lg-2">
+                            <label
+                              for="exampleFormControlInput2"
+                              className="ms-2 mt-1 form-label"
+                              title="element8"
+                            >
+                              Room Spaces
+                            </label>
+                          </div>
+                          <div className="col-lg-9">
+                            <ThemeProvider theme={textfieldTheme}>
+                              <TextField
+                                required
+                                fullWidth
+                                placeholder="101,102,103"
+                                id="number"
+                                size="small"
+                                label="Room number"
+                                InputLabelProps={{ shrink: true }}
+                                value={formik.values.number}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                error={
+                                  formik.touched.number &&
+                                  Boolean(formik.errors.number)
+                                }
+                                helperText={
+                                  "Please seperate each room number with a comma. i,e 101,102"
+                                }
+                              />
+                            </ThemeProvider>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-lg-4 col-md-2"></div>
+                        <div className="col-lg-4 col-md-2"></div>
+                        <div className="col-lg-4 col-md-8 edit-hotel mb-3">
+                          <button
+                            className="btn edit-hotel"
+                            onClick={handleClick}
+                          >
+                            {loading ? (
+                              <CircularProgress
+                                style={{ color: "#fff" }}
+                                size="1.5rem"
+                              />
+                            ) : (
+                              "Create Room"
+                            )}
+                          </button>
+                        </div>
+
+                        <div className="mb-3 col-12">
+                          <Typography sx={{ mb: 3 }}>
+                            Please upload room photos here.
+                          </Typography>
+                          <PreviewMultipleImages roomid={roomid} />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <Snackbar
+                        open={open1}
+                        autoHideDuration={4000}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                          vertical: "top",
+                          horizontal: "center",
+                        }}
+                      >
+                        <Alert
+                          onClose={handleClose}
+                          severity={
+                            msg1 === "Something went wrong.Please try again."
+                              ? "error"
+                              : "success"
                           }
-                          helperText={formik.touched.view && formik.errors.view}
-                        />
-                      </ThemeProvider>
+                          sx={{ width: "100%" }}
+                        >
+                          {msg1}
+                        </Alert>
+                      </Snackbar>
+
+                      <Snackbar
+                        open={open2}
+                        autoHideDuration={4000}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                          vertical: "top",
+                          horizontal: "center",
+                        }}
+                      >
+                        <Alert
+                          onClose={handleClose}
+                          severity={
+                            msg2 === "An error occurred.Please try again."
+                              ? "error"
+                              : "success"
+                          }
+                          sx={{ width: "100%" }}
+                        >
+                          {msg2}
+                        </Alert>
+                      </Snackbar>
+
+                      <Snackbar
+                        open={open}
+                        autoHideDuration={4000}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                          vertical: "top",
+                          horizontal: "center",
+                        }}
+                      >
+                        <Alert
+                          onClose={handleClose}
+                          severity={
+                            message === "Please fill in the blanks."
+                              ? "error"
+                              : "success"
+                          }
+                          sx={{ width: "100%" }}
+                        >
+                          {message}
+                        </Alert>
+                      </Snackbar>
+
+                      {/* <hr class="dashed"></hr> */}
                     </div>
                   </div>
                 </div>
-
-                <div className="mb-3 col-6">
-                  <div className="row mt-3">
-                    <div className="col-lg-3">
-                      <label
-                        for="exampleFormControlInput2"
-                        className="ms-2 mt-1 form-label"
-                        title="element4"
-                      >
-                        Room Size
-                      </label>
-                    </div>
-                    <div className="col-lg-8">
-                      <ThemeProvider theme={textfieldTheme}>
-                        <TextField
-                          required
-                          fullWidth
-                          placeholder="32"
-                          id="size"
-                          size="small"
-                          label="Room size"
-                          InputLabelProps={{ shrink: true }}
-                          value={formik.values.size}
-                          onChange={formik.handleChange}
-                          onBlur={formik.handleBlur}
-                          error={
-                            formik.touched.size && Boolean(formik.errors.size)
-                          }
-                          helperText={formik.touched.size && formik.errors.size}
-                        />
-                      </ThemeProvider>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mb-3 col-6">
-                  <div className="row mt-3">
-                    <div className="col-lg-3">
-                      <label
-                        for="exampleFormControlInput2"
-                        className="ms-2 mt-1 form-label"
-                        title="element5"
-                      >
-                        Room Price
-                      </label>
-                    </div>
-                    <div className="col-lg-9">
-                      <ThemeProvider theme={textfieldTheme}>
-                        <TextField
-                          required
-                          fullWidth
-                          placeholder="2000"
-                          id="price"
-                          size="small"
-                          label="Room price"
-                          InputLabelProps={{ shrink: true }}
-                          value={formik.values.price}
-                          onChange={formik.handleChange}
-                          onBlur={formik.handleBlur}
-                          error={
-                            formik.touched.price && Boolean(formik.errors.price)
-                          }
-                          helperText={
-                            formik.touched.price && formik.errors.price
-                          }
-                        />
-                      </ThemeProvider>
-                    </div>
-                  </div>
-                </div>
               </div>
-            </div>
-
-            <hr class="dashed"></hr>
-
-            <div className="mb-3 col-12">
-              <div className="row">
-                <div className="col-lg-2 mt-3">
-                  <label
-                    for="exampleFormControlTextarea1"
-                    className="ms-2 form-label"
-                    title="element7"
-                  >
-                    Room Facilities
-                  </label>
-                </div>
-                <div className="col-lg-9">
-                  <Autocomplete
-                    multiple
-                    id="facilities"
-                    options={facilitieslist}
-                    onChange={(event, value) => {
-                      setFacilities(value);
-                    }}
-                    getOptionLabel={(option) => option}
-                    filterSelectedOptions
-                    renderInput={(params) => (
-                      <ThemeProvider theme={textfieldTheme}>
-                        <TextField
-                          fullWidth
-                          required
-                          {...params}
-                          label="Facilities"
-                        />
-                      </ThemeProvider>
-                    )}
-                  />
-                </div>
-              </div>
-            </div>
-            <hr class="dashed"></hr>
-
-            <div className="mb-3 col-md-12">
-              <div className="row mt-3">
-                <div className="col-lg-2">
-                  <label
-                    for="exampleFormControlInput2"
-                    className="ms-2 mt-1 form-label"
-                    title="element8"
-                  >
-                    Room Spaces
-                  </label>
-                </div>
-                <div className="col-lg-9">
-                  <ThemeProvider theme={textfieldTheme}>
-                    <TextField
-                      required
-                      fullWidth
-                      placeholder="101,102,103"
-                      id="number"
-                      size="small"
-                      label="Room number"
-                      InputLabelProps={{ shrink: true }}
-                      value={formik.values.number}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      error={
-                        formik.touched.number && Boolean(formik.errors.number)
-                      }
-                      helperText={
-                        "Please seperate each room number with a comma. i,e 101,102"
-                      }
-                    />
-                  </ThemeProvider>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-lg-4 col-md-2"></div>
-              <div className="col-lg-4 col-md-2"></div>
-              <div className="col-lg-4 col-md-8 edit-hotel mb-3">
-                <button className="btn edit-hotel" onClick={handleClick}>
-                  {loading ? (
-                    <CircularProgress style={{ color: "#fff" }} size="1.5rem" />
-                  ) : (
-                    "Create Room"
-                  )}
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="row">
-            <Snackbar
-              open={open1}
-              autoHideDuration={4000}
-              onClose={handleClose}
-              anchorOrigin={{ vertical: "top", horizontal: "center" }}
-            >
-              <Alert
-                onClose={handleClose}
-                severity={
-                  msg1 === "Something went wrong.Please try again."
-                    ? "error"
-                    : "success"
-                }
-                sx={{ width: "100%" }}
-              >
-                {msg1}
-              </Alert>
-            </Snackbar>
-
-            <hr class="dashed"></hr>
-
-            <Snackbar
-              open={open2}
-              autoHideDuration={4000}
-              onClose={handleClose}
-              anchorOrigin={{ vertical: "top", horizontal: "center" }}
-            >
-              <Alert
-                onClose={handleClose}
-                severity={
-                  msg2 === "An error occurred.Please try again."
-                    ? "error"
-                    : "success"
-                }
-                sx={{ width: "100%" }}
-              >
-                {msg2}
-              </Alert>
-            </Snackbar>
-
-            <Snackbar
-              open={open}
-              autoHideDuration={4000}
-              onClose={handleClose}
-              anchorOrigin={{ vertical: "top", horizontal: "center" }}
-            >
-              <Alert
-                onClose={handleClose}
-                severity={
-                  message === "Please fill in the blanks." ? "error" : "success"
-                }
-                sx={{ width: "100%" }}
-              >
-                {message}
-              </Alert>
-            </Snackbar>
-
-            <hr class="dashed"></hr>
-
-            <div className="mb-3 col-12">
-              <Typography sx={{ mb: 3 }}>
-                Please upload room photos here.
-              </Typography>
-              <PreviewMultipleImages roomid={roomid} />
             </div>
           </div>
         </div>
       </div>
     </div>
+    // </div>
   );
 }
 
