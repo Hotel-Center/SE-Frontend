@@ -2,7 +2,6 @@ import * as React from "react";
 import { Box } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import { useState } from "react";
-import "../../../css/Hotelcard.css";
 import axios from "axios";
 import references from "../../../assets/References.json";
 import { cookies, makeURL } from "../../../Utils/common";

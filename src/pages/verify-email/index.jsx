@@ -2,7 +2,7 @@
 import * as React from "react";
 import { Grid, Box, Typography, Container } from "@mui/material";
 import Helmet from "react-helmet";
-import image1 from "./statics/img/pics/opened.svg";
+import Image from "next/image";
 
 export default function Verify() {
   return (
@@ -36,12 +36,7 @@ export default function Verify() {
             </Grid>
             {/* <Grid item xs={12} style={{justifyContent:'center'}}> */}
             <div className="verify-img">
-              <img
-                src={image1}
-                className="responsive-img"
-                width="200"
-                height="200"
-              />
+              <Image src="/img/pics/opened.svg" width={200} height={200} />
             </div>
             {/* </Grid> */}
             <Grid item style={{ textAlign: "center", padding: "10px" }} xs={12}>
