@@ -6,10 +6,10 @@ import TopHotels from "./TopHotels";
 import axios from "axios";
 import { cookies, makeURL } from "../../Utils/common";
 import references from "../../assets/References.json";
-import image1 from "../../statics/img/pics/london1.jpg";
-import image2 from "../../statics/img/pics/london2.jpg";
-import image3 from "../../statics/img/pics/london3.jpg";
-import image4 from "../../statics/img/pics/Amsterdom1.jpg";
+import image1 from "../../../public/img/pics/london1.jpg";
+import image2 from "../../../public/img/pics/london2.jpg";
+import image3 from "../../../public/img/pics/london3.jpg";
+import image4 from "../../../public/img/pics/Amsterdom1.jpg";
 
 const NewHotelsMock = [
   {

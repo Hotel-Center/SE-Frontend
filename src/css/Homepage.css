@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: logo_font;
-  src: url(../statics/font/Donalia.ttf);
+  src: url(../../public/font/Donalia.ttf);
 }
 /******************************************** Header **************************************/
 .header {

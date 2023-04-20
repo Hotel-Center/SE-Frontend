@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import Logo from "../../../statics/logo/logo2.png";
+import Logo from "../../../../public/logo/logo2.png";
 // import UseAnimations from "react-useanimations";
 // import menu3 from "react-useanimations/lib/menu3";
 import { me, logout } from "../../../Utils/connection";
@@ -10,6 +10,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Logout from "@mui/icons-material/Logout";
+import Image from "next/image";
 
 class Navbar extends Component {
   constructor() {
@@ -108,7 +109,7 @@ class Navbar extends Component {
       >
         <div className="container-fluid">
           <a href="/" className="navbar-brand logo">
-            <img src={Logo} alt="Hotel Center" />
+            <Image src={Logo} alt="Hotel Center" height={48} />
             <span className="fw-bold logo-text-font">Hotel Center</span>
           </a>
 
