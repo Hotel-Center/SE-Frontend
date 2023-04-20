@@ -306,44 +306,6 @@ function CreateHotel() {
                               <label
                                 for="exampleFormControlInput2"
                                 className="ms-2 mt-1 form-label"
-                                title="f3"
-                              >
-                                Address
-                              </label>
-                            </div>
-                            <div className="col-lg-9" title="a18">
-                              <ThemeProvider theme={textfieldTheme}>
-                                <TextField
-                                  required
-                                  fullWidth
-                                  placeholder="London, 22B Baker street"
-                                  id="address"
-                                  size="small"
-                                  label="Address"
-                                  InputLabelProps={{ shrink: true }}
-                                  value={formik.values.address}
-                                  onChange={formik.handleChange}
-                                  onBlur={formik.handleBlur}
-                                  error={
-                                    formik.touched.address &&
-                                    Boolean(formik.errors.address)
-                                  }
-                                  helperText={
-                                    formik.touched.address &&
-                                    formik.errors.address
-                                  }
-                                />
-                              </ThemeProvider>
-                            </div>
-                          </div>
-                        </div>
-                        <hr class="dashed" />
-                        <div className="mb-3 col-12">
-                          <div className="row">
-                            <div className="col-lg-3">
-                              <label
-                                for="exampleFormControlInput2"
-                                className="ms-2 mt-1 form-label"
                                 title="f4"
                               >
                                 Country & City
@@ -406,6 +368,44 @@ function CreateHotel() {
                                   </ThemeProvider>
                                 </div>
                               </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr class="dashed" />
+                        <div className="mb-3 col-12">
+                          <div className="row">
+                            <div className="col-lg-3">
+                              <label
+                                for="exampleFormControlInput2"
+                                className="ms-2 mt-1 form-label"
+                                title="f3"
+                              >
+                                Address
+                              </label>
+                            </div>
+                            <div className="col-lg-9" title="a18">
+                              <ThemeProvider theme={textfieldTheme}>
+                                <TextField
+                                  required
+                                  fullWidth
+                                  placeholder="London, 22B Baker street"
+                                  id="address"
+                                  size="small"
+                                  label="Address"
+                                  InputLabelProps={{ shrink: true }}
+                                  value={formik.values.address}
+                                  onChange={formik.handleChange}
+                                  onBlur={formik.handleBlur}
+                                  error={
+                                    formik.touched.address &&
+                                    Boolean(formik.errors.address)
+                                  }
+                                  helperText={
+                                    formik.touched.address &&
+                                    formik.errors.address
+                                  }
+                                />
+                              </ThemeProvider>
                             </div>
                           </div>
                         </div>
