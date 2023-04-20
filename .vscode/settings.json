@@ -1,0 +1,9 @@
+{
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "eslint.alwaysShowStatus": true, 
+  "editor.codeActionsOnSave": { "source.fixAll.eslint": true }, 
+  "editor.formatOnSave": true, 
+  "files.autoSave": "onFocusChange"
+}

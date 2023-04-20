@@ -1,0 +1,166 @@
+.edit-profile-form.container {
+  background-color: white;
+  padding: 30px;
+  border: 2px;
+  border-radius: 10px !important;
+}
+
+.rounded-circle {
+  width: 130px;
+  margin-bottom: 10px;
+}
+
+hr.dashed {
+  border-top: 1px dashed #fff;
+}
+
+.birthday-inp {
+  padding-left: 5px;
+}
+
+.birthdate {
+  height: 36px;
+  /* border-style: ; */
+}
+
+.myhotels.card-footer {
+  background-color: transparent !important;
+  border-top: none !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+.view-hotel-button {
+  background-color: #cd9a2d;
+  border: none !important;
+}
+
+.view-hotel-button:focus,
+.view-hotel-button:active,
+.view-hotel-button:hover {
+  background-color: #be8f2a;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.edit-hotel.btn-primary {
+  background-color: #cd9a2d !important;
+  border-color: #cd9a2d !important;
+  box-shadow: none;
+  color: black;
+}
+
+.edit-hotel.btn-primary:hover {
+  box-shadow: none;
+}
+.edit-profile{
+  text-align: end;
+}
+.edit-hotel.btn {
+  color: white;
+  background-color: #cd9a2d;
+  border: none !important;
+  
+}
+
+.edit-hotel.btn:focus,
+.edit-hotel.btn:active,
+.edit-hotel.btn:hover{
+  background-color: #be8f2a;
+  border: none !important;
+  box-shadow: none !important;
+}
+/***********************Sidebar*************************/
+.profile-sidebar {
+  background-color: white;
+  border-radius: 10px !important;
+}
+
+.icon-style {
+  margin-right: 10px;
+  color: #cd9a2d;
+}
+
+.sidebar-items:hover {
+  color: #cd9a2d;
+}
+
+/* X-small devices */
+@media only screen and (max-width: 575.98px) {
+
+  .profile-sidebar .row a {
+    width: 20%;
+    margin: auto;
+  }
+
+  .profile-sidebar .row hr {
+    display: none;
+  }
+
+  .profile-sidebar .row a .icon-style {
+    width: 100%;
+  }
+
+  .profile-sidebar .row a p {
+    text-align: center;
+    display: none;
+  }
+}
+
+/* Small devices */
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  
+  .profile-sidebar .row a {
+    width: 20%;
+    margin: auto;
+  }
+
+  .profile-sidebar .row hr {
+    display: none;
+  }
+
+  .profile-sidebar .row a .icon-style {
+    width: 100%;
+  }
+
+  .profile-sidebar .row a p {
+    text-align: center;
+    font-size: 0.65rem;
+  }
+}
+
+/* Medium devices */
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+
+  .profile-sidebar .row a {
+    width: 20%;
+    margin: auto;
+  }
+
+  .profile-sidebar .row hr {
+    display: none;
+  }
+
+  .profile-sidebar .row a .icon-style {
+    width: 100%;
+  }
+
+  .profile-sidebar .row a p {
+    text-align: center;
+  }
+}
+
+/* Large devices */
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  
+}
+
+/* Extra Large devices */
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+
+}
+
+/* Extra Extra Large devices */
+@media only screen and (min-width: 1400px) {
+
+}

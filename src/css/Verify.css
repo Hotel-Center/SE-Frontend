@@ -1,0 +1,39 @@
+.verify-img{
+    text-align: center;
+    
+}
+
+@media only screen and (max-width: 254px){
+    .verify-img {
+      width: 9;
+      height: 9;
+    }
+
+    .verify-container {
+        width: 85vw;
+      }
+}
+
+@media only screen and (min-width: 255px) and (max-width: 899.9px){
+    .verify-img {
+      width: 200;
+    }
+  }
+  
+  @media only screen and (min-width: 900px) and (max-width: 1199.9px){ 
+    .verify-img {
+      width: 200;
+    } 
+  }
+  
+  @media only screen and (min-width: 1200px) and (max-width: 1535.9px){
+    .verify-img {
+      width: 200;
+    }
+  }
+  
+  @media only screen and (min-width: 1536px){
+    .verify-img {
+      width: 200;
+    }
+  }

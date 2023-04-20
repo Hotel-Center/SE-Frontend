@@ -1,0 +1,10 @@
+form-reserve{   width: 100%;
+    color: #131b1f;
+    border: none;
+    caret-color: #000;
+    padding: 1.08375rem 0.9375rem;
+    border-radius: inherit;
+    background-color: transparent;
+    font-size: 1rem;
+    font-weight: 400;
+}

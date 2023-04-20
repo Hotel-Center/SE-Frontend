@@ -1,0 +1,49 @@
+.hotelcard-style {
+  border-radius: 10px;
+  height: 35rem;
+}
+
+.view-hotel-button {
+  background-color: #cd9a2d;
+  border: none !important;
+}
+
+.view-hotel-button:focus,
+.view-hotel-button:active,
+.view-hotel-button:hover {
+  background-color: #be8f2a;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.favorite-btn-style {
+  background-color: white;
+  border: none !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  border-radius: 25px;
+  width: 36px;
+  height: 36px;
+  padding: unset;
+}
+.favorite-btn-style:hover {
+  background-color: #ffebef;
+  border: none !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  border-radius: 25px;
+  width: 36px;
+  height: 36px;
+  padding: unset;
+}
+
+.favorites .card-footer {
+  background-color: transparent !important;
+  border-top: none !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+.favorite-icon-style {
+  color: #ff0037;
+}

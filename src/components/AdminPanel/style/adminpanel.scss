@@ -1,0 +1,98 @@
+$sidebar-bg-color: #f8f8f8 !default;
+$sidebar-color: #212529 !default;
+$sidebar-width: 250px !default;
+$sidebar-collapsed-width: 80px !default;
+$highlight-color: #cd9a2d !default;
+$submenu-bg-color: #f8f8f8 !default;
+$submenu-bg-color-collapsed: #2b2b2b !default;
+$icon-bg-color: transparent !default;
+$icon-size: 35px !default;
+$breakpoint-xs: 480px !default;
+$breakpoint-sm: 576px !default;
+$breakpoint-md: 768px !default;
+$breakpoint-lg: 992px !default;
+$breakpoint-xl: 1200px !default;
+
+// @import "~react-pro-sidebar/dist/scss/styles.scss";
+body {
+  margin: 0;
+  height: 100vh;
+  color: #353535;
+  font-family: "Roboto", sans-serif;
+}
+
+#root {
+  height: 100%;
+}
+
+.admin-panel {
+  height: 100%;
+  display: flex;
+  position: relative;
+
+  .admin-content {
+    margin-left: $sidebar-width;
+  }
+
+  .pro-sidebar {
+    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+    position: fixed;
+  }
+
+  .pro-sidebar-header {
+    padding: 24px;
+    overflow-y: auto;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    a {
+      color: #212529;
+    }
+  }
+
+  .pro-sidebar-footer {
+    margin-top: auto;
+    color: #888;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pro-sidebar-content {
+    nav {
+      height: 100%;
+      ul {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        li:last-child {
+          margin-top: auto;
+        }
+      }
+    }
+  }
+
+  .adminpanel-header-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    a {
+      color: #212529;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .adminpanel-header-mobile {
+      padding: 0px;
+    }
+  }
+
+  @media screen and (max-width: 767.98px) {
+    .admin-content {
+      margin-left: 0;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+aa:focus { 
+    outline: none !important;
+    border-color: #71ce76 !important;
+    box-shadow: 0 0 10px #71ce85  !important;
+}
+tt:focus { 
+    outline: none !important;
+    border-color: #ceb171 !important;
+    box-shadow: 0 0 10px #ce8771 !important;
+}

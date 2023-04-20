@@ -1,0 +1,30 @@
+{
+  "url_address": "http://127.0.0.1:8000/api",
+  "base_address": "http://127.0.0.1:8000",
+  "url_AccountActivation": "/auth/users/activation/",
+  "url_Sign_up": "/auth/users/",
+  "url_login": "/auth/token/login/",
+  "url_me": "/auth/users/me/",
+  "url_logout": "/auth/token/logout/",
+ 
+  "url_onehotel": "/hotel/hotels",
+  "url_onehotelImage": "/hotel",
+  "url_besthotels": "/hotel/best/?count=4",
+  "url_newhotels": "/hotel/newhotels/",
+  "url_allhotels": "/hotel/hotels/?search=",
+  "url_one_hotel": "/hotel/hotels/",
+  "url_allhotels_facilities": "/hotel/hotels/?",
+  "url_hotelrooms": "/hotel/room/",
+  "url_reserveroom": "/hotel/reserve/",
+  "url_edit_profile": "/accounts/users/me/",
+  "url_add_credit": "/accounts/credit/",
+  "url_hotel_search": "/hotel/1/search/",
+  "url_addhotel": "/hotel/hotels/",
+  "url_addfavoritehotel": "/hotel/favorites/",
+
+  "url_myhotels": "/hotel/myhotels/",
+  "url_admimpanel_mainpage": "/hotel/admin/panel/",
+
+  "url_chatwithhotel": "/chat/hotelcaht/",          
+  "url_hotelchatlist" : "/chat/hotelcahtlist/"
+}

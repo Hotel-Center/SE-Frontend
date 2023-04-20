@@ -1,0 +1,157 @@
+.wallet.container {
+  background-color: white;
+  padding: 30px;
+  border: 2px;
+  border-radius: 10px !important;
+}
+
+.money-option-button,
+.money-option-button:active {
+  color: black;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  box-shadow: none;
+}
+
+.money-option-button:focus {
+  color: black;
+  background-color: white;
+  box-shadow: none;
+}
+
+.money-option-button:hover {
+  background-color: #cd9a2d;
+  color: white;
+  border-color: #cd9a2d;
+}
+
+.pay-button {
+  background-color: #cd9a2d;
+  border: none !important;
+}
+
+.pay-button:focus,
+.pay-button:active,
+.pay-button:hover {
+  background-color: #be8f2a;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.pay-button:disabled {
+  background-color: #dbb052 !important;
+}
+
+.money-card {
+  border-radius: 20px;
+  padding: 15px;
+  background-color: #67d2c8;
+  background-image: linear-gradient(
+    61deg,
+    #67d2c8 0%,
+    #dfd2b2 49%,
+    #cd9a2d 100%
+  );
+  height: 220px;
+  contain: content;
+}
+
+.money-card img {
+  position: fixed;
+  right: -15%;
+  top: -20%;
+  width: 50%;
+}
+
+.money-card .card-content {
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  color: #656565;
+  width: 90%;
+}
+
+.money-card .site-name {
+  font-family: logo_font;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+/* X-small devices */
+@media only screen and (max-width: 575.98px) {
+  .increase-credit-form {
+    border-right: none !important;
+  }
+
+  .money-card {
+    height: 180px;
+  }
+
+  .money-card img {
+    position: fixed;
+    right: -15%;
+    top: -18%;
+    width: 50%;
+  }
+
+  .wallet .content {
+    flex-direction: column-reverse;
+  }
+}
+
+/* Small devices */
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .increase-credit-form {
+    border-right: none !important;
+  }
+
+  .money-card {
+    height: 250px;
+  }
+
+  .wallet .content {
+    flex-direction: column-reverse;
+  }
+}
+
+/* Medium devices */
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .increase-credit-form {
+    border-right: none !important;
+  }
+
+  .money-card {
+    width: 80%;
+    margin: auto;
+  }
+
+  .wallet .content {
+    flex-direction: column-reverse;
+  }
+}
+
+/* Large devices */
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .money-card {
+    height: 180px;
+  }
+}
+
+/* Extra Large devices */
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .money-card {
+    height: 200px;
+  }
+
+  .money-card .card-content {
+    width: 92%;
+  }
+}
+
+/* Extra Extra Large devices */
+@media only screen and (min-width: 1400px) {
+  .money-card .card-content {
+    width: 93%;
+  }
+}

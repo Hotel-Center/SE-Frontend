@@ -1,0 +1,19 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.COM     {
+  min-height: 100vh;
+  display: flex;
+  background-color: red;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 2rem 0;
+  // background-color: $very-light-gray;
+  
+  @include media-md() {
+    gap: 20px;
+    padding: 4rem 0;
+  }
+}

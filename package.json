@@ -1,0 +1,73 @@
+{
+  "name": "hotel-center",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/base": "^5.0.0-alpha.120",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.12",
+    "@mui/x-date-pickers": "^6.0.0",
+    "axios": "^0.26.1",
+    "bootstrap-icons": "^1.8.1",
+    "coverage": "^0.4.1",
+    "date-fns": "^2.28.0",
+    "formik": "^2.2.9",
+    "next": "^13.2.3",
+    "react": "^18.2.0",
+    "react-country-region-selector": "^3.6.1",
+    "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "react-move": "^6.5.0",
+    "react-phone-input-2": "^2.15.1",
+    "react-pro-sidebar": "^1.0.0",
+    "react-router-dom": "^6.8.2",
+    "react-scripts": "^5.0.1",
+    "react-spinner-animated": "^3.1.0",
+    "react-test-renderer": "^18.2.0",
+    "recharts": "^2.4.3",
+    "reconnecting-websocket": "^4.4.0",
+    "sass": "^1.52.1",
+    "scss": "^0.2.4",
+    "universal-cookie": "^4.0.4",
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "eslint": "^8.35.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "jest": "^29.5.0",
+    "prettier": "^2.8.4"
+  }
+}
