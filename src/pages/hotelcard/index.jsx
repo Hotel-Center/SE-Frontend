@@ -9,6 +9,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import React from "react";
 
 export default function Newhotelcard(props) {
   const [isFavorite, setIsFavorite] = useState(props.isFavorite);
