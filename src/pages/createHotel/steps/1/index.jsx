@@ -13,7 +13,12 @@ import DomainAddIcon from "@mui/icons-material/DomainAdd";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
+
+export const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 const textfieldTheme = createTheme({
   palette: {
     primary: {
@@ -52,7 +57,7 @@ const validationSchema = yup.object({
 });
 
 function CreateHotel() {
-  const router = useRouter();
+  // const router = useRouter();
   const [message, setMessage] = useState("");
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -82,10 +87,6 @@ function CreateHotel() {
       city: "",
     },
     validationSchema: validationSchema,
-  });
-
-  const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
 
   const handleClose = (event, reason) => {
@@ -136,7 +137,8 @@ function CreateHotel() {
             console.log("end: phone:", String(phone));
             setMessage("Your hotel was submitted successfully!");
             console.log("hotelId:", res.data.id);
-            router.push("/createHotel/steps/2/" + res.data.id);
+            // router.push("/createHotel/steps/2/" + res.data.id);
+            window.location.replace("/createHotel/steps/2/" + res.data.id);
           })
           .catch((err) => {
             console.log("ERROR:", "\n", err);
@@ -242,6 +244,8 @@ function CreateHotel() {
                                   fullWidth
                                   placeholder="Something hotel"
                                   id="name"
+                                  name="name"
+                                  title="name"
                                   size="small"
                                   label="Name"
                                   InputLabelProps={{ shrink: true }}
@@ -289,6 +293,8 @@ function CreateHotel() {
                                           required
                                           fullWidth
                                           placeholder="USA"
+                                          name="country"
+                                          title="country"
                                           id="country"
                                           size="small"
                                           label="County"
@@ -315,6 +321,7 @@ function CreateHotel() {
                                           fullWidth
                                           placeholder="New York"
                                           id="city"
+                                          name="city"
                                           size="small"
                                           label="City"
                                           InputLabelProps={{ shrink: true }}
@@ -353,6 +360,7 @@ function CreateHotel() {
                                   id="address"
                                   size="small"
                                   label="Address"
+                                  title="Address"
                                   InputLabelProps={{ shrink: true }}
                                   value={formik.values.address}
                                   onChange={formik.handleChange}
@@ -466,6 +474,7 @@ function CreateHotel() {
                                   style={{ width: "100" }}
                                   placeholder="09912141869"
                                   id="phone"
+                                  title="phone"
                                   size="small"
                                   label="Phone number"
                                   InputLabelProps={{ shrink: true }}
@@ -508,6 +517,7 @@ function CreateHotel() {
                                   multiline
                                   autoComplete="description"
                                   label="Description"
+                                  title="Description"
                                   InputLabelProps={{ shrink: true }}
                                   inputProps={{ maxLength: CHARACTER_LIMIT }}
                                   value={formik.values.description}
@@ -534,6 +544,8 @@ function CreateHotel() {
                         >
                           <Alert
                             onClose={handleClose}
+                            title="alert"
+                            label="alert"
                             severity={
                               message === "Please fill in the blanks."
                                 ? "error"
@@ -549,6 +561,7 @@ function CreateHotel() {
                           <div className="col-4" />
                           <div className="col-4 edit-hotel mb-3">
                             <button
+                              title="submit"
                               className="btn edit-hotel"
                               onClick={handleClick}
                             >
