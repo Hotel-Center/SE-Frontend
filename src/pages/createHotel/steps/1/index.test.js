@@ -8,7 +8,6 @@ import { act } from "react-test-renderer";
 
 it("1.renders the CreateHotel component", () => {
   render(<CreateHotel />);
-  // add your assertions here
 });
 
 describe("step1 Page", () => {

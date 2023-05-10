@@ -130,6 +130,7 @@ function CreateHotelHeader() {
                               />
                               <button
                                 className="btn m-2 edit-hotel"
+                                title="submit"
                                 onClick={handleUploadClick}
                               >
                                 {loading ? (
@@ -168,6 +169,7 @@ function CreateHotelHeader() {
                                   <div>Image Preview:</div>
                                   <img
                                     className="company-logo"
+                                    title="p"
                                     src={imageUrl}
                                     alt={selectedImage.name}
                                     height="82px !important"
