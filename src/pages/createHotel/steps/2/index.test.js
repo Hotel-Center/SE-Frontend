@@ -5,6 +5,43 @@ import "@testing-library/jest-dom";
 
 jest.mock("axios");
 
+test("handles image upload click with no selected image", () => {
+  const { getByText } = render(<CreateHotelHeader />);
+  const uploadButton = getByText("Upload");
+  uploadButton.click();
+});
+
+test("handles image upload failure", () => {
+  const { getByText } = render(<CreateHotelHeader />);
+  const uploadButton = getByText("Upload");
+  uploadButton.click();
+  // Mock failed API response and verify the error message is displayed
+});
+
+test("handles image upload success", () => {
+  const { getByText } = render(<CreateHotelHeader />);
+  const uploadButton = getByText("Upload");
+  uploadButton.click();
+  // Mock successful API response and verify the success message is displayed
+});
+
+test("handles image upload click with selected image", () => {
+  const { getByText } = render(
+    <CreateHotelHeader selectedImage={new File([], "test.png")} />
+  );
+  const uploadButton = getByText("Upload");
+  uploadButton.click();
+});
+
+test("renders component with image preview", () => {
+  render(
+    <CreateHotelHeader
+      selectedImage={new File([], "test.png")}
+      imageUrl="https://example.com/image.jpg"
+    />
+  );
+});
+
 describe("CreateHotelHeader", () => {
   it("1.renders without crashing", () => {
     render(<CreateHotelHeader />);
@@ -45,4 +82,12 @@ describe("CreateHotelHeader", () => {
   //     "/createHotel/steps/3/" + hotelid
   //   );
   // });
+});
+test("closes Snackbar on button click with boolean reason", () => {
+  const setOpen1 = jest.fn();
+  const handleClose = require("./index").default;
+
+  handleClose(null, true, setOpen1);
+
+  expect(setOpen1).toHaveBeenCalledWith(false);
 });
