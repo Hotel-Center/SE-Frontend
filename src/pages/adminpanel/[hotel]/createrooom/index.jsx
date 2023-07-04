@@ -1,4 +1,10 @@
 import * as React from "react";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Button from "@mui/material/Button";
 // eslint-disable-next-line unused-imports/no-unused-imports, no-unused-vars
 import { TextField, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -103,6 +109,7 @@ function Createroom() {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
   const [loading, setLoading] = useState(false);
   const [toggled, setToggled] = useState(false);
   const [type, setType] = useState("");
@@ -606,11 +613,11 @@ function Createroom() {
                       <div className="row">
                         {/* <div className="col-lg-4 col-md-2"></div> */}
 
-                        <div className="col-lg-1 col-md-8 edit-hotel mb-3">
+                        <div className="col-lg-2 col-md-8 edit-hotel mb-3">
                           <button
                             className="btn edit-hotel"
                             onClick={() => {
-                              window.location.replace("/");
+                              setOpen3(true);
                             }}
                             style={{ background: "gray" }}
                           >
@@ -621,11 +628,48 @@ function Createroom() {
                               />
                             ) : (
                               "Cancel"
-                            )}
+                            )}{" "}
                           </button>
+                          <Dialog
+                            open={open3}
+                            // onClose={handleCloseClickDialog}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                          >
+                            <DialogTitle id="alert-dialog-title">
+                              {"Are you Sure to cancel?"}
+                            </DialogTitle>
+                            <DialogContent>
+                              <DialogContentText id="alert-dialog-description">
+                                By canceling the room creation process,
+                                your information will not be registered and you
+                                will have to start building the room again
+                                later.
+                              </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                              <Button
+                                onClick={() => {
+                                  setOpen3(false);
+                                }}
+                              >
+                                Back
+                              </Button>
+                              <Button
+                                className="btn edit-hotel"
+                                onClick={() => {
+                                  setOpen3(false);
+                                  router.push("/");
+                                }}
+                                autoFocus
+                              >
+                                Cancel
+                              </Button>
+                            </DialogActions>
+                          </Dialog>
                         </div>
                         <div className="col-lg-4 col-md-2"></div>
-                        <div className="col-lg-3 col-md-2"></div>
+                        <div className="col-lg-2 col-md-2"></div>
                         <div className="col-lg-4 col-md-8 edit-hotel mb-3">
                           <button
                             className="btn edit-hotel"

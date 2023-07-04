@@ -1,5 +1,10 @@
 // @ts-nocheck
 import * as React from "react";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import { Box, CircularProgress } from "@mui/material";
@@ -12,6 +17,7 @@ import references from "../../../../assets/References.json";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Button from '@mui/material/Button';
 import PhoneInput from "react-phone-input-2";
 import DomainAddIcon from "@mui/icons-material/DomainAdd";
 import Snackbar from "@mui/material/Snackbar";
@@ -67,6 +73,7 @@ function CreateHotel() {
   const router = useRouter();
   const [message, setMessage] = useState("");
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
   // eslint-disable-next-line no-unused-vars, unused-imports/no-unused-vars
   const CHARACTER_LIMIT = 1000;
   // const [checkin, setCheckin] = useState(null);
@@ -130,9 +137,6 @@ function CreateHotel() {
     validationSchema: validationSchema,
   });
 
-  const cancelClick = () => {
-    router.push("/myhotels");
-  };
   const handleClick = () => {
     console.log("gggi,", images);
     let filled = images.length != 0;
@@ -754,10 +758,12 @@ function CreateHotel() {
                         </Snackbar>{" "}
                         <div className="row mt-2 d-fit-content">
                           {/* <div className="col-4" /> */}
-                          <div className="col-1 edit-hotel mb-3">
+                          <div className="col-2 edit-hotel mb-3">
                             <button
                               className="btn edit-hotel"
-                              onClick={cancelClick}
+                              onClick={() => {
+                                setOpen2(true);
+                              }}
                               style={{ background: "gray" }}
                             >
                               {loading ? (
@@ -769,8 +775,42 @@ function CreateHotel() {
                                 "Cancel"
                               )}{" "}
                             </button>
+                            <Dialog
+                              open={open2}
+                              // onClose={handleCloseClickDialog}
+                              aria-labelledby="alert-dialog-title"
+                              aria-describedby="alert-dialog-description"
+                            >
+                              <DialogTitle id="alert-dialog-title">
+                                {"Are you Sure to cancel?"}
+                              </DialogTitle>
+                              <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                  By canceling the hotel construction process, your information will not be registered and you will have to start building the hotel again later.
+                                </DialogContentText>
+                              </DialogContent>
+                              <DialogActions>
+                                <Button
+                                  onClick={() => {
+                                    setOpen2(false);
+                                  }}
+                                >
+                                  Back
+                                </Button>
+                                <Button
+                                  className="btn edit-hotel"
+                                  onClick={() => {
+                                    setOpen2(false);
+                                    router.push("/myhotels");
+                                  }}
+                                  autoFocus
+                                >
+                                  Cancel
+                                </Button>
+                              </DialogActions>
+                            </Dialog>
                           </div>
-                          <div className="col-7" />
+                          <div className="col-6" />
                           <div className="col-4 edit-hotel mb-3">
                             <button
                               className="btn edit-hotel"
