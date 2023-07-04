@@ -17,7 +17,7 @@ import references from "../../../../assets/References.json";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import PhoneInput from "react-phone-input-2";
 import DomainAddIcon from "@mui/icons-material/DomainAdd";
 import Snackbar from "@mui/material/Snackbar";
@@ -76,8 +76,6 @@ function CreateHotel() {
   const [open2, setOpen2] = useState(false);
   // eslint-disable-next-line no-unused-vars, unused-imports/no-unused-vars
   const CHARACTER_LIMIT = 1000;
-  // const [checkin, setCheckin] = useState(null);
-  // const [checkout, setCheckout] = useState(null);
   const [file, setFile] = useState([]);
   const [images, setImages] = useState([]);
 
@@ -138,158 +136,21 @@ function CreateHotel() {
   });
 
   const handleClick = () => {
-    console.log("gggi,", images);
-    let filled = images.length != 0;
+    console.log("images,", images);
+    let filled_hotel = images.length != 0;
 
-    if (!filled) {
+    if (!filled_hotel) {
       setOpen(true);
       setMessage("Please choose a picture to upload.");
     }
 
-    if (filled) {
-      images.forEach((image) => {
-        let form_data = new FormData();
-        form_data.append("image", image, image.name);
-        axios
-          .post(
-            makeURL(references.url_onehotelImage + "/" + hotelid + "/images/"),
-            form_data,
-            {
-              headers: {
-                Authorization: cookies.get("Authorization"),
-              },
-            }
-          )
-          .then((response) => {
-            console.log("status code: ", response.data);
-            setOpen(true);
-            setLoading(false);
-            setMessage("Your picture was uploaded successfully!");
-            if (window.location.pathname == "/createHotel/steps/3/" + hotelid) {
-              window.location.replace("/createHotel");
-            }
-          })
-          .catch((error) => {
-            console.log("error: ", error);
-            setLoading(false);
-            setOpen(true);
-            setMessage("An error occurred.Please try again.");
-          });
-      });
-    }
     setLoading(true);
     if (!selectedImage) {
       setOpen1(true);
       setLoading(false);
       setMessage1("Please upload a picture.");
     }
-    if (selectedImage) {
-      let form_data = new FormData();
-      form_data.append("image", selectedImage, selectedImage.name);
-      axios
-        .post(
-          makeURL(
-            references.url_onehotelImage +
-              "/" +
-              hotelid +
-              "/images/?is_header=true"
-          ),
-          form_data,
-          {
-            headers: {
-              Authorization: cookies.get("Authorization"),
-            },
-          }
-        )
-        .then((res) => {
-          console.log("uploading hotel header: ", res.data);
-          setLoading(false);
-          setOpen1(true);
-          setMessage1("Your image uploaded successfully!");
-          window.location.replace("/createHotel/steps/3/" + hotelid);
-        })
-        .catch((err) => {
-          console.log("unable to upload.error: ", err);
-          setLoading(false);
-          setOpen1(true);
-          setMessage1("Something went wrong. Please try again.");
-        });
-    }
-    axios
-      .get(makeURL(references.url_me), {
-        headers: {
-          Authorization: cookies.get("Authorization"),
-        },
-      })
-      .then((res) => {
-        let manager = res.data.id;
-        console.log("manager:", res.data.id, res);
-        return manager;
-      })
-      .then((manager) => {
-        axios
-          .post(
-            makeURL(references.url_addhotel),
-            {
-              manager: manager,
-              name: formik.values.name,
-              address: formik.values.address,
-              description: formik.values.description,
-              phone_number: String(phone),
-              country: region,
-              city: city,
-              // check_in_range: formattedcheckinDate,
-              // check_out_range: formattedcheckoutDate,
-            },
-            {
-              headers: {
-                Authorization: cookies.get("Authorization"),
-              },
-            }
-          )
-          .then((res) => {
-            setOpen(true);
-            setLoading(false);
-            console.table(formik.values);
-            console.log("end: phone:", String(phone));
-            setMessage("Your hotel was submitted successfully!");
-            console.log("hotelId:", res.data.id);
-            router.push("/createHotel/steps/2/" + res.data.id);
-          })
-          .catch((err) => {
-            console.log("ERROR:", "\n", err);
-            console.log(
-              "eroooor",
-              "\n",
-              "name:",
-              formik.values.name,
-              "\n",
-              "address:",
-              formik.values.address,
-              "\n",
-              "description:",
-              formik.values.description,
-              "\n",
-              "phone_number:",
-              String(phone),
-              "\n",
-              "country:",
-              region,
-              "\n",
-              "city:",
-              city,
-              "\n"
-            );
-            setLoading(false);
-            setOpen(true);
-            setMessage("We have a problem, try again later.");
-          });
-      })
-      .catch((error) => {
-        console.log("get ERROR:", error);
-      });
-    console.log("phone:", phone);
-    filled =
+    let filled =
       !formik.errors.name &&
       !formik.errors.address &&
       !formik.errors.description;
@@ -311,8 +172,95 @@ function CreateHotel() {
       setMessage("Please fill in the blanks.");
     }
 
-    if (filled) {
+    if (filled && filled_hotel && selectedImage) {
+      let form_data_header = new FormData();
+      form_data_header.append(
+        "hedaer_images",
+        selectedImage,
+        selectedImage.name
+      );
+      images.forEach((image) => {
+        let form_data_hotel = new FormData();
+        form_data_hotel.append("hotel_image", image, image.name);
+      });
+
       console.log("start: phone:", String(phone));
+      axios
+        .get(makeURL(references.url_me), {
+          headers: {
+            Authorization: cookies.get("Authorization"),
+          },
+        })
+        .then((res) => {
+          let manager = res.data.id;
+          console.log("manager:", res.data.id, res);
+          return manager;
+        })
+        .then((manager) => {
+          axios
+            .post(
+              makeURL(references.url_addhotel),
+              form_data_hotel,
+              form_data_header,
+              {
+                manager: manager,
+                name: formik.values.name,
+                address: formik.values.address,
+                description: formik.values.description,
+                phone_number: String(phone),
+                country: region,
+                city: city,
+                // check_in_range: formattedcheckinDate,
+                // check_out_range: formattedcheckoutDate,
+              },
+              {
+                headers: {
+                  Authorization: cookies.get("Authorization"),
+                },
+              }
+            )
+            .then((res) => {
+              setOpen(true);
+              setLoading(false);
+              console.table(formik.values);
+              console.log("end: phone:", String(phone));
+              setMessage("Your hotel was submitted successfully!");
+              console.log("hotelId:", res.data.id);
+              router.push("/createHotel/steps/2/" + res.data.id);
+            })
+            .catch((err) => {
+              console.log("ERROR:", "\n", err);
+              console.log(
+                "eroooor",
+                "\n",
+                "name:",
+                formik.values.name,
+                "\n",
+                "address:",
+                formik.values.address,
+                "\n",
+                "description:",
+                formik.values.description,
+                "\n",
+                "phone_number:",
+                String(phone),
+                "\n",
+                "country:",
+                region,
+                "\n",
+                "city:",
+                city,
+                "\n"
+              );
+              setLoading(false);
+              setOpen(true);
+              setMessage("We have a problem, try again later.");
+            });
+        })
+        .catch((error) => {
+          console.log("get ERROR:", error);
+        });
+      console.log("phone:", phone);
     }
   };
 
@@ -786,7 +734,10 @@ function CreateHotel() {
                               </DialogTitle>
                               <DialogContent>
                                 <DialogContentText id="alert-dialog-description">
-                                  By canceling the hotel construction process, your information will not be registered and you will have to start building the hotel again later.
+                                  By canceling the hotel construction process,
+                                  your information will not be registered and
+                                  you will have to start building the hotel
+                                  again later.
                                 </DialogContentText>
                               </DialogContent>
                               <DialogActions>
