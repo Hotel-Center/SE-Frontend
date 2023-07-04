@@ -1,5 +1,7 @@
 import axios from "axios";
 import * as React from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
 import { useState, useEffect } from "react";
 import { cookies, makeURL } from "../../Utils/common";
 import references from "../../assets/References.json";
@@ -108,13 +110,11 @@ function PreviewMultipleImages() {
                   alt=""
                   style={{ width: "200px", height: "100px" }}
                 />
-                <button
-                  type="button"
-                  className="btn edit-hotel"
-                  onClick={() => deleteFile(index)}
-                >
-                  delete
-                </button>
+                <IconButton aria-label="delete">
+                                        <DeleteIcon
+                                          onClick={() => deleteFile(index)}
+                                        />
+                                      </IconButton>
               </div>
             );
           })}

@@ -32,6 +32,14 @@ function CreateHotelImages() {
                             Please upload other photos of hotel here.
                           </Typography>
                           <PreviewMultipleImages />
+                          <button
+                            className="btn m-2 edit-hotel"
+                            onClick={() => {
+                              window.location.replace("/");
+                            }}
+                          >
+                            Cancel
+                          </button>
                         </div>
                       </div>
                     </div>

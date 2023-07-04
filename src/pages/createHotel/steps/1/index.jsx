@@ -1,19 +1,24 @@
+// @ts-nocheck
 import * as React from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
+import { Box, CircularProgress } from "@mui/material";
+import { Typography } from "@mui/material";
 import { TextField } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { cookies, makeURL } from "../../../../Utils/common";
 import references from "../../../../assets/References.json";
-import { CircularProgress } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import PhoneInput from "react-phone-input-2";
 import DomainAddIcon from "@mui/icons-material/DomainAdd";
-import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useRouter } from "next/router";
+import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
+
 const textfieldTheme = createTheme({
   palette: {
     primary: {
@@ -52,15 +57,22 @@ const validationSchema = yup.object({
 });
 
 function CreateHotel() {
-  const router = useRouter();
-  const [message, setMessage] = useState("");
-  const [open, setOpen] = useState(false);
+  const [message1, setMessage1] = useState("");
+  const [open1, setOpen1] = useState(false);
   const [loading, setLoading] = useState(false);
   // eslint-disable-next-line no-unused-vars, unused-imports/no-unused-vars
   const [toggled, setToggled] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+  const router = useRouter();
+  const [message, setMessage] = useState("");
+  const [open, setOpen] = useState(false);
+  // eslint-disable-next-line no-unused-vars, unused-imports/no-unused-vars
   const CHARACTER_LIMIT = 1000;
   // const [checkin, setCheckin] = useState(null);
   // const [checkout, setCheckout] = useState(null);
+  const [file, setFile] = useState([]);
+  const [images, setImages] = useState([]);
 
   const [region, setRegion] = useState(null);
   const [city, setCity] = useState(null);
@@ -70,6 +82,40 @@ function CreateHotel() {
   // let tempcheckout = checkout; // value from your state
   // let formattedcheckinDate = moment(tempcheckin).format("hh:mm");
   // let formattedcheckoutDate = moment(tempcheckout).format("hh:mm");
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen1(false);
+  };
+  function uploadSingleFile(e) {
+    setFile([...file, URL.createObjectURL(e.target.files[0])]);
+    setImages([...images, e.target.files[0]]);
+    // console.log("images", images);
+    let hotelid = window.location.pathname.split("/")[4];
+    console.log(
+      window.location.pathname,
+      "\n",
+      "/createHotel/steps/3/" + hotelid
+    );
+  }
+  function deleteFile(e) {
+    const s = file.filter((item, index) => index !== e);
+    const i = images.filter((item, index) => index != e);
+    setFile(s);
+    setImages(i);
+    console.log(i);
+  }
+  useEffect(() => {
+    if (selectedImage) {
+      setImageUrl(URL.createObjectURL(selectedImage));
+    }
+  }, [selectedImage]);
 
   const formik = useFormik({
     initialValues: {
@@ -84,19 +130,87 @@ function CreateHotel() {
     validationSchema: validationSchema,
   });
 
-  const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
+  const cancelClick = () => {
+    router.push("/myhotels");
+  };
+  const handleClick = () => {
+    console.log("gggi,", images);
+    let filled = images.length != 0;
 
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
+    if (!filled) {
+      setOpen(true);
+      setMessage("Please choose a picture to upload.");
     }
 
-    setOpen(false);
-  };
-
-  const handleClick = () => {
+    if (filled) {
+      images.forEach((image) => {
+        let form_data = new FormData();
+        form_data.append("image", image, image.name);
+        axios
+          .post(
+            makeURL(references.url_onehotelImage + "/" + hotelid + "/images/"),
+            form_data,
+            {
+              headers: {
+                Authorization: cookies.get("Authorization"),
+              },
+            }
+          )
+          .then((response) => {
+            console.log("status code: ", response.data);
+            setOpen(true);
+            setLoading(false);
+            setMessage("Your picture was uploaded successfully!");
+            if (window.location.pathname == "/createHotel/steps/3/" + hotelid) {
+              window.location.replace("/createHotel");
+            }
+          })
+          .catch((error) => {
+            console.log("error: ", error);
+            setLoading(false);
+            setOpen(true);
+            setMessage("An error occurred.Please try again.");
+          });
+      });
+    }
+    setLoading(true);
+    if (!selectedImage) {
+      setOpen1(true);
+      setLoading(false);
+      setMessage1("Please upload a picture.");
+    }
+    if (selectedImage) {
+      let form_data = new FormData();
+      form_data.append("image", selectedImage, selectedImage.name);
+      axios
+        .post(
+          makeURL(
+            references.url_onehotelImage +
+              "/" +
+              hotelid +
+              "/images/?is_header=true"
+          ),
+          form_data,
+          {
+            headers: {
+              Authorization: cookies.get("Authorization"),
+            },
+          }
+        )
+        .then((res) => {
+          console.log("uploading hotel header: ", res.data);
+          setLoading(false);
+          setOpen1(true);
+          setMessage1("Your image uploaded successfully!");
+          window.location.replace("/createHotel/steps/3/" + hotelid);
+        })
+        .catch((err) => {
+          console.log("unable to upload.error: ", err);
+          setLoading(false);
+          setOpen1(true);
+          setMessage1("Something went wrong. Please try again.");
+        });
+    }
     axios
       .get(makeURL(references.url_me), {
         headers: {
@@ -171,7 +285,7 @@ function CreateHotel() {
         console.log("get ERROR:", error);
       });
     console.log("phone:", phone);
-    let filled =
+    filled =
       !formik.errors.name &&
       !formik.errors.address &&
       !formik.errors.description;
@@ -220,10 +334,7 @@ function CreateHotel() {
                         />
                         Create Hotel
                       </h2>
-                      <div
-                        className="container mt-4 p-4 edit-hotel-form border"
-                        title="a6"
-                      >
+                      <div className="container mt-4 p-4 edit-hotel-form border">
                         <div className="mb-3 col-12" title="a7">
                           <div className="row mt-3" title="a8">
                             <div className="col-lg-3" title="a9">
@@ -260,7 +371,105 @@ function CreateHotel() {
                             </div>
                           </div>
                         </div>
-                        <hr class="dashed" title="a11" />
+                        <hr class="dashed" />
+                        <div className="mb-3 col-12" title="a12">
+                          <div className="row mt-3" title="a13">
+                            <div className="col-lg-3" title="a14">
+                              <label
+                                for="exampleFormControlInput2"
+                                className="ms-2 mt-1 form-label"
+                                title="f2"
+                              >
+                                Header Picture
+                              </label>
+                            </div>
+                            <div className="col-lg-9" title="a16">
+                              <input
+                                title="a15"
+                                type="file"
+                                name="myImage"
+                                accept="image/*"
+                                onChange={(event) => {
+                                  console.log(event.target.files[0]);
+                                  setSelectedImage(event.target.files[0]);
+                                }}
+                              />
+                              <Snackbar
+                                open={open1}
+                                autoHideDuration={4000}
+                                onClose={handleClose}
+                                anchorOrigin={{
+                                  vertical: "top",
+                                  horizontal: "center",
+                                }}
+                              >
+                                <Alert
+                                  onClose={handleClose}
+                                  severity={
+                                    message1 ===
+                                    "Your image uploaded successfully!"
+                                      ? "success"
+                                      : "error"
+                                  }
+                                  sx={{ width: "100%" }}
+                                >
+                                  {message1}
+                                </Alert>
+                              </Snackbar>
+                              {imageUrl && selectedImage && (
+                                <Box mt={2} textAlign="left">
+                                  <div>Image Preview:</div>
+                                  <img
+                                    className="company-logo"
+                                    src={imageUrl}
+                                    alt={selectedImage.name}
+                                    height="82px !important"
+                                    width="150px !important"
+                                  />
+                                </Box>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                        <hr class="dashed" />
+                        <div className="mb-3 col-12">
+                          <div className="row">
+                            <div className="col-lg-3">
+                              <label
+                                for="exampleFormControlInput2"
+                                className="ms-2 mt-1 form-label"
+                                title="f3"
+                              >
+                                Address
+                              </label>
+                            </div>
+                            <div className="col-lg-9" title="a18">
+                              <ThemeProvider theme={textfieldTheme}>
+                                <TextField
+                                  required
+                                  fullWidth
+                                  placeholder="London, 22B Baker street"
+                                  id="address"
+                                  size="small"
+                                  label="Address"
+                                  InputLabelProps={{ shrink: true }}
+                                  value={formik.values.address}
+                                  onChange={formik.handleChange}
+                                  onBlur={formik.handleBlur}
+                                  error={
+                                    formik.touched.address &&
+                                    Boolean(formik.errors.address)
+                                  }
+                                  helperText={
+                                    formik.touched.address &&
+                                    formik.errors.address
+                                  }
+                                />
+                              </ThemeProvider>
+                            </div>
+                          </div>
+                        </div>
+                        <hr class="dashed" />
                         <div className="mb-3 col-12">
                           <div className="row">
                             <div className="col-lg-3">
@@ -337,116 +546,6 @@ function CreateHotel() {
                           <div className="row">
                             <div className="col-lg-3">
                               <label
-                                for="exampleFormControlInput2"
-                                className="ms-2 mt-1 form-label"
-                                title="f3"
-                              >
-                                Address
-                              </label>
-                            </div>
-                            <div className="col-lg-9" title="a18">
-                              <ThemeProvider theme={textfieldTheme}>
-                                <TextField
-                                  required
-                                  fullWidth
-                                  placeholder="London, 22B Baker street"
-                                  id="address"
-                                  size="small"
-                                  label="Address"
-                                  InputLabelProps={{ shrink: true }}
-                                  value={formik.values.address}
-                                  onChange={formik.handleChange}
-                                  onBlur={formik.handleBlur}
-                                  error={
-                                    formik.touched.address &&
-                                    Boolean(formik.errors.address)
-                                  }
-                                  helperText={
-                                    formik.touched.address &&
-                                    formik.errors.address
-                                  }
-                                />
-                              </ThemeProvider>
-                            </div>
-                          </div>
-                        </div>
-                        {/* <hr class="dashed" />
-                        <div className="mb-3 col-12">
-                          <div className="row">
-                            <div className="col-lg-3" title="a17">
-                              <label
-                                for="exampleFormControlInput2"
-                                className="ms-2 mt-1 form-label"
-                                title="f6"
-                              >
-                                Time range
-                              </label>
-                            </div>
-                            <div className="col-lg-9">
-                              <div className="row">
-                                <div className="col-lg-6">
-                                  <div className="col-lg-12 checkin-inp">
-                                    <ThemeProvider theme={textfieldTheme}>
-                                      <LocalizationProvider
-                                        dateAdapter={AdapterDateFns}
-                                      >
-                                        <TimePicker
-                                          label="Checkin time"
-                                          value={checkin}
-                                          ampm={false}
-                                          onChange={(newValue) => {
-                                            setCheckin(newValue);
-                                          }}
-                                          renderInput={(params) => (
-                                            <TextField
-                                              {...params}
-                                              required
-                                              fullWidth
-                                              size="small"
-                                              variant="outlined"
-                                            />
-                                          )}
-                                        />
-                                      </LocalizationProvider>
-                                    </ThemeProvider>
-                                  </div>
-                                </div>
-                                <div className="col-lg-6">
-                                  <div className="col-lg-12 mt-2 mt-lg-0 checkout-inp">
-                                    <ThemeProvider theme={textfieldTheme}>
-                                      <LocalizationProvider
-                                        dateAdapter={AdapterDateFns}
-                                      >
-                                        <TimePicker
-                                          label="Checkout time"
-                                          ampm={false}
-                                          value={checkout}
-                                          onChange={(newValue) => {
-                                            setCheckout(newValue);
-                                          }}
-                                          renderInput={(params) => (
-                                            <TextField
-                                              {...params}
-                                              required
-                                              fullWidth
-                                              size="small"
-                                              variant="outlined"
-                                            />
-                                          )}
-                                        />
-                                      </LocalizationProvider>
-                                    </ThemeProvider>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div> */}
-                        <hr class="dashed" />
-                        <div className="mb-3 col-12">
-                          <div className="row">
-                            <div className="col-lg-3">
-                              <label
                                 for="exampleFormControlInput3"
                                 className="ms-2 mt-1 form-label"
                                 title="f7"
@@ -489,6 +588,44 @@ function CreateHotel() {
                         </div>
                         <hr class="dashed" />
                         <div className="mb-3 col-12">
+                          <div className="row">
+                            <div className="col-lg-2">
+                              <label
+                                for="exampleFormControlInput4"
+                                className="ms-2 mt-1 form-label"
+                                title="e8"
+                              >
+                                Email
+                              </label>
+                            </div>
+                            <div className="col-1"></div>
+                            <div className="col-lg-9">
+                              <ThemeProvider theme={textfieldTheme}>
+                                <TextField
+                                  required
+                                  fullWidth
+                                  placeholder="yf7901@gamil.com"
+                                  id="email"
+                                  size="small"
+                                  label="Email"
+                                  InputLabelProps={{ shrink: true }}
+                                  value={formik.values.email}
+                                  onChange={formik.handleChange}
+                                  onBlur={formik.handleBlur}
+                                  error={
+                                    formik.touched.email &&
+                                    Boolean(formik.errors.email)
+                                  }
+                                  helperText={
+                                    formik.touched.email && formik.errors.email
+                                  }
+                                />
+                              </ThemeProvider>
+                            </div>
+                          </div>
+                        </div>
+                        <hr class="dashed" />
+                        <div className="mb-3 col-12">
                           <div className="row" title="f5">
                             <div className="col-lg-3">
                               <label
@@ -523,6 +660,77 @@ function CreateHotel() {
                             </div>
                           </div>
                         </div>
+                        <hr class="dashed" />
+                        <div className="mb-3 col-12">
+                          <Typography sx={{ mb: 3 }}>
+                            Please upload other photos of hotel here.
+                          </Typography>
+                          <form>
+                            <div className="form-group preview">
+                              {file.length > 0 &&
+                                file.map((item, index) => {
+                                  return (
+                                    <div className="col" key={item}>
+                                      <img
+                                        src={item}
+                                        className="m-3"
+                                        alt=""
+                                        style={{
+                                          width: "200px",
+                                          height: "100px",
+                                        }}
+                                      />
+                                      {/* <button
+                                        type="button"
+                                        className="btn edit-hotel"
+                                        
+                                      >
+                                        delete
+                                      </button> */}
+                                      <IconButton aria-label="delete">
+                                        <DeleteIcon
+                                          onClick={() => deleteFile(index)}
+                                        />
+                                      </IconButton>
+                                    </div>
+                                  );
+                                })}
+                            </div>
+
+                            <div className="col-lg-8">
+                              <input
+                                type="file"
+                                name="myImage"
+                                accept="image/*"
+                                disabled={file.length === 5}
+                                onChange={uploadSingleFile}
+                              />
+                            </div>
+
+                            <Snackbar
+                              open={open}
+                              autoHideDuration={4000}
+                              onClose={handleClose}
+                            >
+                              <Alert
+                                onClose={handleClose}
+                                anchorOrigin={{
+                                  vertical: "top",
+                                  horizontal: "center",
+                                }}
+                                severity={
+                                  message ===
+                                  "Your picture was uploaded successfully!"
+                                    ? "success"
+                                    : "error"
+                                }
+                                sx={{ width: "100%" }}
+                              >
+                                {message}
+                              </Alert>
+                            </Snackbar>
+                          </form>
+                        </div>
                         <Snackbar
                           open={open}
                           autoHideDuration={4000}
@@ -545,8 +753,24 @@ function CreateHotel() {
                           </Alert>
                         </Snackbar>{" "}
                         <div className="row mt-2 d-fit-content">
-                          <div className="col-4" />
-                          <div className="col-4" />
+                          {/* <div className="col-4" /> */}
+                          <div className="col-1 edit-hotel mb-3">
+                            <button
+                              className="btn edit-hotel"
+                              onClick={cancelClick}
+                              style={{ background: "gray" }}
+                            >
+                              {loading ? (
+                                <CircularProgress
+                                  style={{ color: "#fff" }}
+                                  size="1.5rem"
+                                />
+                              ) : (
+                                "Cancel"
+                              )}{" "}
+                            </button>
+                          </div>
+                          <div className="col-7" />
                           <div className="col-4 edit-hotel mb-3">
                             <button
                               className="btn edit-hotel"

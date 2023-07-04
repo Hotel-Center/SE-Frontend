@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -139,6 +140,21 @@ function CreateHotelHeader() {
                                   />
                                 ) : (
                                   "Upload"
+                                )}
+                              </button>
+                              <button
+                                className="btn m-2 edit-hotel"
+                                onClick={() => {
+                                  window.location.replace("/");
+                                }}
+                              >
+                                {loading ? (
+                                  <CircularProgress
+                                    style={{ color: "#fff" }}
+                                    size="1.5rem"
+                                  />
+                                ) : (
+                                  "Cancel"
                                 )}
                               </button>
                               <Snackbar
