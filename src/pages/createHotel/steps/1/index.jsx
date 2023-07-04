@@ -179,9 +179,12 @@ function CreateHotel() {
         selectedImage,
         selectedImage.name
       );
+
+      let form_data_hotel = new FormData();
+      let i = 0;
       images.forEach((image) => {
-        let form_data_hotel = new FormData();
-        form_data_hotel.append("hotel_image", image, image.name);
+        form_data_hotel.append("hotel_image" + i, image, image.name);
+        i++;
       });
 
       console.log("start: phone:", String(phone));
@@ -226,7 +229,7 @@ function CreateHotel() {
               console.log("end: phone:", String(phone));
               setMessage("Your hotel was submitted successfully!");
               console.log("hotelId:", res.data.id);
-              router.push("/createHotel/steps/2/" + res.data.id);
+              router.push("/myhotels");
             })
             .catch((err) => {
               console.log("ERROR:", "\n", err);
