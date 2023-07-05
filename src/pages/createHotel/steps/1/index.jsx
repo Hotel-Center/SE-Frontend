@@ -136,15 +136,16 @@ function CreateHotel() {
   });
 
   const handleClick = () => {
+    setLoading(true);
     console.log("images,", images);
     let filled_hotel = images.length != 0;
 
     if (!filled_hotel) {
       setOpen(true);
       setMessage("Please choose a picture to upload.");
+      setLoading(false);
     }
 
-    setLoading(true);
     if (!selectedImage) {
       setOpen1(true);
       setLoading(false);
@@ -170,21 +171,28 @@ function CreateHotel() {
     if (!filled) {
       setOpen(true);
       setMessage("Please fill in the blanks.");
+      setLoading(false);
     }
 
     if (filled && filled_hotel && selectedImage) {
       let form_data_header = new FormData();
+      console.log("header: ", selectedImage);
       form_data_header.append(
         "hedaer_images",
         selectedImage,
         selectedImage.name
       );
+      console.log("form_data_header: ", form_data_header);
+      let image = form_data_header;
 
       let form_data_hotel = new FormData();
+      console.log("before each image");
       let i = 0;
       images.forEach((image) => {
-        form_data_hotel.append("hotel_image" + i, image, image.name);
-        i++;
+        form_data_hotel = new FormData();
+        console.log("1.", i, " form_data_hotel: ", form_data_hotel);
+        form_data_hotel.append("hotel_image", image, image.name);
+        console.log("2", i, " form_data_hotel: ", form_data_hotel);
       });
 
       console.log("start: phone:", String(phone));
@@ -203,8 +211,9 @@ function CreateHotel() {
           axios
             .post(
               makeURL(references.url_addhotel),
-              form_data_hotel,
-              form_data_header,
+              // form_data_hotel,
+              // form_data_header,
+              // image,
               {
                 manager: manager,
                 name: formik.values.name,
@@ -213,8 +222,9 @@ function CreateHotel() {
                 phone_number: String(phone),
                 country: region,
                 city: city,
-                // check_in_range: formattedcheckinDate,
-                // check_out_range: formattedcheckoutDate,
+                image: form_data_hotel,
+                // longitude: "8:00",
+                // latitude: "12:00",
               },
               {
                 headers: {
