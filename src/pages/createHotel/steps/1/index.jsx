@@ -102,7 +102,7 @@ function CreateHotel() {
     setFile([...file, URL.createObjectURL(e.target.files[0])]);
     setImages([...images, e.target.files[0]]);
     // console.log("images", images);
-    let hotelid = window.location.pathname.split("/")[4];
+    let hotelid = window.location.pathname.split("/")[3];
     console.log(
       window.location.pathname,
       "\n",

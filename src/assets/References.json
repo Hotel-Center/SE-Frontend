@@ -19,7 +19,7 @@
   "url_edit_profile": "/accounts/profile/",
   "url_add_credit": "/accounts/credit/",
   "url_hotel_search": "/hotel/1/search/",
-  "url_addhotel": "/hotel/create/",
+  "url_addhotel": "/hotel/hotel/",
   "url_addfavoritehotel": "/hotel/favorites/",
 
   
