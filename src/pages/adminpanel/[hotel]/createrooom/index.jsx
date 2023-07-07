@@ -6,9 +6,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 // eslint-disable-next-line unused-imports/no-unused-imports, no-unused-vars
-import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
 import Autocomplete from "@mui/material/Autocomplete";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -25,7 +23,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 // eslint-disable-next-line unused-imports/no-unused-imports, no-unused-vars
 import PreviewMultipleImages from "../../../../components/AdminPanel/Pages/PreviewMultipleImages";
 import DomainAddIcon from "@mui/icons-material/DomainAdd";
@@ -510,8 +507,7 @@ function Createroom() {
                                     Boolean(formik.errors.price)
                                   }
                                   helperText={
-                                    formik.touched.price &&
-                                    formik.errors.price
+                                    formik.touched.price && formik.errors.price
                                   }
                                 />
                               </div>
@@ -621,10 +617,9 @@ function Createroom() {
                             </DialogTitle>
                             <DialogContent>
                               <DialogContentText id="alert-dialog-description">
-                                By canceling the room creation process,
-                                your information will not be registered and you
-                                will have to start building the room again
-                                later.
+                                By canceling the room creation process, your
+                                information will not be registered and you will
+                                have to start building the room again later.
                               </DialogContentText>
                             </DialogContent>
                             <DialogActions>
@@ -651,10 +646,7 @@ function Createroom() {
                         <div className="col-lg-4 col-md-2"></div>
                         <div className="col-lg-2 col-md-2"></div>
                         <div className="col-lg-4 col-md-8 edit-hotel mb-3">
-                          <Button
-                            variant="contained"
-                            onClick={handleClick}
-                          >
+                          <Button variant="contained" onClick={handleClick}>
                             {loading ? (
                               <CircularProgress
                                 style={{ color: "#fff" }}
