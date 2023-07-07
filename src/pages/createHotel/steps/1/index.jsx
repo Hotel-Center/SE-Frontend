@@ -192,6 +192,7 @@ function CreateHotel() {
         form_data_hotel = new FormData();
         console.log("1.", i, " form_data_hotel: ", form_data_hotel);
         form_data_hotel.append("hotel_image", image, image.name);
+        console.log("hotel_image want to be in form data", image, image.name);
         console.log("2", i, " form_data_hotel: ", form_data_hotel);
       });
 
@@ -222,7 +223,7 @@ function CreateHotel() {
                 phone_number: String(phone),
                 country: region,
                 city: city,
-                image: form_data_hotel,
+                files: form_data_hotel,
                 // longitude: "8:00",
                 // latitude: "12:00",
               },
