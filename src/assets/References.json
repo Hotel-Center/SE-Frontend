@@ -1,6 +1,6 @@
 {
-  "url_address": "http://127.0.0.1:8000/api",
-  "base_address": "http://127.0.0.1:8000",
+  "url_address": "https://hotelcenter.iran.liara.run/api",
+  "base_address": "https://hotelcenter.iran.liara.run",
   "url_AccountActivation": "/auth/users/activation/",
   "url_Sign_up": "/auth/users/",
   "url_login": "/auth/token/login/",

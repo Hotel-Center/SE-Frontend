@@ -6,7 +6,7 @@ export default async function addComment(values) {
   if (cookies.get("Authorization") == undefined) {
     throw "You must login first";
   }
-  const url = "http://127.0.0.1:8000" + URLS.url_comment_add;
+  const url = "https://hotelcenter.iran.liara.run/" + URLS.url_comment_add;
   return axios
     .post(url, values, {
       headers: {

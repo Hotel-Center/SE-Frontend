@@ -6,7 +6,7 @@ export default async function getTags() {
   if (cookies.get("Authorization") == undefined) {
     throw "You must login first";
   }
-  const url = "http://127.0.0.1:8000" + URLS.url_comment_get_tags;
+  const url = "https://hotelcenter.iran.liara.run/" + URLS.url_comment_get_tags;
   return axios
     .get(url, {
       headers: {
