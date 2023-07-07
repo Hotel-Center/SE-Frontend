@@ -12,7 +12,6 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import moment from "moment";
 import Sidebar from "src/components/Profile/Sidebar";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
@@ -20,12 +19,12 @@ import { useEffect } from "react";
 import Typography from "@mui/material/Typography";
 
 const validationSchema = yup.object({
-  firstname: yup
+  first_name: yup
     .string()
     .max(20, "Must be 20 characters or less")
     .min(2, "Must be at least 2 characters")
     .required("Required!"),
-  lastname: yup
+  last_name: yup
     .string()
     .max(20, "Must be 20 characters or less")
     .min(2, "Must be at least 2 characters")
@@ -33,7 +32,7 @@ const validationSchema = yup.object({
   user: yup.object({
     email: yup.string().email("Invalid email address").required("Required"),
     phone_number: yup
-      .number()
+      .string()
       .required("Required!")
       .max(15, "Must be less than 15 digits"),
   }),
@@ -43,16 +42,34 @@ export default function CustomerProfileEditForm() {
   const CHARACTER_LIMIT = 250;
   const [message, setMessage] = useState("");
   const [open, setOpen] = useState(false);
-  const [message1, setMessage1] = useState("");
-  const [open1, setOpen1] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [genValue, setGenValue] = useState("Male");
-  const [birthdate, setBirthdate] = useState(null);
 
-  const [state, setState] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(null);
-  let date = birthdate; // value from your state
-  let formattedDate = moment(date).format("YYYY-MM-DD");
+  function loadInfo() {
+    axios
+      .get(makeURL(references.url_profile), {
+        headers: {
+          Authorization: cookies.get("Authorization"),
+        },
+      })
+      .then((response) => {
+        formik.setValues(response.data);
+      });
+  }
+
+  function updateProfile(values) {
+    axios
+      .patch(makeURL(references.url_profile), values, {
+        headers: {
+          Authorization: cookies.get("Authorization"),
+        },
+      })
+      .then((response) => {
+        setMessage("Your profile was updated!");
+        setOpen(true);
+        loadInfo();
+      });
+  }
+
   const formik = useFormik({
     initialValues: {
       user: {
@@ -63,21 +80,8 @@ export default function CustomerProfileEditForm() {
       last_name: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {},
+    onSubmit: updateProfile,
   });
-
-  function loadInfo() {
-    axios
-      .get(makeURL(references.url_profile), {
-        headers: {
-          Authorization: cookies.get("Authorization"),
-        },
-      })
-      .then((response) => {
-        console.log("response of profile: ", response.data);
-        formik.setValues(response.data);
-      });
-  }
 
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -87,143 +91,12 @@ export default function CustomerProfileEditForm() {
     if (reason === "clickaway") {
       return;
     }
-
     setOpen(false);
-    setOpen1(false);
-  };
-
-  const genhandleChange = (event, newValue) => {
-    setGenValue(newValue);
   };
 
   useEffect(() => {
     loadInfo();
   }, []);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(makeURL(references.url_edit_profile), {
-  //       headers: {
-  //         Authorization: cookies.get("Authorization"),
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log("response of profile: ", res.data);
-  //       setState(res.data);
-  //       formik.setValues({
-  //         firstname: res.data.firstName || "",
-  //         lastname: res.data.lastName || "",
-  //         nationalcode: res.data.national_code || "",
-  //         email: res.data.email || "",
-  //         phone: res.data.phone_number || "",
-  //         aboutme: res.data.description || "",
-  //         telephone: "",
-  //         gender: "",
-  //         birthdate: "",
-  //         balance: "",
-  //         // telephone: res.data.phone_number || "",
-  //         // balance: res.data.balance || 0,
-  //       });
-  //       // setSelectedImage(res.data.avatar);
-  //       // setBirthdate(res.data.birthday || "");
-  //       // setGenValue(res.data.gender || "");
-  //     });
-  // }, []);
-
-  const handleClick = () => {
-    // let filled =
-    //   !formik.errors.firstname &&
-    //   !formik.errors.lastname &&
-    //   !formik.errors.nationalcode &&
-    //   !formik.errors.email &&
-    //   genValue.length != 0 &&
-    //   formattedDate != "Invalid date";
-    // console.log("filled:", filled);
-    // if (!filled) {
-    //   setOpen(true);
-    //   setMessage("Please fill in the blanks.");
-    // }
-    // if (filled) {
-    //   setLoading(true);
-    //   axios
-    //     .put(
-    //       makeURL(references.url_edit_profile),
-    //       {
-    //         email: formik.values.email,
-    //         firstName: formik.values.firstname,
-    //         lastName: formik.values.lastname,
-    //         birthday: formattedDate,
-    //         gender: genValue,
-    //         phone_number: phone2,
-    //         national_code: formik.values.nationalcode,
-    //         description: formik.values.aboutme,
-    //       },
-    //       {
-    //         headers: {
-    //           Authorization: cookies.get("Authorization"),
-    //         },
-    //       }
-    //     )
-    //     .then((response) => {
-    //       console.log("status code: ", response.status);
-    //       // document.location.reload(true);
-    //       setOpen(true);
-    //       setLoading(false);
-    //       setMessage("Your profile was submitted successfully!");
-    //     })
-    //     .catch((error) => {
-    //       console.log("error: ", error);
-    //       setLoading(false);
-    //       setOpen(true);
-    //       setMessage("Please fill in the blanks.");
-    //     });
-    // }
-    // console.log(
-    //   formik.values.firstname,
-    //   formik.values.lastname,
-    //   formik.values.nationalcode,
-    //   genValue,
-    //   formattedDate,
-    //   formik.values.email,
-    //   formik.values.phone,
-    //   formik.values.aboutme,
-    //   formik.values.telephone,
-    //   selectedImage
-    // );
-  };
-
-  const handleUploadClick = () => {
-    setLoading(true);
-    if (!selectedImage) {
-      setOpen1(true);
-      setLoading(false);
-      setMessage1("Please upload a picture.");
-    }
-
-    if (selectedImage) {
-      let form_data = new FormData();
-      form_data.append("avatar", selectedImage, selectedImage.name);
-      axios
-        .put(makeURL(references.url_profile), form_data, {
-          headers: {
-            Authorization: cookies.get("Authorization"),
-          },
-        })
-        .then((res) => {
-          console.log("uploading profile image: ", res.data);
-          setLoading(false);
-          setOpen1(true);
-          setMessage1("Your image uploaded successfully!");
-          window.location.reload(true);
-        })
-        .catch((err) => {
-          console.log("unable to upload.error: ", err);
-          setLoading(false);
-          setOpen1(true);
-          setMessage1("Something went wrong. Please try again.");
-        });
-    }
-  };
 
   return (
     <div className="container">
@@ -232,7 +105,10 @@ export default function CustomerProfileEditForm() {
           <Sidebar />
         </div>
         <div className="col-lg-9">
-          <div className="container edit-profile-form border">
+          <form
+            onSubmit={formik.handleSubmit}
+            className="container edit-profile-form border"
+          >
             <div className="row">
               <Typography variant="h4">Your Profile</Typography>
             </div>
@@ -248,7 +124,7 @@ export default function CustomerProfileEditForm() {
                       required
                       fullWidth
                       placeholder="Eric"
-                      id="firstname"
+                      id="first_name"
                       size="small"
                       label="First Name"
                       InputLabelProps={{ shrink: true }}
@@ -269,7 +145,7 @@ export default function CustomerProfileEditForm() {
                       required
                       fullWidth
                       placeholder="Hodson"
-                      id="lastname"
+                      id="last_name"
                       size="small"
                       label="Last Name"
                       InputLabelProps={{ shrink: true }}
@@ -305,7 +181,7 @@ export default function CustomerProfileEditForm() {
                       required
                       fullWidth
                       placeholder="09912141869"
-                      id="phone"
+                      id="user.phone_number"
                       size="small"
                       label="Phone Number"
                       InputLabelProps={{ shrink: true }}
@@ -342,7 +218,7 @@ export default function CustomerProfileEditForm() {
                       required
                       fullWidth
                       placeholder="yf7901@gamil.com"
-                      id="email"
+                      id="user.email"
                       size="small"
                       label="Email"
                       InputLabelProps={{ shrink: true }}
@@ -366,7 +242,11 @@ export default function CustomerProfileEditForm() {
               <div className="col-4"></div>
               <div className="col-4"></div>
               <div className="col-4 edit-profile">
-                <Button variant="contained" onClick={handleClick}>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  disabled={!(formik.dirty && formik.isValid)}
+                >
                   {loading ? (
                     <CircularProgress style={{ color: "#fff" }} size="1.5rem" />
                   ) : (
@@ -391,7 +271,7 @@ export default function CustomerProfileEditForm() {
                 {message}
               </Alert>
             </Snackbar>
-          </div>
+          </form>
         </div>
       </div>
     </div>
