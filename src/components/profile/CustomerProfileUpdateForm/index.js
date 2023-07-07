@@ -38,7 +38,7 @@ const validationSchema = yup.object({
   }),
 });
 
-export default function CustomerProfileEditForm() {
+export default function CustomerProfileUpdateForm() {
   const CHARACTER_LIMIT = 250;
   const [message, setMessage] = useState("");
   const [open, setOpen] = useState(false);
