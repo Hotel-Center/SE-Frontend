@@ -1,25 +1,22 @@
+// @ts-nocheck
 import * as React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { cookies, makeURL } from "../../../../Utils/common";
 import references from "../../../../assets/References.json";
 import DomainAddIcon from "@mui/icons-material/DomainAdd";
-import MuiAlert from "@mui/material/Alert";
-import { useRouter } from "next/router";
 import HotelCreationForm from "@/components/hotel_creation/HotelCreationForm";
+import { useRouter } from "next/router";
 import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import { Country } from "country-state-city";
 
 function CreateHotel() {
-  const router = useRouter();
   const [message, setMessage] = useState("");
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  // eslint-disable-next-line no-unused-vars, unused-imports/no-unused-vars
+  const router = useRouter();
   const [toggled, setToggled] = useState(false);
-
-  const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -28,8 +25,20 @@ function CreateHotel() {
 
     setOpen(false);
   };
-
   function handleSubmit(values) {
+    let data = {
+      ...values,
+      country: Country.getCountryByCode(values.country).name,
+      phone_number: String(values.phone),
+    };
+    const formData = new FormData();
+    Object.keys(data).forEach((key) => {
+      if (key !== "files") {
+        formData.set(key, data[key]);
+      }
+    });
+    data.files.forEach((file) => formData.append("files", file));
+
     axios
       .get(makeURL(references.url_me), {
         headers: {
@@ -42,31 +51,20 @@ function CreateHotel() {
         return manager;
       })
       .then((manager) => {
+        formData.append("manager", manager);
+        console.log(formData);
         axios
-          .post(
-            makeURL(references.url_addhotel),
-            {
-              manager: manager,
-              name: values.name,
-              address: values.address,
-              description: values.description,
-              phone_number: String(values.phone),
-              country: values.country,
-              city: values.city,
-              longitude: values.longitude,
-              latitude: values.latitude,
+          .post(makeURL(references.url_addhotel), formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: cookies.get("Authorization"),
             },
-            {
-              headers: {
-                Authorization: cookies.get("Authorization"),
-              },
-            }
-          )
-          .then((res) => {
+          })
+          .then(() => {
             setOpen(true);
             setLoading(false);
             setMessage("Your hotel was submitted successfully!");
-            router.push("/createHotel/steps/2/" + res.data.id);
+            router.push("/myhotels");
           })
           .catch((err) => {
             console.log(err);
@@ -123,14 +121,20 @@ function CreateHotel() {
       >
         <Alert
           onClose={handleClose}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "center",
+          }}
           severity={
-            message === "Please fill in the blanks." ? "error" : "success"
+            message === "Your hotel was submitted successfully!"
+              ? "success"
+              : "error"
           }
           sx={{ width: "100%" }}
         >
           {message}
         </Alert>
-      </Snackbar>{" "}
+      </Snackbar>
     </>
   );
 }

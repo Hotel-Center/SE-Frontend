@@ -1,8 +1,11 @@
+import * as React from "react";
+import Button from "@mui/material/Button";
 import Image from "next/image";
 import HandshakeIcon from "@mui/icons-material/Handshake";
 import RoomServiceIcon from "@mui/icons-material/RoomService";
 import PaidIcon from "@mui/icons-material/Paid";
 import Link from "next/link";
+import { ArrowBack } from "@mui/icons-material";
 
 export default function CreateHotel() {
   return (
@@ -87,7 +90,18 @@ export default function CreateHotel() {
               Create your hotel now!{" "}
             </button>
           </Link>
+          <div className="row align-items-center">
+            <Button
+              startIcon={<ArrowBack />}
+              onClick={() => {
+                window.location.replace("/myhotels");
+              }}
+            >
+              Back
+            </Button>
+          </div>
         </div>
+
         <div className="col" />
         <br />
         <br />

@@ -1,5 +1,13 @@
 import HotelLocationSelectionDialog from "@/components/hotel_location/HotelLocationSelectionDialog";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Alert as MuiAlert,
+  IconButton,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -10,6 +18,11 @@ import { useEffect, useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import { Country, State, City } from "country-state-city";
 import * as yup from "yup";
+import * as React from "react";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function HotelCreationForm(props) {
   const CHARACTER_LIMIT = 1000;
@@ -33,6 +46,7 @@ export default function HotelCreationForm(props) {
     country: yup.string().required("Required!"),
     state: yup.string().required("Required!"),
     city: yup.string().required("Required!"),
+    files: yup.array(),
   });
   const formik = useFormik({
     initialValues: {
@@ -44,12 +58,23 @@ export default function HotelCreationForm(props) {
       country: "",
       state: "",
       city: "",
+      files: [],
       longitude: null,
       latitude: null,
     },
     validationSchema: validationSchema,
     onSubmit: props.handleSubmit,
   });
+
+  function uploadSingleFile(e) {
+    formik.setFieldValue("files", [...formik.values.files, e.target.files[0]]);
+  }
+  function deleteFile(e) {
+    const files = formik.values.files.filter((item, index) => index !== e);
+    formik.setFieldValue("files", files);
+  }
+  const images = formik.values.files.map((file) => URL.createObjectURL(file));
+
   useEffect(() => {
     if (formik.touched.country) {
       formik.setValues({ ...formik.values, state: "", city: "" });
@@ -349,6 +374,45 @@ export default function HotelCreationForm(props) {
               )}{" "}
             </Button>
           </div>
+        </div>
+        <hr className="dashed" />
+        <div className="mb-3 col-12">
+          <Typography sx={{ mb: 3 }}>
+            Please upload photos of hotel here.
+          </Typography>
+          <form>
+            <div className="form-group preview">
+              {formik.values.files.length > 0 &&
+                images.map((item, index) => {
+                  return (
+                    <div className="col" key={item}>
+                      <img
+                        src={item}
+                        className="m-3"
+                        alt=""
+                        style={{
+                          width: "200px",
+                          height: "100px",
+                        }}
+                      />
+                      <IconButton aria-label="delete">
+                        <DeleteIcon onClick={() => deleteFile(index)} />
+                      </IconButton>
+                    </div>
+                  );
+                })}
+            </div>
+
+            <div className="col-lg-8">
+              <input
+                type="file"
+                name="myImage"
+                accept="image/*"
+                disabled={formik.values.files.length === 5}
+                onChange={uploadSingleFile}
+              />
+            </div>
+          </form>
         </div>
       </form>
 

@@ -57,14 +57,18 @@ export default function Myhotels() {
           <div className="row row-cols-1 row-cols-md-3 g-4">
             {hotel
               ? hotel.map((h) => (
-                <MyhotelsCard
-                  img={references.base_address + h.header}
-                  hotel={h}
-                  title={h.name}
-                  description={h.description.slice(0, 250) + " ..."}
-                  id={h.id}
-                />
-              ))
+                  <MyhotelsCard
+                    img={references.base_address + h.header}
+                    hotel={h}
+                    title={h.name}
+                    description={
+                      h.description
+                        ? h.description.slice(0, 250) + " ..."
+                        : "No description is provided"
+                    }
+                    id={h.id}
+                  />
+                ))
               : null}
 
             <Box

@@ -1,8 +1,12 @@
 import * as React from "react";
-// eslint-disable-next-line unused-imports/no-unused-imports, no-unused-vars
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
+// eslint-disable-next-line unused-imports/no-unused-imports, no-unused-vars
 import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
 import Autocomplete from "@mui/material/Autocomplete";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -19,7 +23,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 // eslint-disable-next-line unused-imports/no-unused-imports, no-unused-vars
 import PreviewMultipleImages from "../../../../components/AdminPanel/Pages/PreviewMultipleImages";
 import DomainAddIcon from "@mui/icons-material/DomainAdd";
@@ -95,6 +98,7 @@ function Createroom() {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
   const [loading, setLoading] = useState(false);
   const [toggled, setToggled] = useState(false);
   const [type, setType] = useState("");
@@ -503,8 +507,7 @@ function Createroom() {
                                     Boolean(formik.errors.price)
                                   }
                                   helperText={
-                                    formik.touched.price &&
-                                    formik.errors.price
+                                    formik.touched.price && formik.errors.price
                                   }
                                 />
                               </div>
@@ -583,52 +586,67 @@ function Createroom() {
                           </div>
                         </div>
                       </div>
-                      {/* <hr class="dashed"></hr>
-
-                      <div className="mb-3 col-md-12">
-                        <div className="row mt-3">
-                          <div className="col-lg-2">
-                            <label
-                              for="exampleFormControlInput2"
-                              className="ms-2 mt-1 form-label"
-                              title="element8"
-                            >
-                              Room Spaces
-                            </label>
-                          </div>
-                          <div className="col-lg-9">
-                            <ThemeProvider theme={textfieldTheme}>
-                              <TextField
-                                required
-                                fullWidth
-                                placeholder="101,102,103"
-                                id="number"
-                                size="small"
-                                label="Room number"
-                                InputLabelProps={{ shrink: true }}
-                                value={formik.values.number}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                error={
-                                  formik.touched.number &&
-                                  Boolean(formik.errors.number)
-                                }
-                                helperText={
-                                  "Please seperate each room number with a comma. i,e 101,102"
-                                }
-                              />
-                            </ThemeProvider>
-                          </div>
-                        </div>
-                      </div> */}
                       <div className="row">
-                        <div className="col-lg-4 col-md-2"></div>
-                        <div className="col-lg-4 col-md-2"></div>
-                        <div className="col-lg-4 col-md-8 edit-hotel mb-3">
-                          <Button
-                            variant="contained"
-                            onClick={handleClick}
+                        {/* <div className="col-lg-4 col-md-2"></div> */}
+
+                        <div className="col-lg-2 col-md-8 edit-hotel mb-3">
+                          <button
+                            className="btn edit-hotel"
+                            onClick={() => {
+                              setOpen3(true);
+                            }}
+                            style={{ background: "gray" }}
                           >
+                            {loading ? (
+                              <CircularProgress
+                                style={{ color: "#fff" }}
+                                size="1.5rem"
+                              />
+                            ) : (
+                              "Cancel"
+                            )}{" "}
+                          </button>
+                          <Dialog
+                            open={open3}
+                            // onClose={handleCloseClickDialog}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                          >
+                            <DialogTitle id="alert-dialog-title">
+                              {"Are you Sure to cancel?"}
+                            </DialogTitle>
+                            <DialogContent>
+                              <DialogContentText id="alert-dialog-description">
+                                By canceling the room creation process, your
+                                information will not be registered and you will
+                                have to start building the room again later.
+                              </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                              <Button
+                                onClick={() => {
+                                  setOpen3(false);
+                                }}
+                              >
+                                Back
+                              </Button>
+                              <Button
+                                className="btn edit-hotel"
+                                onClick={() => {
+                                  setOpen3(false);
+                                  router.push("/");
+                                }}
+                                autoFocus
+                              >
+                                Cancel
+                              </Button>
+                            </DialogActions>
+                          </Dialog>
+                        </div>
+                        <div className="col-lg-4 col-md-2"></div>
+                        <div className="col-lg-2 col-md-2"></div>
+                        <div className="col-lg-4 col-md-8 edit-hotel mb-3">
+                          <Button variant="contained" onClick={handleClick}>
                             {loading ? (
                               <CircularProgress
                                 style={{ color: "#fff" }}
@@ -639,13 +657,6 @@ function Createroom() {
                             )}
                           </Button>
                         </div>
-
-                        {/* <div className="mb-3 col-12">
-                          <Typography sx={{ mb: 3 }}>
-                            Please upload room photos here.
-                          </Typography>
-                          <PreviewMultipleImages roomid={roomid} />
-                        </div> */}
                       </div>
                     </div>
 
