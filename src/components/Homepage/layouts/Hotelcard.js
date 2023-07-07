@@ -2,20 +2,18 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import {
-  Avatar,
-  Link,
-  Grid,
-  Box,
-  Button,
-  Typography,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Container,
-  Divider,
-  CircularProgress,
-} from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Accordian from "@mui/material/Accordion";
+import AccordianSummary from "@mui/material/AccordionSummary";
+import AccordianDetails from "@mui/material/AccordionDetails";
+import Container from "@mui/material/Container";
+import Divider from "@mui/material/Divider";
+import CircularProgress from "@mui/material/CircularProgress";
 import Helmet from "react-helmet";
 import image1 from "../../../statics/img/pics/london1.jpg";
 import image2 from "../../../statics/img/pics/london2.jpg";

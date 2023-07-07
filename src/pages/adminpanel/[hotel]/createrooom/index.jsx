@@ -6,13 +6,16 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 // eslint-disable-next-line unused-imports/no-unused-imports, no-unused-vars
-import { TextField, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import CircularProgress from "@mui/material/CircularProgress";
+import Autocomplete from "@mui/material/Autocomplete";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import axios from "axios";
 import { cookies, makeURL } from "../../../../Utils/common";
 import references from "src/assets/References.json";
-import { CircularProgress, Autocomplete } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Radio from "@mui/material/Radio";
@@ -29,17 +32,6 @@ import DomainAddIcon from "@mui/icons-material/DomainAdd";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useRouter } from "next/router";
-
-const textfieldTheme = createTheme({
-  palette: {
-    primary: {
-      main: "#cd9a2b",
-      dark: "#cd9a2b",
-      light: "#d7ae55",
-      contrastText: "#fff",
-    },
-  },
-});
 
 const facilitieslist = [
   "Linen",
@@ -327,29 +319,27 @@ function Createroom() {
                             </label>
                           </div>
                           <div className="col-lg-9 mt-lg-3">
-                            <ThemeProvider theme={textfieldTheme}>
-                              <FormControl fullWidth required>
-                                <InputLabel
-                                  id="demo-simple-select-label"
-                                  style={{ textAlign: "center" }}
-                                >
-                                  Type
-                                </InputLabel>
-                                <Select
-                                  labelId="demo-simple-select-label"
-                                  id="demo-simple-select"
-                                  placeholder=""
-                                  value={type}
-                                  label="Type"
-                                  onChange={handletypeChange}
-                                >
-                                  <MenuItem value={t1}>Single Room</MenuItem>
-                                  <MenuItem value={t2}>Double Room</MenuItem>
-                                  <MenuItem value={t3}>Triple Room</MenuItem>
-                                  <MenuItem value={t4}>Suite Room</MenuItem>
-                                </Select>
-                              </FormControl>
-                            </ThemeProvider>
+                            <FormControl fullWidth required>
+                              <InputLabel
+                                id="demo-simple-select-label"
+                                style={{ textAlign: "center" }}
+                              >
+                                Type
+                              </InputLabel>
+                              <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                placeholder=""
+                                value={type}
+                                label="Type"
+                                onChange={handletypeChange}
+                              >
+                                <MenuItem value={t1}>Single Room</MenuItem>
+                                <MenuItem value={t2}>Double Room</MenuItem>
+                                <MenuItem value={t3}>Triple Room</MenuItem>
+                                <MenuItem value={t4}>Suite Room</MenuItem>
+                              </Select>
+                            </FormControl>
                           </div>
                         </div>
                       </div>
@@ -428,27 +418,25 @@ function Createroom() {
                                 </label>
                               </div>
                               <div className="col-lg-8">
-                                <ThemeProvider theme={textfieldTheme}>
-                                  <TextField
-                                    required
-                                    fullWidth
-                                    placeholder="Sea"
-                                    id="view"
-                                    size="small"
-                                    label="Room view"
-                                    InputLabelProps={{ shrink: true }}
-                                    value={formik.values.view}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    error={
-                                      formik.touched.view &&
-                                      Boolean(formik.errors.view)
-                                    }
-                                    helperText={
-                                      formik.touched.view && formik.errors.view
-                                    }
-                                  />
-                                </ThemeProvider>
+                                <TextField
+                                  required
+                                  fullWidth
+                                  placeholder="Sea"
+                                  id="view"
+                                  size="small"
+                                  label="Room view"
+                                  InputLabelProps={{ shrink: true }}
+                                  value={formik.values.view}
+                                  onChange={formik.handleChange}
+                                  onBlur={formik.handleBlur}
+                                  error={
+                                    formik.touched.view &&
+                                    Boolean(formik.errors.view)
+                                  }
+                                  helperText={
+                                    formik.touched.view && formik.errors.view
+                                  }
+                                />
                               </div>
                             </div>
                           </div>
@@ -465,27 +453,25 @@ function Createroom() {
                                 </label>
                               </div>
                               <div className="col-lg-8">
-                                <ThemeProvider theme={textfieldTheme}>
-                                  <TextField
-                                    required
-                                    fullWidth
-                                    placeholder="32"
-                                    id="size"
-                                    size="small"
-                                    label="Room size"
-                                    InputLabelProps={{ shrink: true }}
-                                    value={formik.values.size}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    error={
-                                      formik.touched.size &&
-                                      Boolean(formik.errors.size)
-                                    }
-                                    helperText={
-                                      formik.touched.size && formik.errors.size
-                                    }
-                                  />
-                                </ThemeProvider>
+                                <TextField
+                                  required
+                                  fullWidth
+                                  placeholder="32"
+                                  id="size"
+                                  size="small"
+                                  label="Room size"
+                                  InputLabelProps={{ shrink: true }}
+                                  value={formik.values.size}
+                                  onChange={formik.handleChange}
+                                  onBlur={formik.handleBlur}
+                                  error={
+                                    formik.touched.size &&
+                                    Boolean(formik.errors.size)
+                                  }
+                                  helperText={
+                                    formik.touched.size && formik.errors.size
+                                  }
+                                />
                               </div>
                             </div>
                           </div>
@@ -508,28 +494,26 @@ function Createroom() {
                                 </label>
                               </div>
                               <div className="col-lg-8">
-                                <ThemeProvider theme={textfieldTheme}>
-                                  <TextField
-                                    required
-                                    fullWidth
-                                    placeholder="2000"
-                                    id="price"
-                                    size="small"
-                                    label="Room price"
-                                    InputLabelProps={{ shrink: true }}
-                                    value={formik.values.price}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    error={
-                                      formik.touched.price &&
-                                      Boolean(formik.errors.price)
-                                    }
-                                    helperText={
-                                      formik.touched.price &&
-                                      formik.errors.price
-                                    }
-                                  />
-                                </ThemeProvider>
+                                <TextField
+                                  required
+                                  fullWidth
+                                  placeholder="2000"
+                                  id="price"
+                                  size="small"
+                                  label="Room price"
+                                  InputLabelProps={{ shrink: true }}
+                                  value={formik.values.price}
+                                  onChange={formik.handleChange}
+                                  onBlur={formik.handleBlur}
+                                  error={
+                                    formik.touched.price &&
+                                    Boolean(formik.errors.price)
+                                  }
+                                  helperText={
+                                    formik.touched.price &&
+                                    formik.errors.price
+                                  }
+                                />
                               </div>
                             </div>
                           </div>
@@ -545,28 +529,26 @@ function Createroom() {
                                 </label>
                               </div>
                               <div className="col-lg-8">
-                                <ThemeProvider theme={textfieldTheme}>
-                                  <TextField
-                                    required
-                                    fullWidth
-                                    placeholder="3"
-                                    id="sleeps"
-                                    size="small"
-                                    label="Room sleeps"
-                                    InputLabelProps={{ shrink: true }}
-                                    value={formik.values.sleeps}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    error={
-                                      formik.touched.sleeps &&
-                                      Boolean(formik.errors.sleeps)
-                                    }
-                                    helperText={
-                                      formik.touched.sleeps &&
-                                      formik.errors.sleeps
-                                    }
-                                  />
-                                </ThemeProvider>
+                                <TextField
+                                  required
+                                  fullWidth
+                                  placeholder="3"
+                                  id="sleeps"
+                                  size="small"
+                                  label="Room sleeps"
+                                  InputLabelProps={{ shrink: true }}
+                                  value={formik.values.sleeps}
+                                  onChange={formik.handleChange}
+                                  onBlur={formik.handleBlur}
+                                  error={
+                                    formik.touched.sleeps &&
+                                    Boolean(formik.errors.sleeps)
+                                  }
+                                  helperText={
+                                    formik.touched.sleeps &&
+                                    formik.errors.sleeps
+                                  }
+                                />
                               </div>
                             </div>
                           </div>
@@ -597,14 +579,12 @@ function Createroom() {
                               getOptionLabel={(option) => option}
                               filterSelectedOptions
                               renderInput={(params) => (
-                                <ThemeProvider theme={textfieldTheme}>
-                                  <TextField
-                                    fullWidth
-                                    required
-                                    {...params}
-                                    label="Facilities"
-                                  />
-                                </ThemeProvider>
+                                <TextField
+                                  fullWidth
+                                  required
+                                  {...params}
+                                  label="Facilities"
+                                />
                               )}
                             />
                           </div>
@@ -671,8 +651,8 @@ function Createroom() {
                         <div className="col-lg-4 col-md-2"></div>
                         <div className="col-lg-2 col-md-2"></div>
                         <div className="col-lg-4 col-md-8 edit-hotel mb-3">
-                          <button
-                            className="btn edit-hotel"
+                          <Button
+                            variant="contained"
                             onClick={handleClick}
                           >
                             {loading ? (
@@ -683,7 +663,7 @@ function Createroom() {
                             ) : (
                               "Create Room"
                             )}
-                          </button>
+                          </Button>
                         </div>
                       </div>
                     </div>

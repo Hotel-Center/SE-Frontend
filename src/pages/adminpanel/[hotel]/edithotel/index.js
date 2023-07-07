@@ -1,11 +1,14 @@
 import * as React from "react";
-import { TextField, Typography } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+import Autocomplete from "@mui/material/Autocomplete";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { cookies, makeURL } from "../../../../Utils/common";
+import { cookies, makeURL } from "src/Utils/common";
 import references from "src/assets/References.json";
-import { Box, CircularProgress, Autocomplete } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
@@ -13,8 +16,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import moment from "moment";
-import PreviewMultipleImages from "../../../../components/AdminPanel/Pages/PreviewMultipleImages";
-import MySidebar from "../../../../components/AdminPanel/layout/Sidebar";
+import PreviewMultipleImages from "src/components/AdminPanel/Pages/PreviewMultipleImages";
+import MySidebar from "src/components/AdminPanel/layout/Sidebar";
 import EditIcon from "@mui/icons-material/Edit";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
@@ -174,8 +177,8 @@ function Edithotel() {
         );
         setCheckout(
           new Date(2022, 5, 29, parseInt(temp2[0]), parseInt(temp2[1])) ||
-            "" ||
-            ""
+          "" ||
+          ""
         );
       })
       .catch((error) => {
@@ -211,12 +214,12 @@ function Edithotel() {
       formattedcheckoutDate,
       "\n",
       !formik.errors.name &&
-        !formik.errors.address &&
-        !formik.errors.description &&
-        !formik.errors.phone &&
-        // facilities.length != 0 &&
-        formattedcheckinDate != " Invalid date" &&
-        formattedcheckoutDate != " Invalid date"
+      !formik.errors.address &&
+      !formik.errors.description &&
+      !formik.errors.phone &&
+      // facilities.length != 0 &&
+      formattedcheckinDate != " Invalid date" &&
+      formattedcheckoutDate != " Invalid date"
     );
     console.log("checkin time: ", formattedcheckinDate);
     console.log("checkout time: ", formattedcheckoutDate);
@@ -286,9 +289,9 @@ function Edithotel() {
         .post(
           makeURL(
             references.url_onehotelImage +
-              "/" +
-              hotelid +
-              "/images/?is_header=true"
+            "/" +
+            hotelid +
+            "/images/?is_header=true"
           ),
           form_data,
           {

@@ -36,14 +36,16 @@
 import React from "react";
 import SearchForm from "./SearchForm";
 import Image from "next/image";
+import Box from "@mui/material/Box";
+import LocationSearchForm from "@/components/HotelSearch/LocationSearchForm";
 
 function Header(props) {
   return (
     <div className="header justify-content-center">
       <div
         id="carousel"
-        // className="carousel slide w-100"
-        // data-bs-ride="carousel"
+      // className="carousel slide w-100"
+      // data-bs-ride="carousel"
       >
         {/* <div className="carousel-indicators">
           <button
@@ -84,9 +86,21 @@ function Header(props) {
           </div>
         </div>
       </div>
-      <div className="px-2 px-sm-0 d-flex justify-content-center">
+      {/* <div className="px-2 px-sm-0 d-flex flex-column justify-content-center">
+      </div> */}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "50vh",
+        }}
+      >
         <SearchForm />
-      </div>
+        \br
+        <LocationSearchForm />
+      </Box>
     </div>
   );
 }

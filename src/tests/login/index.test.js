@@ -2,7 +2,8 @@ import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import login from "src/services/auth/login";
-import LoginPage from ".";
+import renderer from "react-test-renderer";
+import LoginPage from "src/pages/login";
 
 jest.mock("src/services/auth/login");
 
@@ -19,10 +20,9 @@ jest.mock("next/router", () => ({
 }));
 
 describe("Login Page", () => {
-  it("renders Login Form", () => {
-    const loginPage = render(<LoginPage />);
-
-    expect(loginPage.getByRole("form")).toBeTruthy();
+  it("renders correctly", () => {
+    const tree = renderer.create(<LoginPage />).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 
   it("shows alert on login failure", async () => {

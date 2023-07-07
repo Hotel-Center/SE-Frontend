@@ -18,7 +18,7 @@ import "../css/Profile.css";
 import "../css/Reserve.css";
 import "../css/Verify.css";
 
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import Head from "next/head";
 import Script from "next/script";
 import { useEffect, useState } from "react";

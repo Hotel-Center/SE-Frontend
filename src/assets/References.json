@@ -6,7 +6,6 @@
   "url_login": "/auth/token/login/",
   "url_me": "/auth/users/me/",
   "url_logout": "/auth/token/logout/",
- 
   "url_onehotel": "/hotel/hotels",
   "url_onehotelImage": "/hotel",
   "url_besthotels": "/hotel/best/?count=4",
@@ -16,18 +15,18 @@
   "url_allhotels_facilities": "/hotel/hotels/?",
   "url_hotelrooms": "/hotel/room/",
   "url_reserveroom": "/hotel/reserve/",
-  "url_edit_profile": "/accounts/profile/",
-  "url_add_credit": "/accounts/credit/",
+  "url_profile": "/accounts/profile/",
+  "url_getrole": "/accounts/getroll/",
+  "url_add_credit": "/accounts/balance/",
   "url_hotel_search": "/hotel/1/search/",
   "url_addhotel": "/hotel/hotel/",
   "url_addfavoritehotel": "/hotel/favorites/",
-
-  
-  "url_basic_hotel_search": "/hotel/search/?city=",
-
+  "url_basic_hotel_search": "/hotel/search/",
   "url_myhotels": "/hotel/myhotels/",
   "url_admimpanel_mainpage": "/hotel/admin/panel/",
-
-  "url_chatwithhotel": "/chat/hotelcaht/",          
-  "url_hotelchatlist" : "/chat/hotelcahtlist/"
+  "url_chatwithhotel": "/chat/hotelcaht/",
+  "url_hotelchatlist": "/chat/hotelcahtlist/",
+  "url_comment_get_tags": "/comment/tag/",
+  "url_comment_get": "/comment/getallhotelcomments/",
+  "url_comment_add": "/comment/addcomment/"
 }

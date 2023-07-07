@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { cookies, makeURL } from "../../Utils/common";
 import references from "../../assets/References.json";
-import { Box } from "@mui/material";
+import Box from "@mui/material/Box";
 import MyhotelsCard from "../../components/Profile/Myhotelscard";
 import Sidebar from "../../components/Profile/Sidebar";
 import Image from "next/image";
@@ -59,8 +59,13 @@ export default function Myhotels() {
               ? hotel.map((h) => (
                   <MyhotelsCard
                     img={references.base_address + h.header}
+                    hotel={h}
                     title={h.name}
-                    description={h.description.slice(0, 250) + " ..."}
+                    description={
+                      h.description
+                        ? h.description.slice(0, 250) + " ..."
+                        : "No description is provided"
+                    }
                     id={h.id}
                   />
                 ))

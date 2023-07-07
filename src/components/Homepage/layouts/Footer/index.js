@@ -1,4 +1,6 @@
-import { Box, Divider, Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import Box from "@mui/material/Box";
 
 export default function Footer() {
   return (
@@ -10,12 +12,14 @@ export default function Footer() {
     >
       <Divider />
       <Box
-        fullWidth
         p={4}
         sx={{
-          gap: 16,
+          width: "100%",
+          gap: 4,
+          px: 12,
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
         }}
       >
         <Typography variant="body2">FAQ</Typography>

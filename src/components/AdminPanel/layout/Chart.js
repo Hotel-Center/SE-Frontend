@@ -1,13 +1,10 @@
-import React from "react";
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import { AreaChart } from "recharts/lib/chart/AreaChart";
+import { Area } from "recharts/lib/cartesian/Area";
+import { XAxis } from "recharts/lib/cartesian/XAxis";
+import { YAxis } from "recharts/lib/cartesian/YAxis";
+import { CartesianGrid } from "recharts/lib/cartesian/CartesianGrid";
+import { Tooltip } from "recharts/lib/component/Tooltip";
+import { ResponsiveContainer } from "recharts/lib/component/ResponsiveContainer";
 
 export default function Chart(props) {
   return (

@@ -3,8 +3,8 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
-import styles from "./style.module.css";
-import { Sign_up_connection } from "../../Utils/connection";
+import styles from "../style.module.css";
+import { Sign_up_connection } from "../../../Utils/connection";
 import { useFormik } from "formik";
 import Stack from "@mui/material/Stack";
 
@@ -77,13 +77,12 @@ function SignupForm(props) {
 
   return (
     <Box
-      fullWidth
       component="form"
       noValidate
       onSubmit={formik.handleSubmit}
       sx={{ height: "100%", display: "flex", flexDirection: "column" }}
     >
-      <Stack spacing={1} fullWidth>
+      <Stack spacing={1}>
         <TextField
           required
           fullWidth
@@ -170,7 +169,6 @@ function SignupForm(props) {
         Already have an account? Sign in
       </Link>
       <Box
-        fullWidth
         sx={{
           display: "flex",
           alignItems: "center",

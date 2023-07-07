@@ -2,7 +2,9 @@
 import * as React from "react";
 import Rating from "@mui/material/Rating";
 import { useState } from "react";
-import { Typography, Button, Link } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";

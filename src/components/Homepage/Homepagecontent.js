@@ -5,11 +5,14 @@ import { cookies, makeURL } from "../../Utils/common";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { Typography, Button, Link } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 import Rating from "@mui/material/Rating";
 import Newhotelcard from "./layouts/Newhotelcard";
 import references from "../../assets/References.json";
-import { Box, CircularProgress } from "@mui/material";
 
 export default function Homepagecontent(props) {
   const [value, setValue] = React.useState(1);

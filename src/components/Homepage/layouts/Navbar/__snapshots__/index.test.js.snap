@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar renders correctly 1`] = `
+<nav
+  className="navbar navbar-expand-md navbar-light sticky-top nav-top w-100 nav-style"
+>
+  <div
+    className="container-fluid"
+  >
+    <a
+      className="navbar-brand logo"
+      href="/"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onTouchStart={[Function]}
+    >
+      <img
+        alt="Hotel Center"
+        data-nimg="1"
+        decoding="async"
+        height={48}
+        loading="lazy"
+        onError={[Function]}
+        onLoad={[Function]}
+        src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+        srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+        style={
+          {
+            "color": "transparent",
+          }
+        }
+        width={48}
+      />
+      <span
+        className="fw-bold logo-text-font"
+      >
+        Hotel Center
+      </span>
+    </a>
+    <div
+      className="collapse navbar-collapse"
+      id="navMenu"
+    >
+      <div
+        className="ms-auto pt-3 pt-sm-0"
+      >
+        <ul
+          className="navbar-nav"
+        >
+          <div
+            className="MuiBox-root css-11z4nni"
+          >
+            <a
+              href="/login"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
+              style={
+                {
+                  "marginRight": 16,
+                }
+              }
+            >
+              <button
+                className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+                disabled={false}
+                onBlur={[Function]}
+                onContextMenu={[Function]}
+                onDragLeave={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                tabIndex={0}
+                type="button"
+              >
+                Login
+              </button>
+            </a>
+            <a
+              href="/sign-up"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
+            >
+              <button
+                className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+                disabled={false}
+                onBlur={[Function]}
+                onContextMenu={[Function]}
+                onDragLeave={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                tabIndex={0}
+                type="button"
+              >
+                Sign up
+              </button>
+            </a>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+`;

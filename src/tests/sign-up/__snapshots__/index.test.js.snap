@@ -1,0 +1,229 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Signup Page renders correctly 1`] = `
+<main
+  className="MuiContainer-root MuiContainer-maxWidthMd css-xdmu94-MuiContainer-root"
+>
+  <div
+    className="MuiBox-root css-t56kh9"
+  >
+    <div
+      className="MuiStack-root css-163ljxj-MuiStack-root"
+    >
+      <div
+        className="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-1af46jv-MuiAvatar-root"
+      >
+        <svg
+          aria-hidden={true}
+          className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiAvatar-fallback css-10mi8st-MuiSvgIcon-root-MuiAvatar-fallback"
+          data-testid="PersonIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+          />
+        </svg>
+      </div>
+      <h1
+        className="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+      >
+        Sign up
+      </h1>
+      <img
+        data-nimg="1"
+        decoding="async"
+        height={300}
+        loading="lazy"
+        onError={[Function]}
+        onLoad={[Function]}
+        src="/_next/image?url=%2Fimg%2Fs3.png&w=640&q=75"
+        srcSet="/_next/image?url=%2Fimg%2Fs3.png&w=384&q=75 1x, /_next/image?url=%2Fimg%2Fs3.png&w=640&q=75 2x"
+        style={
+          {
+            "color": "transparent",
+          }
+        }
+        width={300}
+      />
+    </div>
+    <div
+      className="MuiBox-root css-3qf3dq"
+    >
+      <div
+        className="MuiBox-root css-1sm2s1z"
+      >
+        <div
+          className="MuiBox-root css-6r2fzw"
+        >
+          <h6
+            className="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
+          >
+            How are you going to use Hotel Center?
+          </h6>
+          <div
+            className="MuiFormGroup-root css-dmmspl-MuiFormGroup-root"
+            role="radiogroup"
+          >
+            <label
+              className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+            >
+              <span
+                className="MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root MuiRadio-root MuiRadio-colorPrimary MuiRadio-root MuiRadio-colorPrimary css-vqmohf-MuiButtonBase-root-MuiRadio-root"
+                onBlur={[Function]}
+                onContextMenu={[Function]}
+                onDragLeave={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                tabIndex={null}
+              >
+                <input
+                  checked={false}
+                  className="PrivateSwitchBase-input css-1m9pwf3"
+                  name=":r0:"
+                  onChange={[Function]}
+                  required={false}
+                  type="radio"
+                  value="customer"
+                />
+                <span
+                  className="css-hyxlzm"
+                >
+                  <svg
+                    aria-hidden={true}
+                    className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hbvpl3-MuiSvgIcon-root"
+                    data-testid="RadioButtonUncheckedIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                    />
+                  </svg>
+                  <svg
+                    aria-hidden={true}
+                    className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
+                    data-testid="RadioButtonCheckedIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M8.465 8.465C9.37 7.56 10.62 7 12 7C14.76 7 17 9.24 17 12C17 13.38 16.44 14.63 15.535 15.535C14.63 16.44 13.38 17 12 17C9.24 17 7 14.76 7 12C7 10.62 7.56 9.37 8.465 8.465Z"
+                    />
+                  </svg>
+                </span>
+              </span>
+              <span
+                className="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+              >
+                I am planning to search, view and reserve hotels
+              </span>
+            </label>
+            <label
+              className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+            >
+              <span
+                className="MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root MuiRadio-root MuiRadio-colorPrimary MuiRadio-root MuiRadio-colorPrimary css-vqmohf-MuiButtonBase-root-MuiRadio-root"
+                onBlur={[Function]}
+                onContextMenu={[Function]}
+                onDragLeave={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                tabIndex={null}
+              >
+                <input
+                  checked={false}
+                  className="PrivateSwitchBase-input css-1m9pwf3"
+                  name=":r0:"
+                  onChange={[Function]}
+                  required={false}
+                  type="radio"
+                  value="manager"
+                />
+                <span
+                  className="css-hyxlzm"
+                >
+                  <svg
+                    aria-hidden={true}
+                    className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hbvpl3-MuiSvgIcon-root"
+                    data-testid="RadioButtonUncheckedIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                    />
+                  </svg>
+                  <svg
+                    aria-hidden={true}
+                    className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
+                    data-testid="RadioButtonCheckedIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M8.465 8.465C9.37 7.56 10.62 7 12 7C14.76 7 17 9.24 17 12C17 13.38 16.44 14.63 15.535 15.535C14.63 16.44 13.38 17 12 17C9.24 17 7 14.76 7 12C7 10.62 7.56 9.37 8.465 8.465Z"
+                    />
+                  </svg>
+                </span>
+              </span>
+              <span
+                className="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+              >
+                I am planning to manage and advertise my hotels
+              </span>
+            </label>
+          </div>
+        </div>
+        <a
+          className="MuiTypography-root MuiTypography-body2 MuiLink-root MuiLink-underlineAlways css-eb54fy-MuiTypography-root-MuiLink-root"
+          href="/login"
+          onBlur={[Function]}
+          onFocus={[Function]}
+        >
+          Already have an account? Sign in
+        </a>
+        <div
+          className="MuiBox-root css-t0kr8q"
+        >
+          <button
+            className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-kq49rb-MuiButtonBase-root-MuiButton-root"
+            disabled={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={-1}
+            type="button"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+`;

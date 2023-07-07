@@ -2,7 +2,9 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import Box from "@mui/material/Box";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { Typography, Button, Link } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
 
 function SignupRoleSelection(props) {
   const options = {

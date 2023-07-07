@@ -1,6 +1,6 @@
 // primary: #f59f0b
 
-import { createTheme } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
 
 const lightThemeOptions = {
   palette: {

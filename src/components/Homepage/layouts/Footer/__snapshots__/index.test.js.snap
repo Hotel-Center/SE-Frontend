@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer renders correctly 1`] = `
+<div
+  className="MuiBox-root css-1x5nrls"
+>
+  <hr
+    className="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+  />
+  <div
+    className="MuiBox-root css-12t46fw"
+  >
+    <p
+      className="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+    >
+      FAQ
+    </p>
+    <p
+      className="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+    >
+      Terms of Service
+    </p>
+    <p
+      className="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+    >
+      Privacy
+    </p>
+    <p
+      className="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+    >
+      Newsletter
+    </p>
+    <p
+      className="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+    >
+      About HotelCenter
+    </p>
+    <p
+      className="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+    >
+      Contant Us
+    </p>
+  </div>
+</div>
+`;

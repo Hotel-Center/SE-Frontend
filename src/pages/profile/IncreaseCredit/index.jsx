@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../../../components/Profile/Sidebar";
-import { GoldenTextField } from "../../../theme/GoldenTextField";
 import AttachMoneyOutlinedIcon from "@mui/icons-material/AttachMoneyOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
 import axios from "axios";
@@ -8,7 +7,9 @@ import { cookies, makeURL } from "../../../Utils/common";
 import references from "../../../assets/References.json";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-import { CircularProgress } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import Image from "next/image";
 
 export default function Credit() {
@@ -60,9 +61,9 @@ export default function Credit() {
     setLoading(true);
     if (amountOfMoney) {
       axios
-        .post(
+        .patch(
           makeURL(references.url_add_credit),
-          { credit: amountOfMoney },
+          { amount: amountOfMoney },
           {
             headers: {
               Authorization: cookies.get("Authorization"),
@@ -73,7 +74,7 @@ export default function Credit() {
           setOpen(true);
           setLoading(false);
           console.log("response for credits: ", response.data);
-          setBalance(response.data.new_credit);
+          setBalance(response.data.balance);
           setMessage("Account balance increased successfully.");
         })
         .catch((error) => {
@@ -99,46 +100,46 @@ export default function Credit() {
                 <p>Select one of these options:</p>
                 <div className="row">
                   <div className="col-sm-4">
-                    <button
-                      type="button"
-                      className="btn w-100 money-option-button"
+                    <Button
+                      variant="outlined"
+                      className="w-100"
                       data-testid="no1"
                       onClick={() => {
                         setAmountOfMoney(100);
                       }}
                     >
                       $100
-                    </button>
+                    </Button>
                   </div>
                   <div className="col-sm-4 my-2 my-sm-0">
-                    <button
-                      type="button"
-                      className="btn w-100 money-option-button"
+                    <Button
+                      variant="outlined"
+                      className="w-100"
                       data-testid="no2"
                       onClick={() => {
                         setAmountOfMoney(200);
                       }}
                     >
                       $200
-                    </button>
+                    </Button>
                   </div>
                   <div className="col-sm-4">
-                    <button
-                      type="button"
-                      className="btn w-100 money-option-button"
+                    <Button
+                      variant="outlined"
+                      className="w-100"
                       data-testid="no3"
                       onClick={() => {
                         setAmountOfMoney(500);
                       }}
                     >
                       $500
-                    </button>
+                    </Button>
                   </div>
                 </div>
                 <p className="mb-3 mt-2">
                   or enter your desired amount of money here:
                 </p>
-                <GoldenTextField
+                <TextField
                   name="amountOfMoney"
                   className="w-100 mb-4"
                   label="Amount of money"
@@ -153,9 +154,9 @@ export default function Credit() {
                     ),
                   }}
                 />
-                <button
-                  type="button"
-                  className="btn btn-primary pay-button w-100"
+                <Button
+                  variant="contained"
+                  className="w-100"
                   onClick={handlePay}
                   disabled={amountOfMoney === 0}
                 >
@@ -164,7 +165,7 @@ export default function Credit() {
                   ) : (
                     "Pay"
                   )}
-                </button>
+                </Button>
                 <Snackbar
                   open={open}
                   autoHideDuration={4000}

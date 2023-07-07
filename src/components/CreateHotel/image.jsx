@@ -1,10 +1,11 @@
 import * as React from "react";
-import { TextField, Grid } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import CircularProgress from "@mui/material/CircularProgress";
+import Grid from "@mui/material/Grid";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { cookies, makeURL } from "../../Utils/common";
 import references from "../../assets/References.json";
-import { CircularProgress } from "@mui/material";
 import "../../css/Profile.css";
 import { useFormik } from "formik";
 import * as yup from "yup";

@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Box, CircularProgress } from "@mui/material";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 import Rating from "@mui/material/Rating";
 import LocalTaxiRoundedIcon from "@mui/icons-material/LocalTaxiRounded";
 import ChairRoundedIcon from "@mui/icons-material/ChairRounded";
@@ -230,8 +231,8 @@ export default function Hotelpage() {
         ? setNumberOfAdults(numberOfAdults > 1 ? numberOfAdults - 1 : 1)
         : setNumberOfChildren(numberOfChildren > 0 ? numberOfChildren - 1 : 0)
       : guestType === "adults"
-      ? setNumberOfAdults(numberOfAdults + 1)
-      : setNumberOfChildren(numberOfChildren + 1);
+        ? setNumberOfAdults(numberOfAdults + 1)
+        : setNumberOfChildren(numberOfChildren + 1);
     setperson(numberOfAdults + numberOfChildren + 1);
     // localStorage.setItem('i3', JSON.stringify(numberOfAdults + numberOfChildren + 1));
   };
@@ -440,21 +441,21 @@ export default function Hotelpage() {
                 <div className="col">
                   {f1
                     ? f1.map((f) => (
-                        <div className="mb-3 row">
-                          <div className="col">{f.name}</div>
-                          <div className="col">{Icons[f.name]}</div>
-                        </div>
-                      ))
+                      <div className="mb-3 row">
+                        <div className="col">{f.name}</div>
+                        <div className="col">{Icons[f.name]}</div>
+                      </div>
+                    ))
                     : null}
                 </div>
                 <div className="col">
                   {f2
                     ? f2.map((f) => (
-                        <div className="mb-3 row">
-                          <div className="col">{f.name}</div>
-                          <div className="col">{Icons[f.name]}</div>
-                        </div>
-                      ))
+                      <div className="mb-3 row">
+                        <div className="col">{f.name}</div>
+                        <div className="col">{Icons[f.name]}</div>
+                      </div>
+                    ))
                     : null}
                 </div>
               </div>
@@ -492,13 +493,13 @@ export default function Hotelpage() {
                   <div className="container">
                     {facility
                       ? facility.map((f) => (
-                          <div className="mb-3 row">
-                            <div className="col">{f.name}</div>
-                            <div className="col" style={{ textAlign: "right" }}>
-                              {Icons[f.name]}
-                            </div>
+                        <div className="mb-3 row">
+                          <div className="col">{f.name}</div>
+                          <div className="col" style={{ textAlign: "right" }}>
+                            {Icons[f.name]}
                           </div>
-                        ))
+                        </div>
+                      ))
                       : null}
                   </div>
                 </div>
@@ -511,21 +512,21 @@ export default function Hotelpage() {
           <h3 className="mb-3 mt-3">Types Of Rooms</h3>
           {rooms
             ? rooms.map((r) => (
-                <Roomcard
-                  getin={checkinDate}
-                  getout={checkoutDate}
-                  person={person}
-                  name={r.hotel_info.name}
-                  city={r.hotel_info.city}
-                  id={r.id}
-                  option={r.option}
-                  price={r.price}
-                  sleeps={r.sleeps}
-                  type={r.type}
-                  roomfacilities={r.room_facilities}
-                  size={r.size}
-                />
-              ))
+              <Roomcard
+                getin={checkinDate}
+                getout={checkoutDate}
+                person={person}
+                name={r.hotel_info.name}
+                city={r.hotel_info.city}
+                id={r.id}
+                option={r.option}
+                price={r.price}
+                sleeps={r.sleeps}
+                type={r.type}
+                roomfacilities={r.room_facilities}
+                size={r.size}
+              />
+            ))
             : null}
           <div className="">
             <hr className="mb-0 mt-0 hr-text"></hr>
@@ -625,11 +626,11 @@ export default function Hotelpage() {
                 {user ? (
                   <div>Placeholder Chatbox</div>
                 ) : // <Chatboxuser
-                //   user={user}
-                //   roomNumber={roomNumber}
-                //   hotel={hotel}
-                // />
-                null}
+                  //   user={user}
+                  //   roomNumber={roomNumber}
+                  //   hotel={hotel}
+                  // />
+                  null}
               </div>
             </div>
           </div>

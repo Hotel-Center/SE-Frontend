@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TextField } from "@mui/material";
+import TextField from "@mui/material/TextField";
 import "../../css/Stepper.css";
 import { useFormik } from "formik";
 import * as yup from "yup";

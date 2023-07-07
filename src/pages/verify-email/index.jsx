@@ -1,6 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import * as React from "react";
-import { Grid, Box, Typography, Container } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
 import Helmet from "react-helmet";
 import Image from "next/image";
 

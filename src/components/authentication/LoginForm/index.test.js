@@ -1,22 +1,13 @@
 import "@testing-library/jest-dom/extend-expect";
 import { render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import renderer from "react-test-renderer";
 import LoginForm from ".";
 
 describe("Login Form", () => {
-  it("renders Login button", () => {
-    const loginForm = render(<LoginForm />);
-
-    expect(loginForm.getByRole("button", { text: "Login" })).toBeTruthy();
-  });
-
-  it("renders login fields", () => {
-    const loginForm = render(<LoginForm />);
-
-    expect(
-      loginForm.getByRole("textbox", { name: "Email Address" })
-    ).toBeTruthy();
-    expect(loginForm.getByRole("password", { name: "Password" })).toBeTruthy();
+  it("renders correctly", () => {
+    const tree = renderer.create(<LoginForm />).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 
   it("has editable login fields", async () => {

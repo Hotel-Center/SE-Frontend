@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect, useReducer } from "react";
-import Logo from "../../../../public/logo/logo2.png";
+import Logo from "/public/logo/logo2.png";
 // import UseAnimations from "react-useanimations";
 // import menu3 from "react-useanimations/lib/menu3";
-import { me, logout } from "../../../Utils/connection";
+import { me, logout } from "../../../../Utils/connection";
 import PersonIcon from "@mui/icons-material/Person";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
@@ -13,7 +13,8 @@ import Image from "next/image";
 
 import Hamburger from "hamburger-react";
 import Link from "next/link";
-import { Box, useTheme } from "@mui/material";
+import Box from "@mui/material/Box";
+import { useTheme } from "@mui/material/styles";
 import { useRouter } from "next/router";
 import { cookies } from "src/Utils/common";
 
@@ -136,8 +137,8 @@ function Navbar() {
         state.isAdminPanelPage
           ? "d-none"
           : state.navbarMoved
-          ? "navbar navbar-expand-md navbar-light sticky-top nav-scrolled w-100 nav-style"
-          : "navbar navbar-expand-md navbar-light sticky-top nav-top w-100 nav-style"
+            ? "navbar navbar-expand-md navbar-light sticky-top nav-scrolled w-100 nav-style"
+            : "navbar navbar-expand-md navbar-light sticky-top nav-top w-100 nav-style"
       }
     >
       <div className="container-fluid">

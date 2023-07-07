@@ -3,49 +3,57 @@
    border-radius: 6px;
    max-width: 1296px;
    margin-top: 5px;
-   @media screen and (min-width: 576px) {
-      margin-top: calc(30px + 10vw);
-      flex-wrap: wrap;
-   }
-   @media screen and (min-width: 768px) {
-      margin-top: calc(100px + 15vw);
-      flex-wrap: wrap;
-   }
+   flex-wrap: wrap;
+
+   // @media screen and (min-width: 576px) {
+   //    // margin-top: calc(30px + 10vw);
+   //    flex-wrap: wrap;
+   // }
+
+   // @media screen and (min-width: 768px) {
+   //    // margin-top: calc(100px + 15vw);
+   //    flex-wrap: wrap;
+   // }
+
    @media screen and (min-width: 992px) {
-      margin-top: calc(130px + 15vw);
+      // margin-top: calc(130px + 15vw);
       flex-wrap: nowrap;
    }
-   @media screen and (min-width: 1200px) {
-      margin-top: calc(160px + 15vw);
-      flex-wrap: nowrap;
-   }
+
+   // @media screen and (min-width: 1200px) {
+   //    // margin-top: calc(160px + 15vw);
+   //    flex-wrap: nowrap;
+   // }
 }
 
 .cityPicker {
    padding: 0;
+
    // width: 100%;
    @media screen and (min-width: 992px) {
       width: 22%;
    }
-}   
+}
 
 .datePicker {
    & .datePicker.MuiInputBase-root {
       background-color: white;
    }
+
    @media screen and (min-width: 992px) {
       width: 21%;
    }
-}   
+}
 
 .personCountBox {
    @media screen and (min-width: 992px) {
       width: 21%;
    }
-   
+
 }
 
 .searchButton {
+
    // border: none;
    // height: 56px;
    // border-width: 1px;
@@ -54,32 +62,4 @@
    @media screen and (min-width: 992px) {
       width: calc(15% - 16px);
    }
-}
-
-.changePersonCountButton {
-  background-color: #cda348;
-  color: white;
-  height: 40px;
-  width: 40px;
-  border: none;
-  padding: 0;
-}
-
-.changePersonCountButton:focus,
-.changePersonCountButton:active,
-.changePersonCountButton:hover {
-  color: white;
-  background-color: #ba8004 !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-.changePersonCountButton:disabled,
-.changePersonCountButton:disabled {
-  color: white;
-  background-color: #c59f4c !important;
-}
-
-.locationIcon {
-   color: #cd9a2d;
 }
