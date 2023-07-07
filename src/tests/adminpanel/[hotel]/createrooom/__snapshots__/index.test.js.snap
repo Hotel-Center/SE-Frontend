@@ -804,10 +804,26 @@ exports[`Hotel Room Creation Page renders correctly 1`] = `
                     className="row"
                   >
                     <div
+                      className="col-lg-2 col-md-8 edit-hotel mb-3"
+                    >
+                      <button
+                        className="btn edit-hotel"
+                        onClick={[Function]}
+                        style={
+                          {
+                            "background": "gray",
+                          }
+                        }
+                      >
+                        Cancel
+                         
+                      </button>
+                    </div>
+                    <div
                       className="col-lg-4 col-md-2"
                     />
                     <div
-                      className="col-lg-4 col-md-2"
+                      className="col-lg-2 col-md-2"
                     />
                     <div
                       className="col-lg-4 col-md-8 edit-hotel mb-3"
