@@ -4,7 +4,6 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  Snackbar,
   Alert as MuiAlert,
   IconButton,
 } from "@mui/material";
@@ -66,10 +65,6 @@ export default function HotelCreationForm(props) {
     validationSchema: validationSchema,
     onSubmit: props.handleSubmit,
   });
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
-  const [message, setMessage] = useState("");
-  const [open, setOpen] = useState(false);
 
   function uploadSingleFile(e) {
     formik.setFieldValue("files", [...formik.values.files, e.target.files[0]]);
@@ -79,18 +74,6 @@ export default function HotelCreationForm(props) {
     formik.setFieldValue("files", files);
   }
   const images = formik.values.files.map((file) => URL.createObjectURL(file));
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
-  useEffect(() => {
-    if (selectedImage) {
-      setImageUrl(URL.createObjectURL(selectedImage));
-    }
-  }, [selectedImage]);
 
   useEffect(() => {
     if (formik.touched.country) {
@@ -393,68 +376,9 @@ export default function HotelCreationForm(props) {
           </div>
         </div>
         <hr className="dashed" />
-        <div className="mb-3 col-12" title="a12">
-          <div className="row mt-3" title="a13">
-            <div className="col-lg-3" title="a14">
-              <label
-                htmlFor="exampleFormControlInput2"
-                className="ms-2 mt-1 form-label"
-                title="f2"
-              >
-                Header Picture
-              </label>
-            </div>
-            <div className="col-lg-9" title="a16">
-              <input
-                title="a15"
-                type="file"
-                name="myImage"
-                accept="image/*"
-                onChange={(event) => {
-                  console.log(event.target.files[0]);
-                  setSelectedImage(event.target.files[0]);
-                }}
-              />
-              <Snackbar
-                open={open}
-                autoHideDuration={4000}
-                onClose={handleClose}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "center",
-                }}
-              >
-                <Alert
-                  onClose={handleClose}
-                  severity={
-                    message === "Your image uploaded successfully!"
-                      ? "success"
-                      : "error"
-                  }
-                  sx={{ width: "100%" }}
-                >
-                  {message}
-                </Alert>
-              </Snackbar>
-              {imageUrl && selectedImage && (
-                <Box mt={2} textAlign="left">
-                  <div>Image Preview:</div>
-                  <img
-                    className="company-logo"
-                    src={imageUrl}
-                    alt={selectedImage.name}
-                    height="82px !important"
-                    width="150px !important"
-                  />
-                </Box>
-              )}
-            </div>
-          </div>
-        </div>
-        <hr className="dashed" />
         <div className="mb-3 col-12">
           <Typography sx={{ mb: 3 }}>
-            Please upload other photos of hotel here.
+            Please upload photos of hotel here.
           </Typography>
           <form>
             <div className="form-group preview">
@@ -471,13 +395,6 @@ export default function HotelCreationForm(props) {
                           height: "100px",
                         }}
                       />
-                      {/* <button
-                  type="button"
-                  className="btn edit-hotel"
-                  
-                >
-                  delete
-                </button> */}
                       <IconButton aria-label="delete">
                         <DeleteIcon onClick={() => deleteFile(index)} />
                       </IconButton>
@@ -495,24 +412,6 @@ export default function HotelCreationForm(props) {
                 onChange={uploadSingleFile}
               />
             </div>
-
-            <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
-              <Alert
-                onClose={handleClose}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "center",
-                }}
-                severity={
-                  message === "Your picture was uploaded successfully!"
-                    ? "success"
-                    : "error"
-                }
-                sx={{ width: "100%" }}
-              >
-                {message}
-              </Alert>
-            </Snackbar>
           </form>
         </div>
       </form>
