@@ -6,7 +6,7 @@
   "url_login": "/auth/token/login/",
   "url_me": "/auth/users/me/",
   "url_logout": "/auth/token/logout/",
-  "url_onehotel": "/hotel/hotels",
+  "url_onehotel": "/hotel/get_info",
   "url_onehotelImage": "/hotel",
   "url_besthotels": "/hotel/best/?count=4",
   "url_newhotels": "/hotel/newhotels/",

@@ -164,9 +164,30 @@ export const one_hotel_connection = async (id) => {
     })
     .catch(() => {
       // console.log(error);
-      message = false;
+      message = "false";
     });
 
+  return message;
+};
+
+export const one_hotel_rooms = async (id) => {
+  let message = "";
+  await axios
+    .get(
+      makeURL(references.url_hotelrooms + id + "/"),
+      {},
+      {
+        headers: {
+          Authorization: cookies.get("Authorization"),
+        },
+      }
+    )
+    .then((response) => {
+      message = response.data;
+    })
+    .catch(() => {
+      message = "false";
+    });
   return message;
 };
 
